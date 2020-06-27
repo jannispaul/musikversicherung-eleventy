@@ -22,17 +22,7 @@ return this.fetch("sitemap.xml");
 </script>
 
 <script>
-	export let reviewData;
-import Layout from "../routes/_layouts/layout.svelte";
-import Hero from "../components/home/1Hero.svelte";
-import Types from "../components/home/2Types.svelte";
-import AsItShouldBe from "../components/home/3AsItShouldBe.svelte";
-import RecentReviews from "../components/home/4RecentReviews.svelte";
-import HeadlineAndText from "../components/home/5HeadlineAndText.svelte";
-import NoDeductible from "../components/home/6NoDeductible.svelte";
-import InstrumentsAndMore from "../components/home/8InstrumentsAndMore.svelte";
-import Various from "../components/home/10Various.svelte";
-import Video from "../components/home/11Video.svelte";
+
 
 let content1 = {
 headline: "Weit mehr als nur eine Hausratdeckung",
@@ -56,31 +46,17 @@ paragraph: "Versicherungsschutz besteht sowohl dann, wenn der Schaden selbst ver
 </svelte:head> #}
 
 	<Hero/>
-{# include hero, types, as-it-should-be, headline-w-text, no-deductable  component #}
-{% include "components/home/1-hero.njk" %}
-{% include "components/home/2-types.njk" %}
-{% include "components/home/3-as-it-should-be.njk" %}
+		{# include hero, types, as-it-should-be, headline-w-text, no-deductable  component #}
+		{% include "components/home/1-hero.njk" %}
+		{% include "components/home/2-types.njk" %}
+		{% include "components/home/3-as-it-should-be.njk" %}
 
-{% include "components/home/5-headline-w-text.njk" %}
-{% include "components/home/6-no-deductable.njk" %}
+		{% include "components/home/4-headline-w-text.njk" %}
+		{% include "components/home/6-no-deductable.njk" %}
 
-{% include "components/home/8-instruments-and-more.njk" %}
-{% include "components/home/10-more-advantages.njk" %}
-
-{# 
-	<Types/>
-	<AsItShouldBe/>
-	<RecentReviews />
-	<HeadlineAndText {...content1} headlinecolor="text-secondary"/>
-	<NoDeductible/>
-	<HeadlineAndText {...content2}/>
-	<InstrumentsAndMore/>
-	<HeadlineAndText {...content3} headlinecolor="text-secondary"/>
-	<Various/>
-	<Video/> #}
-
-
-
+		{% include "components/home/8-instruments-and-more.njk" %}
+		{% include "components/home/10-more-advantages.njk" %}
+		{% include "components/home/11-video.njk" %}
 
 </main>
 

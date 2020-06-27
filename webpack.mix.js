@@ -39,7 +39,7 @@ mix
     processCssUrls: false,
     postCss: [
       tailwindcss("tailwind.theme.js"),
-      // tailwindcss("tailwind.config.js"),
+      tailwindcss("tailwind.config.js"),
     ],
   });
 
