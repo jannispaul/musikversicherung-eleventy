@@ -1,0 +1,31 @@
+---
+layout: default
+meta_title: Instrumentenversicherung – Reviews
+meta_description: Musikinstrumente, Equipment und Zubehör einfach online versichern
+    ✅ weltweiter Schutz ✅ auch im Auto ✅ kostenlose, individuelle Beratung
+    vom Experten
+body_class: home
+title: Reviews
+---
+
+<main id="main" class="" tabindex="-1">
+<section class="px-x1p5 -mb-x3 md:-mb-x2">
+	<h1 class="text-primary text-x6 leading-tight mb-x1 border-solid">
+		Kundenmeinungen
+	</h1>
+	<StarRating rating={reviewData.averageRating}/>
+	<div class="text-x2 md:text-x0p5 mb-x1">
+		{reviewData.averageRating} Sterne von {reviewData.count} Berwertungen
+	</div>
+	<div
+		class="grid grid-cols-1 md:grid-cols-2 col-gap-x1 row-gap-x0p5">
+      {% for review in reviewData.allReviews %}
+        {% include "components/review-item.njk" %}
+      {% endfor %}
+    </div>
+		
+		  </section>
+
+</main>
+
+
