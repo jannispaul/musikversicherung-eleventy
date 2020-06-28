@@ -11,16 +11,17 @@
 			{% endif %}
 			|
 			{{ site.name }}</title>
-		<meta name="description" content="{% if meta_description %}{{ meta_description }}{% else %}{{ excerpt }}{% endif %}">
-		{% if page.fileSlug === 'blog' %}
-			<meta name="robots" content="noindex,follow"/>
-		{% else %}
-			<meta name="robots" content="index,follow"/>
-		{% endif %}
+		<meta
+		name="description" content="{% if meta_description %}{{ meta_description }}{% else %}{{ excerpt }}{% endif %}">
+		{# {% if page.fileSlug === 'blog' %}
+											<meta name="robots" content="noindex,follow"/>
+										{% else %} #}
+		<meta name="robots" content="index,follow"/>
+		{# {% endif %} #}
 
 		{# if your site's entire CSS comes in under 14kb, you may want to inline in the head #}
 		{# include main.css if in development mode #}
-		{% if helpers.environment === "development" %}
+			{% if helpers.environment === "development" %}
 			<link rel="stylesheet" href="/css/main.css">
 		{% else %}
 			{# else, use the minified css file for production #}
@@ -44,28 +45,9 @@
 		{# canonical #}
 		<link rel="canonical" href="{{ site.url }}{{ page.url }}">
 	</head>
+</html></head><body {% if body_class %} id="{{ body_class }}" {% endif %} class="bg-light"></body>{# <a class="sr-only" href="#main">Skip to content</a> #}{# include special-notice #}{% include "components/special-notice.njk" %}{# include header #}{% include "components/header.njk" %}<div class="mt-x1 relative z-0">{# include mobile nav #}
+{# {% include "components/mobile-nav.njk" %} #}
 
-	<body {% if body_class %} id="{{ body_class }}" {% endif %} class="text-purple-900 leading-normal text-lg">
+{# include content #}{{ content | safe }}
 
-		{# <a class="sr-only" href="#main">Skip to content</a> #}
-
-		{# include special-notice #}
-		{% include "components/special-notice.njk" %}
-		{# include header #}
-		{% include "components/header.njk" %}
-
-			<div class="mt-x1 relative z-0"> {# include mobile nav #}
-			{# {% include "components/mobile-nav.njk" %} #}
-
-			{# include content #}
-			{{ content | safe }}
-
-			{# include footer #}
-		{% include "components/footer.njk" %}
-
-		</div>
-
-		{# include cookie-notice #}
-	{% include "components/cookie-notice.njk" %}
-
-</body></html>
+{# include footer #}{% include "components/footer.njk" %}</div>{# include cookie-notice #}{% include "components/cookie-notice.njk" %}</html></body></html>

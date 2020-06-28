@@ -1,0 +1,54 @@
+[
+    {
+        "question": "Welchen Geltungsbereich hat die Versicherung?",
+        "answer": "Versicherungsschutz gilt weltweit."
+    },
+    {
+        "question": "Was ist bei Auslandsreien zu beachten?",
+        "answer": "Dazu haben wir <a href='https://musikversicherung.com/Empfehlungen-zu-Auslandsreisen.pdf' title='Empfehlungen zu Auslandsreisen lesen' class='underline' target='_blank' rel='noopener noreferrer'>diesen Ratgeber</a>."
+    },
+    {
+        "question": "Ist mein Instrument auch versichert, wenn ich es verleihe?",
+        "answer": "Ja."
+    },
+    {
+        "question": "Muss ich einen Verleih anmelden?",
+        "answer": "Nein, es sei denn der Verleih erfolgt gewerblich."
+    },
+    {
+        "question": "Besteht auch im Auto Versicherungsschutz?",
+        "answer": "Ja. Es gibt jedoch eine Höchstentschädigung von 50.000 € (SINFONIMA) und 100.000 € (I’M SOUND). Voraussetzung ist die Aufbewahrung in einem von außen nicht einsehbaren Koffer- oder Laderaum."
+    },
+    {
+        "question": "Wie lange bin ich an den Vertrag gebunden?",
+        "answer": "Der Versicherungsvertrag wird zunächst für ein Jahr geschlossen. Er verlängert sich um ein weiteres Jahr, wenn er nicht drei Monate vor Ablauf gekündigt wird."
+    },
+    {
+        "question": "Was muss ich im Schadenfall tun?",
+        "answer": "Informiere mich möglichst unverzüglich telefonisch oder per Email. Sinnvoll ist es, wenn Du mir dann bereits Informationen zur ungefähren Höhe des Schadens geben kannst. In den meisten Fällen kann ich Dir eine sofortige Reparaturfreigabe bestätigen."
+    },
+    {
+        "question": "Was passiert, wenn ich mein Instrument verkaufe oder zurückgebe?",
+        "answer": "Der Versicherungsvertrag wird aufgehoben. Zuviel gezahlte Beiträge werden erstattet. Natürlich kann der Versicherungsschutz auch auf ein Folgeinstrument übertragen werden."
+    },
+    {
+        "question": "Was tue ich, wenn ich die Reparaturrechnung habe?",
+        "answer": "Im Regelfall bezahlst Du diese und sendest die Rechnung per Email oder Fax an mich. Ich rechne dann mit Dir ab. Auf Wunsch kann ich auch direkt an den Reparaturbetrieb / Lieferanten zahlen."
+    },
+    {
+        "question": "Kann ich mir für die Reparaturdauer ein Ersatzinstrument leihen?",
+        "answer": "Ja, die Kosten für ein gleichwertiges Leihinstrument werden im Rahmen der Versicherung ebenfalls ersetzt."
+    },
+    {
+        "question": "Wie ermittle ich die richtige Versicherungssumme?",
+        "answer": "Du hast die Wahl zwischen einer Neu- und einer  Zeitwertversicherung.\n\nEine Neuwertdeckung empfiehlt sich immer dann, wenn man das Instrument heute noch neu kaufen kann. Wenn Du es gerade gekauft habst, nimm den Kaufpreis als Versicherungssumme. Sonst informiere Dich bitte, was Du ausgeben müsstest, wenn Du ein gleichartiges Instrument heute neu anschaffen würdest.\n\nEine Zeitwertversicherung ist zum Beispiel für alte Violinen oder andere Streichinstrumente, für die man naturgemäß heute keinen Neuwert mehr festlegen kann, sinnvoll. Bei hochwertigen Instrumenten empfehle ich, eine Wertbestätigung eines Fachhändlers oder Instrumentenbauers einzuholen.\n\nEs ist sinnvoll, die Richtigkeit der Versicherungssumme in Abständen zu überprüfen. Sowohl der irgendwann ermittelte Neuwert als auch der Zeitwert können sich im Laufe der Zeit verändern.\n"
+    },
+    {
+        "question": "Welche Schäden sind versichert?",
+        "answer": "Da es sich um eine All-Risk-Versicherung handelt, sind nahezu alle Risiken abgedeckt, die dem Instrument Schaden zufügen können. Versichert ist zum Beispiel das Risiko von Beschädigung, gleich aus welchem Grund:    - Zerstörung oder Verlust\n    - bei Transporten\n    - durch Diebstahl oder Raub\n    - durch Feuer\n    - durch Wasser\n"
+    },
+    {
+        "question": "Ist es nicht sinnvoller, meine Instrumentenversicherung „vor Ort“ abzuschließen?",
+        "answer": "Das ist Ihnen natürlich unbenommen. Der Vorteil des Online-Abschlusses über mich liegt in der Spezialisierung, hohen fachlichen Kompetenz und Professionalität, die bei vielen anderen Agenturen nicht immer gewährleistet ist. Auch ist bei anderen Versicherungsgesellschaften die Qualität des Sinfonima-Konzeptes nicht zu finden."
+    }
+]

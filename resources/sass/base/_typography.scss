@@ -1,29 +1,28 @@
-
 //==========  Typography ==========//
 
 // headings
-h1, h2, h3 {
-    @apply font-bold leading-tight mt-0 mb-6 text-purple-900;
-}
+// h1, h2, h3 {
+//     @apply font-bold leading-tight mt-0 mb-6 text-purple-900;
+// }
 
-.page-title {
-	@apply text-5xl;
-}
+// .page-title {
+// 	@apply text-5xl;
+// }
 
-// content
-.content {
+// // content
+// .content {
 
-	// paragraph
-	p {
-		@apply mb-8;
+// 	// paragraph
+// 	p {
+// 		@apply mb-8;
 
-        // intro paragraph
-		&:first-child {
-			@apply border-b border-gray-200 text-2xl pb-10 mb-10 font-light leading-snug text-gray-600;
+//         // intro paragraph
+// 		&:first-child {
+// 			@apply border-b border-gray-200 text-2xl pb-10 mb-10 font-light leading-snug text-gray-600;
 
-			@screen md {
-                @apply text-3xl;
-            }
-		}
-    }
-}
+// 			@screen md {
+//                 @apply text-3xl;
+//             }
+// 		}
+//     }
+// }

@@ -1,12 +1,14 @@
 ---
 layout: default
-meta_title: Home
-meta_description: Skeleventy is a beautiful, powerful skeleton boilerplate built with Eleventy and TailwindCSS
+meta_title: Instrumentenversicherung mit All-Risk-Schutz schon ab 4,69 €
+meta_description: Musikinstrumente, Equipment und Zubehör einfach online versichern
+    ✅ weltweiter Schutz ✅ auch im Auto ✅ kostenlose, individuelle Beratung
+    vom Experten
 body_class: home
 title: Welcome to Skeleventy!
 ---
 
-<main id="main" class="main inner flex flex-1 flex-col py-10 lg:py-20 focus:outline-none" tabindex="-1">
+<main id="main" class="" tabindex="-1">
 
 {#<script context="module">
 	export async function preload({params, query}) {
@@ -45,9 +47,17 @@ paragraph: "Versicherungsschutz besteht sowohl dann, wenn der Schaden selbst ver
 	    vom Experten"/>
 </svelte:head> #}
 
-	<Hero/>
+
 		{# include hero, types, as-it-should-be, headline-w-text, no-deductable  component #}
 		{% include "components/home/1-hero.njk" %}
+
+		{% for review in reviews %}
+			<p>{{ review.name }}</p>
+			<h2>blub</h2>
+		{% endfor %}
+		asd
+
+
 		{% include "components/home/2-types.njk" %}
 		{% include "components/home/3-as-it-should-be.njk" %}
 
