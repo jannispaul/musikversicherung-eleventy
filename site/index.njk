@@ -53,10 +53,13 @@ paragraph: "Versicherungsschutz besteht sowohl dann, wenn der Schaden selbst ver
 
 		{% for review in reviews %}
 			<p>{{ review.name }}</p>
-			<h2>blub</h2>
+			<p>{{ review.rating }}</p>
+			<p>{{ review.review }}</p>
 		{% endfor %}
 		asd
-		{{ reviews.name }}
+{{ reviews.reviewaaa }}
+{{ reviews.reviewaaa.name }}
+
 
 
 		{% include "components/home/2-types.njk" %}

@@ -11,13 +11,8 @@
 			{% endif %}
 			|
 			{{ site.name }}</title>
-		<meta
-		name="description" content="{% if meta_description %}{{ meta_description }}{% else %}{{ excerpt }}{% endif %}">
-		{# {% if page.fileSlug === 'blog' %}
-											<meta name="robots" content="noindex,follow"/>
-										{% else %} #}
+		<meta name="description" content="{% if meta_description %}{{ meta_description }}{% else %}{{ excerpt }}{% endif %}">
 		<meta name="robots" content="index,follow"/>
-		{# {% endif %} #}
 
 		{# if your site's entire CSS comes in under 14kb, you may want to inline in the head #}
 		{# include main.css if in development mode #}
@@ -45,9 +40,10 @@
 		{# canonical #}
 		<link rel="canonical" href="{{ site.url }}{{ page.url }}">
 	</head>
-</html></head><body {% if body_class %} id="{{ body_class }}" {% endif %} class="bg-light"></body>{# <a class="sr-only" href="#main">Skip to content</a> #}{# include special-notice #}{% include "components/special-notice.njk" %}{# include header #}{% include "components/header.njk" %}<div class="mt-x1 relative z-0">{# include mobile nav #}
-{# {% include "components/mobile-nav.njk" %} #}
+</html></head><body {% if body_class %} id="{{ body_class }}" {% endif %} class="bg-light" id="wrapper"></body>{# <a class="sr-only" href="#main">Skip to content</a> #}{# include special-notice #}{% include "components/special-notice.njk" %}{# include header #}{% include "components/header.njk" %}<div
+class="mt-x1 relative z-0">
+{# include content #}
+{{ content | safe }}
 
-{# include content #}{{ content | safe }}
-
-{# include footer #}{% include "components/footer.njk" %}</div>{# include cookie-notice #}{% include "components/cookie-notice.njk" %}</html></body></html>
+{# include footer #}
+{% include "components/footer.njk" %}</div>{# include cookie-notice #}{% include "components/cookie-notice.njk" %}</html></body></html>
