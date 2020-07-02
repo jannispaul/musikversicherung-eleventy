@@ -4,9 +4,7 @@ const yaml = require("js-yaml");
 
 module.exports = (eleventyConfig) => {
   // Yaml
-  eleventyConfig.addDataExtension("yaml", (contents) =>
-    yaml.safeLoad(contents)
-  );
+  eleventyConfig.addDataExtension("yml", (contents) => yaml.safeLoad(contents));
 
   // Add a readable date formatter filter to Nunjucks
   eleventyConfig.addFilter("dateDisplay", require("./filters/dates.js"));
