@@ -9,11 +9,39 @@ module.exports = (eleventyConfig) => {
   // Add a readable date formatter filter to Nunjucks
   eleventyConfig.addFilter("dateDisplay", require("./filters/dates.js"));
 
+  // Add a limit filter to limit loop iterations
+  eleventyConfig.addFilter("limit", function(obj, limit) {
+    return Object.entries(obj).slice(0, limit);
+  });
+  // eleventyConfig.addFilter("limit", require("./filters/limit.js"));
+  // limit filter
+  // eleventyConfig.addNunjucksFilter("limit", function(array, limit) {
+  //   return Object.entries(array).slice(0, limit);
+  // });
+
   // Add a HTML timestamp formatter filter to Nunjucks
   eleventyConfig.addFilter(
     "htmlDateDisplay",
     require("./filters/timestamp.js")
   );
+
+  // Calculate average from ratings
+  eleventyConfig.addFilter("ratingAverage", function(obj) {
+    let arr = Object.values(obj);
+    let average =
+      arr.reduce((sum, e) => sum + parseInt(e.rating), 0) / arr.length;
+    return average.toFixed(2);
+  });
+
+  // Limit array items
+  eleventyConfig.addFilter("limit", function(arr) {
+    return arr.slice(3);
+  });
+
+  // Object to array
+  eleventyConfig.addFilter("toArray", function(data) {
+    return Object.values(data);
+  });
 
   // eleventy-plugin-lazyimages
   eleventyConfig.addPlugin(lazyImagesPlugin);

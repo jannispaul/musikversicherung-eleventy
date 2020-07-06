@@ -112,13 +112,13 @@ styleFullStarColor: "#fff"
 #}
 <section class="relative flex items-end md:items-center h-85vh -mt-x3 md:-mt-x1 text-center ">
 <div class="w-full md:h-full z-10 relative content md:w-10/12 md:flex md:flex-col md:justify-center mx-auto md:-mt-x1 px-x1p5">
-	<div class="reviews">
+	<div class="reviews md:mw-1/2">
 		<a href="#reviews" class="w-auto inline-flex text-white my-x1 md:my-x0p25 md:order-1 border boder-white border-x0p1 rounded-full hover:bg-black-x0p2 p-x0p5 md:py-x0p25 md:items-center ">
 			{# <StarRating
 			rating={reviewData.averageRating} stylestarwidth="40" {style}/> #}
 			<!-- <p class="text-x2 md:text-x0p5 transition duration-500 ease-in-out "> -->
 			<p class="text-x2 md:text-x0p25 mt-x0p1">
-				&nbsp; von XX Bewertungen
+				&nbsp; von {{ reviews | length }} Bewertungen
 			</p>
 		</a>
 	</div>

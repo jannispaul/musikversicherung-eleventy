@@ -1,0 +1,43 @@
+{# <style>
+	.star-rating {
+		display: flex;
+		align-items: center;
+	}
+	.star-container {
+		display: flex;
+	}
+	svg.full {
+		fill: #ffd219;
+		/* {style.styleFullStarColor} */
+	}
+	svg.empty {
+		fill: #d0d0d0;
+		/* {style.styleEmptyStarColor} */
+	}
+	svg {
+		width: calc(100vw * 1 / 27);
+	}
+	@media(min-width: 768px) {
+		svg {
+			width: calc(100vw * 0.4 / 27);
+		}
+	}
+</style> #}
+
+<div class="star-container">
+	<div
+		class="star-rating flex items-center">
+		<!-- Set stars according to rating -->
+		{% for star in range(0,review.rating) %}
+			<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="full fill-current w-x0p5">
+				<path d="M.476 6.952l7.159-.178L9.955 0l2.382 6.754 7.16.114-5.687 4.351 2.104 6.845L10.018 14l-5.86 4.116 2.043-6.863z"/>
+			</svg>
+		{% endfor %}
+		<!-- Set gray stars to get 5 stars in total -->
+		{% for star in range(0, 5 - review.rating) %}
+			<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="empty w-x0p5">
+				<path d="M.476 6.952l7.159-.178L9.955 0l2.382 6.754 7.16.114-5.687 4.351 2.104 6.845L10.018 14l-5.86 4.116 2.043-6.863z"/>
+			</svg>
+		{% endfor %}
+	</div>
+</div>

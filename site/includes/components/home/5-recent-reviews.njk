@@ -1,0 +1,69 @@
+{#  
+<style>
+	section {
+		background: linear-gradient(248.64deg, #412b75 4.06%, #6b46c1 94.06%);
+	}
+
+	@media(min-width: 768px) {
+		section {
+			background: none;
+			display: grid;
+			grid-template-columns: calc(100vw * 1.5 / 27) repeat(24, 1fr) calc(100vw * 1.5 / 27);
+			grid-template-rows: repeat(12, 5vw);
+		}
+		.content {
+			grid-column: 14 / 25;
+			grid-row: 3 / 13;
+		}
+		.shape {
+			background: linear-gradient(228.42deg, #412b75 4.06%, #6b46c1 94.06%);
+			grid-column: 8 / 27;
+			grid-row: 1 / 13;
+		}
+		/* .image-guitar {
+      grid-column: 5/10;
+      grid-row: 8/12;
+    } */
+		.image {
+			grid-column: 2 / 12;
+			grid-row: 4 / 9;
+		}
+	}
+</style>#}
+
+
+<section class="py-x3 w-100 md:bg-primary md:flex flex-row text-light" id="reviews">
+	<img src="/images/piano_y1wv8n/piano_y1wv8n_c_scale,w_2160.jpg" class="md:w-1/2"/>
+
+	<div class="content p-x1p5 relative md:bg-primary md:w-1/2">
+
+		<h2 class=" font-medium text-x6 md:text-x2 flex-1 leading-tight md:mr-x0p5 ">
+			Alle zufrieden!
+		</h2>
+		<div class="relative text-x2 md:text-x0p25 grid gap-x1 md:gap-x0p5 mb-x2 md:mb-x1">
+			<div class="opacity-75">{{ reviews | length }}
+				Bewertungen mit
+				{{ reviews | ratingAverage}}
+				Sternen
+			</div>
+			{% set recentReviews = reviews | toArray | sort(true, true, 'date')%}
+
+			{% set atReview = 0 %}
+			{% for review in recentReviews %}
+				{% if atReview < 3 %}
+					{% include "components/review-item-reduced.njk" %}
+				{% endif %}
+				{% set atReview = atReview + 1 %}
+			{% endfor %}
+
+		</div>
+		<a rel="prefetch" href="/reviews" class="text-x2 md:text-x0p5 underline mb-x3 md:mb-x1" title="Reviews aufrufen">
+			Alle Bewertungen ansehen
+		</a>
+	</div>
+
+
+	<div {#<Imagesizes="(min-width:769px)37vw,10vw"srcset={`/images/violins_kzmb3h/violins_kzmb3h_c_scale,w_200.jpg200w,/images/violins_kzmb3h/violins_kzmb3h_c_scale,w_429.jpg429w,/images/violins_kzmb3h/violins_kzmb3h_c_scale,w_609.jpg609w,/images/violins_kzmb3h/violins_kzmb3h_c_scale,w_761.jpg761w,/images/violins_kzmb3h/violins_kzmb3h_c_scale,w_895.jpg895w,/images/violins_kzmb3h/violins_kzmb3h_c_scale,w_1017.jpg1017w,/images/violins_kzmb3h/violins_kzmb3h_c_scale,w_1142.jpg1142w,/images/violins_kzmb3h/violins_kzmb3h_c_scale,w_1253.jpg1253w,/images/violins_kzmb3h/violins_kzmb3h_c_scale,w_1263.jpg1263w`}src="/images/violins_kzmb3h/violins_kzmb3h_c_scale,w_1263.jpg"alt="Violinen-SektioneinesOrchesters"/>#} class="shape md:bg-primary hidden md:block"></div>
+
+	<div class="z-20 image relative hidden md:inline-block"></div>
+</section>

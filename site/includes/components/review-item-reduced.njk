@@ -1,0 +1,17 @@
+<div class=" text-light text-x2 md:text-x0p5 border-solid border-0 border-t-2 border-primary pt-x0p5 mb-x0p5 md:mb-x0p25">
+	<div class="md:flex items-center my-x0p5 md:mt-0 md:mb-x0p25 ">
+		{% include "components/star-rating-simple.njk" %}
+		<span class="flex mt-x0p5 md:mt-0 md:text-x0p25">
+			<span class="hidden md:inline">&nbsp;</span>
+			von&nbsp;
+			<span>
+				<p class="text-light">{{ review.name }}</p>
+			</span>
+			&nbsp;am&nbsp;
+			<p>{{ review.date | dateDisplay }}</p>
+		</span>
+	</div>
+	<p class="mb-x0p5 md:mb-x0p25">
+		{{ review.review }}
+	</p>
+</div>

@@ -51,25 +51,13 @@ paragraph: "Versicherungsschutz besteht sowohl dann, wenn der Schaden selbst ver
 		{# include hero, types, as-it-should-be, headline-w-text, no-deductable  component #}
 		{% include "components/home/1-hero.njk" %}
 
-		{% for key, review in reviews %}
-<p>{{ review.date | dateDisplay }}</p>
-
-
-			<p>{{ review.rating }}</p>
-			<p>{{ review.name }}</p>
-			<p>{{ review.review }}</p><br/>
-		{% endfor %}
-		asd
-{{ reviews.reviewaab.name }}
-
-{# {{ reviews.name }} #}
-
-
-
+		{# {% for key, review in reviews %}
+		{% include "components/review-item-reduced.njk" %}
+		{% endfor %} #}
 		{% include "components/home/2-types.njk" %}
 		{% include "components/home/3-as-it-should-be.njk" %}
-
 		{% include "components/home/4-headline-w-text.njk" %}
+		{% include "components/home/5-recent-reviews.njk" %}
 		{% include "components/home/6-no-deductable.njk" %}
 
 		{% include "components/home/8-instruments-and-more.njk" %}

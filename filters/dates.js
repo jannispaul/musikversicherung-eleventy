@@ -35,6 +35,7 @@ module.exports = function(date, part) {
     "." +
     " " +
     month[d.getMonth()] +
+    " " +
     d.getUTCFullYear()
   );
 };
