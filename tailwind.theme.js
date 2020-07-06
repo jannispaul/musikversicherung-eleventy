@@ -4,6 +4,10 @@ module.exports = {
       lineHeight: {
         tighter: "1.1",
       },
+      fill: {
+        full: "#ffd219",
+        empty: "#d0d0d0",
+      },
       colors: {
         warning: "red",
         light: "#F8F5FF",
@@ -28,6 +32,7 @@ module.exports = {
         x0p75: "1.75vw",
         x1: "2vw;",
         x1p5: "3vw;",
+        x1p75: "3.5vw;",
         x2: "4vw;",
         x3: "5vw",
         x4: "6vw",
@@ -35,10 +40,19 @@ module.exports = {
         x6: "8vw",
         x7: "9.5vw",
       },
+      maxHeight: {
+        "50vh": "50vh",
+        "60vh": "60vh",
+        "70vh": "70vh",
+        "80vh": "80vh",
+        "90vh": "90vh",
+        "100vh": "100vh",
+      },
       spacing: {
         x0p1: "0.1vw",
         x0p2: "0.2vw",
         x0p25: "calc(100vw * 0.25/ 27)",
+        x0p4: "calc(100vw * 0.4/ 27)",
         x0p5: "calc(100vw * 0.5/ 27)",
         x0p75: "calc(100vw * 0.75/ 27)",
         x1: "calc(100vw * 1/ 27)",

@@ -32,11 +32,9 @@
 </style>#}
 
 
-<section class="py-x3 w-100 md:bg-primary md:flex flex-row text-light" id="reviews">
-	<img src="/images/piano_y1wv8n/piano_y1wv8n_c_scale,w_2160.jpg" class="md:w-1/2"/>
-
-	<div class="content p-x1p5 relative md:bg-primary md:w-1/2">
-
+<section class="py-x3 w-100  md:flex flex-row text-light" id="reviews">
+	<img src="/images/piano_y1wv8n/piano_y1wv8n_c_scale,w_2160.jpg" class="md:ml-x1p5 md:max-h-50vh md:w-2/5 md:my-x3 z-10 object-cover"/>
+	<div class="content p-x1p5 pl-x6 relative md:bg-primary md:-ml-x4">
 		<h2 class=" font-medium text-x6 md:text-x2 flex-1 leading-tight md:mr-x0p5 ">
 			Alle zufrieden!
 		</h2>
@@ -48,12 +46,11 @@
 			</div>
 			{% set recentReviews = reviews | toArray | sort(true, true, 'date')%}
 
-			{% set atReview = 0 %}
+
 			{% for review in recentReviews %}
-				{% if atReview < 3 %}
+				{% if loop.index0 < 3 %}
 					{% include "components/review-item-reduced.njk" %}
 				{% endif %}
-				{% set atReview = atReview + 1 %}
 			{% endfor %}
 
 		</div>

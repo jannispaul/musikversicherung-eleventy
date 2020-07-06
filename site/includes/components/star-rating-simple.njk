@@ -29,13 +29,15 @@
 		class="star-rating flex items-center">
 		<!-- Set stars according to rating -->
 		{% for star in range(0,review.rating) %}
-			<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="full fill-current w-x0p5">
+			<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="full fill-full w-x1 md:w-x0p4">
+
 				<path d="M.476 6.952l7.159-.178L9.955 0l2.382 6.754 7.16.114-5.687 4.351 2.104 6.845L10.018 14l-5.86 4.116 2.043-6.863z"/>
 			</svg>
 		{% endfor %}
 		<!-- Set gray stars to get 5 stars in total -->
 		{% for star in range(0, 5 - review.rating) %}
-			<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="empty w-x0p5">
+			<svg viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="fill-empty w-x1 md:w-x0p4">
+
 				<path d="M.476 6.952l7.159-.178L9.955 0l2.382 6.754 7.16.114-5.687 4.351 2.104 6.845L10.018 14l-5.86 4.116 2.043-6.863z"/>
 			</svg>
 		{% endfor %}
