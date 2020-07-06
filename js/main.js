@@ -98,9 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_mobile_nav__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @modules/mobile-nav */ "./resources/js/modules/mobile-nav/index.js");
 /* harmony import */ var _modules_mobile_nav__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_mobile_nav__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _modules_lazyload__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @modules/lazyload */ "./resources/js/modules/lazyload/index.js");
-/* harmony import */ var _modules_lazyload__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_lazyload__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _modules_cookie_notice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @modules/cookie-notice */ "./resources/js/modules/cookie-notice/index.js");
-/* harmony import */ var _modules_cookie_notice__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_cookie_notice__WEBPACK_IMPORTED_MODULE_2__);
 // Import local modules
 
 
@@ -112,57 +110,65 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************************!*\
   !*** ./resources/js/modules/cookie-notice/index.js ***!
   \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 // import $$ from "@utilities/selectors";
-var cookiesAccepted = true; // When in client browser, run getCookie to look for "cookiesAccepted"
+var cookieNotice = function cookieNotice() {
+  var cookiesAccepted = true; // When in client browser, run getCookie to look for "cookiesAccepted"
 
-function checkCookie() {
-  var name = "cookiesAccepted";
-  var localCookie = getCookie(name);
-  localCookie ? cookiesAccepted = localCookie : cookiesAccepted = false; // cookiesAccepted = getCookie(name);
-}
+  function checkCookie() {
+    var name = "cookiesAccepted";
+    var localCookie = getCookie(name);
+    localCookie ? cookiesAccepted = localCookie : cookiesAccepted = false; // cookiesAccepted = getCookie(name);
 
-checkCookie(); // Initializing function to set a cookie
-
-function setCookie(name, value, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-  var expires = "expires=" + d.toUTCString();
-  document.cookie = name + "=" + value + ";" + expires + ";path=/";
-} // Initializing function to get a cookie
-
-
-function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(";");
-
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-
-    while (c.charAt(0) == " ") {
-      c = c.substring(1);
-    }
-
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
+    console.log("yo");
   }
 
-  return "";
-} // On click, set cookiesAccepted to true and run setCookie
+  checkCookie(); // Initializing function to set a cookie
+
+  function setCookie(name, value, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+  } // Initializing function to get a cookie
 
 
-function acceptCookies() {
-  cookiesAccepted = true;
-  var cookieName = "cookiesAccepted";
-  var cookieValue = true;
-  var daysValid = 365;
-  setCookie(cookieName, cookieValue, daysValid);
-  document.querySelector(["data-cookie-notice"]).setAttribute("hidden", "");
-}
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(";");
+
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+
+      while (c.charAt(0) == " ") {
+        c = c.substring(1);
+      }
+
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+
+    return "";
+  } // On click, set cookiesAccepted to true and run setCookie
+
+
+  function acceptCookies() {
+    cookiesAccepted = true;
+    var cookieName = "cookiesAccepted";
+    var cookieValue = true;
+    var daysValid = 365;
+    setCookie(cookieName, cookieValue, daysValid);
+    document.querySelector(["data-cookie-notice"]).setAttribute("hidden", "");
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (cookieNotice);
 
 /***/ }),
 
@@ -170,44 +176,53 @@ function acceptCookies() {
 /*!************************************************!*\
   !*** ./resources/js/modules/lazyload/index.js ***!
   \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// import $$ from "@utilities/selectors";
-// import { exists } from "@utilities/helpers";
-// const Lazyload = (function Lazyload() {
-//   // lazyload our images
-//   const images = $$.wrapper.querySelectorAll("[data-lazy]");
-//   if (exists(images)) {
-//     // options
-//     const options = {
-//       threshold: 0.5,
-//     };
-//     const preloadImage = function preloadImage(img) {
-//       // find and store the image's data-lazy attribute
-//       // commented out for now, but if you want to go the extra mile, then you can do all the srcset attribute stuff on the images ;)
-//       // const srcset = img.dataset.srcset
-//       const src = img.dataset.lazy;
-//       img.src = src;
-//       // img.srcset = srcset
-//       // add a class of loaded
-//       // we can then use this as a hook for fade-in animations etc
-//       img.classList.add("loaded");
-//     };
-//     const lazyLoad = new IntersectionObserver((entries, lazyLoad) => {
-//       entries.forEach((entry) => {
-//         if (entry.isIntersecting) {
-//           preloadImage(entry.target);
-//           lazyLoad.unobserve(entry.target);
-//         }
-//       });
-//     }, options);
-//     images.forEach((image) => {
-//       lazyLoad.observe(image);
-//     });
-//   }
-// })();
-// export default Lazyload;
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utilities_selectors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @utilities/selectors */ "./resources/js/utilities/selectors/index.js");
+/* harmony import */ var _utilities_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @utilities/helpers */ "./resources/js/utilities/helpers/index.js");
+
+
+
+var Lazyload = function Lazyload() {
+  // lazyload our images
+  var images = _utilities_selectors__WEBPACK_IMPORTED_MODULE_0__["default"].wrapper.querySelectorAll("[data-lazy]");
+
+  if (Object(_utilities_helpers__WEBPACK_IMPORTED_MODULE_1__["exists"])(images)) {
+    // options
+    var options = {
+      threshold: 0.5
+    };
+
+    var preloadImage = function preloadImage(img) {
+      // find and store the image's data-lazy attribute
+      // commented out for now, but if you want to go the extra mile, then you can do all the srcset attribute stuff on the images ;)
+      // const srcset = img.dataset.srcset
+      var src = img.dataset.lazy;
+      img.src = src; // img.srcset = srcset
+      // add a class of loaded
+      // we can then use this as a hook for fade-in animations etc
+
+      img.classList.add("loaded");
+    };
+
+    var lazyLoad = new IntersectionObserver(function (entries, lazyLoad) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          preloadImage(entry.target);
+          lazyLoad.unobserve(entry.target);
+        }
+      });
+    }, options);
+    images.forEach(function (image) {
+      lazyLoad.observe(image);
+    });
+  }
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Lazyload);
 
 /***/ }),
 
@@ -232,6 +247,77 @@ function acceptCookies() {
 //   });
 // })();
 // export default MobileNav;
+
+/***/ }),
+
+/***/ "./resources/js/utilities/helpers/index.js":
+/*!*************************************************!*\
+  !*** ./resources/js/utilities/helpers/index.js ***!
+  \*************************************************/
+/*! exports provided: page, exists */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "page", function() { return page; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "exists", function() { return exists; });
+/* harmony import */ var _utilities_selectors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @utilities/selectors */ "./resources/js/utilities/selectors/index.js");
+
+/**
+ * @description Test if the body id is something
+ * @param  		{string}
+ * @return 		{bool}
+ *
+ */
+
+var page = function page(name) {
+  if (!name) {
+    return _utilities_selectors__WEBPACK_IMPORTED_MODULE_0__["default"].body.getAttribute('id');
+  }
+
+  return _utilities_selectors__WEBPACK_IMPORTED_MODULE_0__["default"].body.getAttribute('id') == name;
+};
+/**
+ * @description Check if element exists the page
+ * @param  		{string} Element selector
+ * @param  		{string} Minimum number of elements
+ * @return 		{bool}
+ */
+
+
+var exists = function exists(el, limit) {
+  return el.length > 0;
+};
+
+
+
+/***/ }),
+
+/***/ "./resources/js/utilities/selectors/index.js":
+/*!***************************************************!*\
+  !*** ./resources/js/utilities/selectors/index.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var $$ = {
+  body: document.querySelector("body"),
+  wrapper: document.getElementById("wrapper"),
+  header: document.getElementById("header"),
+  nav: document.getElementById("nav"),
+  hero: document.getElementById("hero"),
+  main: document.getElementById("main"),
+  containerCentre: document.getElementById("container-centre"),
+  containerRight: document.getElementById("container-right"),
+  preFooter: document.getElementById("pre-footer"),
+  footer: document.getElementById("footer"),
+  //   mobileNav: document.getElementById("mobile-nav"),
+  //   mobileNavToggle: document.getElementById("mobile-nav-toggle"),
+  acceptCookies: document.querySelector("[data-accept-cookies]")
+};
+/* harmony default export */ __webpack_exports__["default"] = ($$);
 
 /***/ }),
 
