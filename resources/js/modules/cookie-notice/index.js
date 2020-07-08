@@ -1,14 +1,29 @@
 // import $$ from "@utilities/selectors";
 
-const cookieNotice = function cookieNotice() {
-  let cookiesAccepted = true;
+// const cookieNotice = (function cookieNotice() {
+//   document.addEventListener(
+//     "click",
+//     function(event) {
+//       // If the clicked element doesn't have the right selector, bail
+//       if (!event.target.matches("[data-accept-cookies]")) return;
+
+//       // Don't follow the link
+//       event.preventDefault();
+
+//       // Log the clicked element in the console
+//       console.log(event.target);
+//     },
+//     false
+//   );
+// })();
+// export default cookieNotice;
+
+const cookieNotice = (function cookieNotice() {
   // When in client browser, run getCookie to look for "cookiesAccepted"
   function checkCookie() {
     const name = "cookiesAccepted";
     let localCookie = getCookie(name);
-    localCookie ? (cookiesAccepted = localCookie) : (cookiesAccepted = false);
-    // cookiesAccepted = getCookie(name);
-    console.log("yo");
+    localCookie ? hideCookieNotice() : "";
   }
   checkCookie();
 
@@ -36,15 +51,43 @@ const cookieNotice = function cookieNotice() {
     }
     return "";
   }
+
   // On click, set cookiesAccepted to true and run setCookie
   function acceptCookies() {
-    cookiesAccepted = true;
     const cookieName = "cookiesAccepted";
     const cookieValue = true;
     const daysValid = 365;
     setCookie(cookieName, cookieValue, daysValid);
-    document.querySelector(["data-cookie-notice"]).setAttribute("hidden", "");
+    hideCookieNotice();
   }
-};
+
+  function hideCookieNotice() {
+    // Get cookieNotice element from dom
+    let cookieNotice = document.querySelector("[data-cookie-notice]");
+
+    // Add hidden class
+    cookieNotice.classList.add("hidden");
+
+    // remove display:flex class
+    cookieNotice.classList.remove("md:flex");
+  }
+
+  document.addEventListener(
+    "click",
+    function(event) {
+      // If the clicked element doesn't have the right selector, bail
+      if (!event.target.matches("[data-accept-cookies]")) return;
+
+      // Run acceptCookies function
+      acceptCookies();
+      // Don't follow the link
+      // event.preventDefault();
+
+      // Log the clicked element in the console
+      // console.log(event.target);
+    },
+    false
+  );
+})();
 
 export default cookieNotice;

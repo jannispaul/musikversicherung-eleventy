@@ -40,10 +40,20 @@
 		{# canonical #}
 		<link rel="canonical" href="{{ site.url }}{{ page.url }}">
 	</head>
-</html></head><body {% if body_class %} id="{{ body_class }}" {% endif %} class="bg-light" id="wrapper"></body>{# <a class="sr-only" href="#main">Skip to content</a> #}{# include special-notice #}{% include "components/special-notice.njk" %}{# include header #}{% include "components/header.njk" %}<div
-class="mt-x1 relative z-0">
-{# include content #}
-{{ content | safe }}
+	<body {% if body_class %} id="{{ body_class }}" {% endif %} class="bg-light" id="wrapper">
+		{# <a class="sr-only" href="#main">Skip to content</a> #}
+		
+		{# include special-notice #}
+		{% include "components/special-notice.njk" %}
+		{# include header #}
+		{% include "components/header.njk" %}
+			<div
+			class="mt-x1 relative z-0"> {# include content #}
+			{{ content | safe }}
 
-{# include footer #}
-{% include "components/footer.njk" %}</div>{# include cookie-notice #}{% include "components/cookie-notice.njk" %}</html></body></html>
+			{# include footer #}
+			{% include "components/footer.njk" %}
+		</div>
+		{# include cookie-notice #}
+		{% include "components/cookie-notice.njk" %}</body>
+</html>

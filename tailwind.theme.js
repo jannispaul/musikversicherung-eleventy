@@ -84,7 +84,10 @@ module.exports = {
         x26: "calc(100vw * 26 / 27)",
         x27: "calc(100vw * 27 / 27)",
         "stars-md": "calc(100vw * 0.4/ 27)",
-        "85vh": "85vh",
+        "60vw": "55vw",
+      },
+      maxHeight: {
+        "75vh": "75vh",
       },
       margin: {
         "-2": "-2px",
