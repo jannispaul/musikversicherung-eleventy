@@ -351,9 +351,9 @@ var schadenMelden = function schadenMelden() {
     }
 
     if (n == tabs.length - 1) {
-      document.getElementById("nextBtn").innerHTML = "Submit";
+      document.getElementById("nextBtn").innerHTML = "Absenden";
     } else {
-      document.getElementById("nextBtn").innerHTML = "Next";
+      document.getElementById("nextBtn").innerHTML = "Weiter";
     } //... and run a function that will display the correct step indicator:
 
 
@@ -376,7 +376,12 @@ var schadenMelden = function schadenMelden() {
 
     if (currentTab >= tabs.length) {
       // ... the form gets submitted:
-      document.getElementById("form").submit();
+      //   document.getElementById("form").submit();
+      console.log("event will get fired");
+      document.getElementById("form").dispatchEvent(new Event("submit", {
+        bubbles: true
+      }));
+      console.log("event got fired");
       return false;
     } // Otherwise, display the correct tab:
 
@@ -397,15 +402,40 @@ var schadenMelden = function schadenMelden() {
       }
     } // Set required inputs in tab
 
-    requiredInputsInTab = tabs[currentTab].querySelectorAll("input[required]"); // A loop that checks every input field in the current tab:
+    requiredInputsInTab = tabs[currentTab].querySelectorAll("input[required], textarea[required]"); // A loop that checks every input field in the current tab:
 
     for (i = 0; i < requiredInputsInTab.length; i++) {
       // If a field is empty...
       if (requiredInputsInTab[i].value == "") {
-        // add an "invalid" class to the field:
-        requiredInputsInTab[i].className += " invalid"; // and set the current valid status to false
+        // if field doesnt have invalid class
+        if (!requiredInputsInTab[i].classList.contains("invalid")) {
+          // add an "invalid" class to the field:
+          requiredInputsInTab[i].classList.add("invalid");
+        } // and set the current valid status to false
+
 
         valid = false;
+      }
+
+      if ( // if field is checkbox and not checked
+      requiredInputsInTab[i].type == "checkbox" && !requiredInputsInTab[i].checked) {
+        // if field doesnt have invalid class
+        if (!requiredInputsInTab[i].classList.contains("invalid")) {
+          // add an "invalid" class to the field:
+          requiredInputsInTab[i].classList.add("invalid");
+        } // and set the current valid status to false
+
+
+        valid = false;
+      }
+
+      if ( // if field is not empty and has invalid class
+      !requiredInputsInTab[i].value == "" && requiredInputsInTab[i].type != "checkbox" && requiredInputsInTab[i].classList.contains("invalid")) {
+        // remove the invalid class
+        requiredInputsInTab[i].classList.remove("invalid");
+      } else if ( // if field is a checkbox, checked and has invalid class
+      requiredInputsInTab[i].type == "checkbox" && requiredInputsInTab[i].checked && requiredInputsInTab[i].classList.contains("invalid")) {
+        requiredInputsInTab[i].classList.remove("invalid");
       }
     }
 
@@ -551,10 +581,62 @@ var schadenMelden = function schadenMelden() {
 
 
   var submitHandler = function submitHandler(event) {
-    // Only run for the #save-me form
-    if (event.target.id !== "save-me") return; // Clear saved data
+    // Prevent default form submit
+    // event.preventDefault();
+    console.log("submithandler"); // Ignore forms that are actively being submitted
 
-    localStorage.removeItem(storageID);
+    if (event.target.classList.contains("submitting")) return; // Show submitting message
+
+    var status = event.target.querySelector("[data-submit]");
+    status.innerHTML = "Submitting..."; // Add form .submitting state class for styling
+
+    event.target.classList.add("submitting"); // Confige fetch request options
+
+    var requestOptions = {
+      method: "POST",
+      body: new FormData(event.target),
+      redirect: "follow"
+    }; // Post to formbackend
+    // fetch("https://www.formbackend.com/f/706ac99a74b44def", requestOptions)
+
+    fetch("https://postman-echo.com/get?foo1=bar1&foo2=bar2", requestOptions) //   .then((response) => response.text())
+    .then(function (response) {
+      if (response.ok) {
+        return response.json();
+      }
+
+      return Promise.reject(response);
+    }).then(function (data) {
+      console.log(data);
+    }) // Remove the .submitting state class
+    .then(function () {
+      return event.target.classList.remove("submitting");
+    })["catch"](function (error) {
+      return console.log("error", error);
+    }); //   // Remove the .submitting state class
+    //   event.target.classList.remove("submitting");
+    // Show a success message
+    //   status.textContent = "Success!";
+    // }, 3000);
+    // Send data to integromat webhook, clear schadenFormData from localstorage, and redirect on submit
+    // async function handleSubmit(event) {
+    // Create ne FormData
+    //   const formData = new FormData();
+    // Append schadenFormData to FormData
+    //   for (let key in $schadenFormData) {
+    //     formData.append(key, $schadenFormData[key]);
+    //   }
+    // Append files to FormData
+    //   files.forEach((file, index) => formData.append("file" + index, file));
+    // Remove schadenFormData from localstorage so form is empty
+    //   localStorage.removeItem("schadenFormData");
+    // Redirect to danke page
+
+    window.location.href = "/schaden-gemeldet/"; //   };
+    // Only run for the #save-me form
+    //   if (event.target.id !== "save-me") return;
+    // Clear saved data
+    // localStorage.removeItem(storageID);
   }; // Inits & Event Listeners
   // Load saved data from storage
 
@@ -562,8 +644,20 @@ var schadenMelden = function schadenMelden() {
   loadData(); // Listen for input events
 
   document.addEventListener("input", inputHandler, false); // Listen for submit events
+  //   document.addEventListener("submit", submitHandler, false);
 
-  document.addEventListener("submit", submitHandler, false);
+  document.addEventListener("submit", submitHandler, false); // Listen for tab navigation button clicks
+
+  document.addEventListener("click", function (event) {
+    // If the clicked element doesn't have the right selector, bail
+    if (!event.target.matches("#nextBtn") && !event.target.matches("#prevBtn")) return; //   If
+
+    if (event.target.matches("#nextBtn")) {
+      nextPrev(1);
+    } else if (event.target.matches("#prevBtn")) {
+      nextPrev(-1);
+    }
+  }, false);
 }();
 
 /* harmony default export */ __webpack_exports__["default"] = (schadenMelden);

@@ -1,48 +1,196 @@
-
 //==========  Form ==========//
 
 .form {
+  .row {
+    @apply mb-6;
 
-    .row {
-        @apply mb-6;
+    label {
+      @apply block mb-1 text-gray-800;
 
-        label {
-            @apply block mb-1 text-gray-800;
-
-            &:after {
-                @apply text-sm text-gray-600;
-            }
-        }
-
-        &.required {
-
-            label:after {
-                content: '\00a0(required)';
-            }
-        }
-
-        &:not(.required) {
-
-            label:after {
-                content: '\00a0(optional)';
-            }
-        }
+      &:after {
+        @apply text-sm text-gray-600;
+      }
     }
 
-    .input,
-    .textarea {
-        @apply border border-gray-200 rounded p-3 w-full transition-all duration-300 ease-out;
-
-        &:focus {
-            @apply border-pink-500 outline-none;
-        }
+    &.required {
+      label:after {
+        content: "\00a0(required)";
+      }
     }
 
-    .input {
-        @apply h-12;
+    &:not(.required) {
+      label:after {
+        content: "\00a0(optional)";
+      }
     }
+  }
 
-    .textarea {
-        @apply h-24;
+  .input,
+  .textarea {
+    @apply border border-gray-200 rounded p-3 w-full transition-all duration-300 ease-out;
+
+    &:focus {
+      @apply border-pink-500 outline-none;
     }
+  }
+
+  .input {
+    @apply h-12;
+  }
+
+  .textarea {
+    @apply h-24;
+  }
+}
+
+#form:focus {
+  outline: 0;
+}
+.primary-button,
+.add-instrument {
+  background: rgba(107, 70, 193, 0.15);
+  padding: 3vw 3vw 2.4vw 3vw;
+}
+
+.primary-button:hover:not(:disabled),
+.add-instrument:hover:not(:disabled) {
+  background: rgba(107, 70, 193, 0.3);
+}
+button:not(:disabled) {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+
+// :disabled {
+//   opacity: 0.5;
+// }
+.submitting button {
+  opacity: 0.5;
+}
+
+/* Input style */
+input[type="radio"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+}
+
+input {
+  height: 5vw;
+  min-height: fit-content;
+  padding: 1.5vw;
+  margin-bottom: 4vw;
+  background: white;
+  border: 0.2vw solid #6b46c1;
+}
+textarea {
+  padding: 1.5vw;
+  border: 0.2vw solid #6b46c1;
+}
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-position: right 1vw top 50%;
+  background-repeat: no-repeat;
+  background-size: 2vw;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0wIDZMNS42NTcuMzQzIDExLjMxNCA2SDB6bTAgMmw1LjY1NyA1LjY1N0wxMS4zMTQgOEgweiIgZmlsbD0iIzMzMyIvPjwvc3ZnPg==);
+  background-color: white;
+  height: 5vw;
+  min-height: fit-content;
+  padding: 1vw 1.5vw;
+  margin-bottom: 4vw;
+  border: 0.2vw solid #6b46c1;
+  border-radius: 0;
+}
+
+.toggle {
+  position: relative;
+}
+.toggle > label.option {
+  height: 16vw;
+  display: flex;
+  align-items: center;
+  flex: 1 0 45%;
+  border: 0.1vw solid #000;
+  opacity: 0.5;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+}
+.toggle > label.option:hover {
+  opacity: 0.8;
+}
+.toggle input:checked + .option {
+  border: 0.3vw solid #6b46c1;
+  opacity: 1;
+}
+.option p {
+  text-align: center;
+  width: 100%;
+}
+
+/* :global(label.active) {
+    opacity: 1;
+  } */
+
+@media (min-width: 768px) {
+  .primary-button,
+  .add-instrument {
+    padding: 1.6vw 4vw 1.5vw 4vw;
+  }
+  /* Input styles */
+  input {
+    height: 2vw;
+    min-height: fit-content;
+    padding: 0.75vw;
+    margin-bottom: 2vw;
+    background: white;
+    border: 0.2vw solid #6b46c1;
+  }
+
+  select {
+    height: 2vw;
+    min-height: fit-content;
+    padding: 0.75vw;
+    margin-bottom: 2vw;
+    border: 0.2vw solid #6b46c1;
+  }
+
+  textarea {
+    padding: 0.75vw;
+    border: 0.2vw solid #6b46c1;
+  }
+  /* TOggle indicator styles  */
+
+  .toggle > label.option {
+    height: 8vw;
+    border: 0.2vw solid #6b46c1;
+  }
+  .toggle > label.option.small {
+    height: 4.9vw;
+  }
+
+  //   .primary-button:hover:not(:disabled) {
+  //     /* background: rgba(107, 70, 193, 0.3); */
+  //     /* background: none; */
+  //   }
+  select {
+    background-size: 1vw;
+  }
+}
+
+.invalid,
+textarea.invalid,
+input.invalid + label::before {
+  border-color: red;
+}
+input[type="checkbox"].invalid + span {
+  color: red;
 }

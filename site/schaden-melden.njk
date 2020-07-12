@@ -137,7 +137,7 @@ window.location.href = "/schaden-gemeldet/";
                 <input
                 name="fname"
                 data-vorname
-                
+                required
                 autocomplete="given-name" />
             </label>
             <label class="inline-flex flex-col">
@@ -145,7 +145,7 @@ window.location.href = "/schaden-gemeldet/";
                 <input
                 name="lname"
                 data-nachname
-                
+                required
                 autocomplete="family-name" />
             </label>
             <label class="inline-flex flex-col ">
@@ -153,7 +153,7 @@ window.location.href = "/schaden-gemeldet/";
                 <input
                 name="email"
                 data-email
-                
+                required    
                 autocomplete="email" />
             </label>
             <label class="inline-flex flex-col ">
@@ -161,30 +161,32 @@ window.location.href = "/schaden-gemeldet/";
                 <input
                 name="telefon"
                 data-telefon
-                
+                required
                 autocomplete="tel" />
             </label>
             <label class="inline-flex flex-col ">
                 Versicherungsscheinnummer *
-<input name="scheinnr"  data-scheinnr/>
+            <input name="scheinnr" data-scheinnr required/>
 
             </label>
             <label class="inline-flex flex-col ">
                 Schadendatum *
-<input name="date" data-datum />
+            <input name="date" data-datum required/>
 
             </label>
             <label class="inline-flex flex-col ">
                 Schadenort *
                 <input
                 name="schadenort"
-                data-schadenort />
+                data-schadenort 
+                required/>
             </label>
             <label class="inline-flex flex-col ">
                 Schadenhöhe (soweit schon bekannt)
                 <input
                 name="schadenhoehe"
-                data-schadenhoehe />
+                data-schadenhoehe 
+                />
             </label>
             <div class="inline flex flex-wrap toggle ">
                 <span class="w-full flex-0">
@@ -193,7 +195,6 @@ window.location.href = "/schaden-gemeldet/";
                 <input
                 type="radio"
                 data-vorsteuerabzug
-                
                 value="ja"
                 name="vorsteuerabzug"
                 id="vorsteuerabzug-ja" />
@@ -201,7 +202,6 @@ window.location.href = "/schaden-gemeldet/";
                 class=" option small block flex-1 flex mr-x0p5 mb-x1 items-center"
                 for="vorsteuerabzug-ja"
                 >
-
                 <p>Ja</p>
                 </label>
                 <input
@@ -221,6 +221,7 @@ window.location.href = "/schaden-gemeldet/";
                 <input
                 name="verursacher"
                 data-verursacher 
+                required
 />
 
             </label>
@@ -228,7 +229,7 @@ window.location.href = "/schaden-gemeldet/";
                 Betroffener Gegenstand? *
                 <input
                 name="gegenstand"
-                data-gegenstand />
+                data-gegenstand required/>
             </label>
             <label for="" class=" block col-span-2 mb-x1">
                 Kurze Schadenschilderung *
@@ -236,7 +237,7 @@ window.location.href = "/schaden-gemeldet/";
                 name="schilderung"
                 data-schilderung
                 rows="4"
-                class="w-full border-primary" ></textarea>
+                class="w-full border-primary" required></textarea>
             </label>
 
                 {# <div class="text-warning col-span-2 md:text-center mb-x1" data-error>
@@ -245,16 +246,16 @@ window.location.href = "/schaden-gemeldet/";
 
             </div>
             <div class="md:flex md:justify-center md:w-2/3 md:m-auto">
-            <button
+            {# <button
                 type="button"
                 id="nextBtn"
                 class="primary-button order-2 w-full">
                 Weiter
-            </button>
+            </button> #}
             </div>
         </div>
     
-        <div class="tab flex flex-col lg:w-4/6 m-auto" data-tab-two>
+        <div class="tab hidden flex flex-col lg:w-4/6 m-auto" data-tab-two>
             <p class="text-x1p5 md:text-x0p25">Schritt 2 von 2</p>
             <h2 class="text-x3 md:text-x2 text-primary mb-x1">
             An wen soll die Entschädigung gezahlt werden?
@@ -264,11 +265,12 @@ window.location.href = "/schaden-gemeldet/";
                 Name *
                 <input
                 name="konto-name"
-                data-kontoInhaber />
+                data-kontoInhaber required/>
+
             </label>
             <label class="inline-flex flex-col ">
                 IBAN *
-                <input name="iban" data-iban />
+                <input name="iban" data-iban required/>
             </label>
             </div>
 
@@ -282,7 +284,7 @@ window.location.href = "/schaden-gemeldet/";
             <input
                 type="checkbox"
                 name="terms"
-                bind:checked={termsAccepted}
+                required
                 class="mr-x1 md:mr-x0p5 " />
             <span>
                 Ich akzeptiere die Übertragung und Speicherung meiner Daten zum
@@ -295,8 +297,13 @@ window.location.href = "/schaden-gemeldet/";
             {# <div class="text-warning mb-x1" data-error>
                 Bitte fülle alle mit * markierten Felder aus und akzeptiere die Bedingungen.
             </div> #}
-            <div class="grid gap-x0p5 grid-cols-2 md:flex md:justify-center ">
-            <button
+            </div>
+            <div class="grid gap-x0p5 grid-cols-2 md:flex md:justify-center">
+            <button type="button" id="prevBtn" class="primary-button order-2 w-full mr-x0p5">Zurück</button>
+            <button type="button" id="nextBtn" data-submit class="primary-button order-2 w-full">Weiter</button>
+
+
+            {# <button
                 type="submit"
                 class="primary-button order-2 w-full">
                 Absenden
@@ -306,8 +313,7 @@ window.location.href = "/schaden-gemeldet/";
                 id="prevBtn"
                 class="primary-button order-1 mr-x0p5 w-full">
                 Zurück
-            </button>
-            </div>
+            </button> #}
         </div>
     </div>
 </form>
