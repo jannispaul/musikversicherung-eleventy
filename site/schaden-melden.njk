@@ -8,116 +8,6 @@ body_class: home
 title: Kontakt
 ---
 
-{#<script>
-	import Layout from "../routes/_layouts/layout.svelte";
-import FileUpload from "../components/FileUpload.svelte";
-import {writable} from "svelte/store";
-import {onMount} from "svelte";
-
-// Setup variables for multi step form
-let currentTab = 0;
-let termsAccepted = false;
-let files = [];
-let scrollPositionY;
-
-// $: {
-// console.log($schadenFormData.file);
-// }
-
-// Scroll to top of page
-let resetScrollPosition = () => (scrollPositionY = 0);
-
-// Setup functions to navigate between tabs
-function nextTab() {
-currentTab++;
-resetScrollPosition();
-}
-function prevTab() {
-currentTab--;
-resetScrollPosition();
-}
-
-// Create store
-let schadenFormData = writable({});
-// $: {
-// console.log($schadenFormData);
-// }
-// Setup error handling
-$ : errors = {
-tab1: !$schadenFormData.vorname || !$schadenFormData.nachname ||
-// !$schadenFormData.strasse ||
-// !$schadenFormData.plz ||
-// !$schadenFormData.wohnort ||
-!$schadenFormData.email || !$schadenFormData.telefon || !$schadenFormData.scheinnr || !$schadenFormData.datum || !$schadenFormData.schadenort ||
-// !$schadenFormData.schadenhoehe ||
-!$schadenFormData.verursacher || !$schadenFormData.gegenstand || !$schadenFormData.schilderung || !$schadenFormData.vorsteuerabzug ? true : false,
-tab2: !$schadenFormData.kontoInhaber || !$schadenFormData.iban ? true : false
-};
-
-// Is wrapped in onMount to execute on client side not during SSR
-onMount(() => { // Set store to saved schadenFormData in localStorage or else to defined object
-function initiateFormData() {
-schadenFormData.set(JSON.parse(localStorage.getItem("schadenFormData")) || {
-anrede: "Frau",
-vorname: undefined,
-nachname: undefined,
-// strasse: undefined,
-// plz: undefined,
-// wohnort: undefined,
-email: undefined,
-telefon: undefined,
-scheinnr: undefined,
-datum: undefined,
-schadenort: undefined,
-schadenhoehe: undefined,
-verursacher: undefined,
-gegenstand: undefined,
-schilderung: undefined,
-vorsteuerabzug: "nein",
-nachricht: undefined,
-kontoInhaber: undefined,
-iban: undefined
-});
-}
-
-initiateFormData();
-
-// Subscribe to store to update object saved in localStorage
-schadenFormData.subscribe(schadenFormData => localStorage.setItem("schadenFormData", JSON.stringify(schadenFormData)));
-});
-
-// Send data to integromat webhook, clear schadenFormData from localstorage, and redirect on submit
-async function handleSubmit(event) { // Create ne FormData
-const formData = new FormData();
-
-// Append schadenFormData to FormData
-for (let key in $schadenFormData) {
-formData.append(key, $schadenFormData[key]);
-}
-
-// Append files to FormData
-files.forEach((file, index) => formData.append("file" + index, file));
-
-// Confige fetch request options
-var requestOptions = {
-method: "POST",
-body: formData,
-redirect: "follow"
-};
-
-// Post to integromat
-const response = await fetch("https://www.formbackend.com/f/706ac99a74b44def", requestOptions).then(response => response.text()).catch(error => console.log("error", error));
-
-// Remove schadenFormData from localstorage so form is empty
-localStorage.removeItem("schadenFormData");
-
-// Redirect to danke page
-window.location.href = "/schaden-gemeldet/";
-}
-</script>#}
-
-
-
 <form id="form" method="post" class="text-x2 md:text-x1 lg:text-x0p5 px-x1p5" data-auto-save>
     <div>
         <!-- One "tab" for each step in the form: -->
@@ -193,23 +83,23 @@ window.location.href = "/schaden-gemeldet/";
                 Bist Du vorsteuerabzugsberechtigt? *
                 </span>
                 <input
-                type="radio"
-                data-vorsteuerabzug
-                value="ja"
-                name="vorsteuerabzug"
-                id="vorsteuerabzug-ja" />
+                    type="radio"
+                    data-vorsteuerabzug
+                    value="ja"
+                    name="vorsteuerabzug"
+                    id="vorsteuerabzug-ja" />
                 <label
-                class=" option small block flex-1 flex mr-x0p5 mb-x1 items-center"
-                for="vorsteuerabzug-ja"
+                    class=" option small block flex-1 flex mr-x0p5 mb-x1 items-center"
+                    for="vorsteuerabzug-ja"
                 >
                 <p>Ja</p>
                 </label>
                 <input
-                type="radio"
-                data-vorsteuerabzug
-                value="nein"
-                name="vorsteuerabzug"
-                id="vorsteuerabzug-nein" />
+                    type="radio"
+                    data-vorsteuerabzug
+                    value="nein"
+                    name="vorsteuerabzug"
+                    id="vorsteuerabzug-nein" />
                 <label
                 class="option small block flex-1 flex mb-x1 items-center"
                 for="vorsteuerabzug-nein">
@@ -219,17 +109,17 @@ window.location.href = "/schaden-gemeldet/";
             <label class="inline-flex flex-col ">
                 Wer hat den Schaden verursacht? *
                 <input
-                name="verursacher"
-                data-verursacher 
-                required
-/>
+                    name="verursacher"
+                    data-verursacher 
+                    required />
 
             </label>
             <label class="inline-flex flex-col ">
                 Betroffener Gegenstand? *
                 <input
-                name="gegenstand"
-                data-gegenstand required/>
+                    name="gegenstand"
+                    data-gegenstand 
+                    required/>
             </label>
             <label for="" class=" block col-span-2 mb-x1">
                 Kurze Schadenschilderung *
@@ -260,7 +150,7 @@ window.location.href = "/schaden-gemeldet/";
             <h2 class="text-x3 md:text-x2 text-primary mb-x1">
             An wen soll die Entschädigung gezahlt werden?
             </h2>
-            <div class="grid md:grid-cols-2 gap-x0p5">
+            <div class="grid md:grid-cols-2 gap-x0p5 mb-x0p5">
             <label class="inline-flex flex-col ">
                 Name *
                 <input
@@ -279,6 +169,17 @@ window.location.href = "/schaden-gemeldet/";
             Kostenvoranschlag, …) beifügen möchtest, kannst Du sie hier
             hochladen.
             </FileUpload> #}
+<label for="fileUpload" class="block">Wenn schon eine Rechnung vorliegt oder Du weitere Unterlagen (Fotos, Kostenvoranschlag, …) beifügen möchtest, kannst Du sie hier hochladen.</label>
+
+            {# <div class="drop-area flex flex-col justify-center items-center mt-x0p5" >
+                <input type="file" id="fileUpload" multiple accept="image/*" name="files"  class="hidden"/>
+                <label class="primary-button cursor-pointer px-x1" for="fileUpload">
+                    Datei auswählen
+                </label>
+            </div> #}
+
+            <input id="fileUpload" type="file" name="files" accept="image/*" multiple class="hidden">
+            <label class="primary-button cursor-pointer px-x1 inline-block" for="fileUpload">Datei auswählen</label>
 
             <label class="flex items-center my-x0p5 cursor-pointer">
             <input

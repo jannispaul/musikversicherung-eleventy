@@ -47,6 +47,7 @@ const schadenMelden = (function schadenMelden() {
   function showTab(n) {
     // This function will display the specified tab of the form...
     var tabs = document.getElementsByClassName("tab");
+    if (n === tabs.length) return;
     tabs[n].style.display = "block";
     //... and fix the Previous/Next buttons:
     if (n == 0) {
@@ -73,18 +74,18 @@ const schadenMelden = (function schadenMelden() {
     // Exit the function if any field in the current tab is invalid:
     if (n == 1 && !validateForm()) return false;
     // Hide the current tab:
+    // if (n !== tabs.length) {
     tabs[currentTab].style.display = "none";
+    // }
     // Increase or decrease the current tab by 1:
     currentTab = currentTab + n;
     // if you have reached the end of the form...
     if (currentTab >= tabs.length) {
       // ... the form gets submitted:
       //   document.getElementById("form").submit();
-      console.log("event will get fired");
       document
         .getElementById("form")
         .dispatchEvent(new Event("submit", { bubbles: true }));
-      console.log("event got fired");
       return false;
     }
     // Otherwise, display the correct tab:
@@ -248,6 +249,9 @@ const schadenMelden = (function schadenMelden() {
       var name = getName(field);
       if (!name) return;
 
+      // Skip the files input as the File object cannot be stored in localstorage
+      if (name == "files") return;
+
       // If there's no saved data in localStorage, skip it
       if (!saved[name]) return;
 
@@ -300,7 +304,6 @@ const schadenMelden = (function schadenMelden() {
   var submitHandler = function(event) {
     // Prevent default form submit
     // event.preventDefault();
-    console.log("submithandler");
 
     // Ignore forms that are actively being submitted
     if (event.target.classList.contains("submitting")) return;
@@ -318,50 +321,27 @@ const schadenMelden = (function schadenMelden() {
       body: new FormData(event.target),
       redirect: "follow",
     };
+
     // Post to formbackend
     // fetch("https://www.formbackend.com/f/706ac99a74b44def", requestOptions)
-    fetch("https://postman-echo.com/get?foo1=bar1&foo2=bar2", requestOptions)
-      //   .then((response) => response.text())
-      .then(function(response) {
+    fetch(
+      "https://1454459a-1de0-4477-9d83-6534dee946eb.mock.pstmn.io/v1",
+      requestOptions
+    )
+      .then((response) => {
+        // If response is ok
         if (response.ok) {
-          return response.json();
+          // redirect to schaden-gemeldet page and remove
+          window.location.href = "/schaden-gemeldet/";
+          // Clear saved formdata from localstorage
+          // localStorage.removeItem(storageID);
         }
-        return Promise.reject(response);
       })
-      .then(function(data) {
-        console.log(data);
-      })
-      // Remove the .submitting state class
-      .then(() => event.target.classList.remove("submitting"))
-      .catch((error) => console.log("error", error));
-
-    //   // Remove the .submitting state class
-    //   event.target.classList.remove("submitting");
-
-    // Show a success message
-    //   status.textContent = "Success!";
-    // }, 3000);
-    // Send data to integromat webhook, clear schadenFormData from localstorage, and redirect on submit
-    // async function handleSubmit(event) {
-    // Create ne FormData
-    //   const formData = new FormData();
-    // Append schadenFormData to FormData
-    //   for (let key in $schadenFormData) {
-    //     formData.append(key, $schadenFormData[key]);
-    //   }
-    // Append files to FormData
-    //   files.forEach((file, index) => formData.append("file" + index, file));
-
-    // Remove schadenFormData from localstorage so form is empty
-    //   localStorage.removeItem("schadenFormData");
-    // Redirect to danke page
-    window.location.href = "/schaden-gemeldet/";
-    //   };
-    // Only run for the #save-me form
-    //   if (event.target.id !== "save-me") return;
-
-    // Clear saved data
-    // localStorage.removeItem(storageID);
+      // If there is an error log it to console and reidrect to fehler page
+      .catch((error) => {
+        console.error("Error: ", error);
+        window.location.href = "/fehler/";
+      });
   };
 
   // Inits & Event Listeners
