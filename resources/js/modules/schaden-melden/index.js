@@ -5,44 +5,44 @@ const schadenMelden = (function schadenMelden() {
   var currentTab = 0; // Current tab is set to be the first tab (0)
   showTab(currentTab); // Display the current tab
 
-  let instrumentCount = 1; // Instrument counter starts with 1 instrument
-  let incrementInstrumentCount = () => instrumentCount++; // Increment instrument count
+  // let instrumentCount = 1; // Instrument counter starts with 1 instrument
+  // let incrementInstrumentCount = () => instrumentCount++; // Increment instrument count
 
   // Add instrument
-  function addInstrument() {
-    // Increment count
-    incrementInstrumentCount();
+  // function addInstrument() {
+  //   // Increment count
+  //   incrementInstrumentCount();
 
-    // Single instrument html to add more instruments
-    let singleInstrument = `<div class="single-instrument">  
-        <label>
-          Instrument
-          <input oninput="this.className = ''" name="instrument${instrumentCount}"  autofocus />
-        </label>
-        <div class="switch">
-          <p class="">
-            <input type="radio" name="type${instrumentCount}" id="match_1${instrumentCount}" value="neuwert" checked>
-            <label for="match_1${instrumentCount}">
-                Neuwert
-            </label>
-          </p>
-          <p class="">
-              <input type="radio" name="type${instrumentCount}" id="match_2${instrumentCount}" value="zeitwert">
-              <label for="match_2${instrumentCount}">
-                Zeitwert
-              </label>
-          </p>
-        </div>
-        <label>
-          Wert
-          <input oninput="this.className = ''" name="value${instrumentCount}"  />
-        </label>
-      </div>`;
-    // Add to DOM
-    document
-      .querySelector(".instrument-list")
-      .insertAdjacentHTML("beforeend", singleInstrument);
-  }
+  //   // Single instrument html to add more instruments
+  //   let singleInstrument = `<div class="single-instrument">
+  //       <label>
+  //         Instrument
+  //         <input oninput="this.className = ''" name="instrument${instrumentCount}"  autofocus />
+  //       </label>
+  //       <div class="switch">
+  //         <p class="">
+  //           <input type="radio" name="type${instrumentCount}" id="match_1${instrumentCount}" value="neuwert" checked>
+  //           <label for="match_1${instrumentCount}">
+  //               Neuwert
+  //           </label>
+  //         </p>
+  //         <p class="">
+  //             <input type="radio" name="type${instrumentCount}" id="match_2${instrumentCount}" value="zeitwert">
+  //             <label for="match_2${instrumentCount}">
+  //               Zeitwert
+  //             </label>
+  //         </p>
+  //       </div>
+  //       <label>
+  //         Wert
+  //         <input oninput="this.className = ''" name="value${instrumentCount}"  />
+  //       </label>
+  //     </div>`;
+  //   // Add to DOM
+  //   document
+  //     .querySelector(".instrument-list")
+  //     .insertAdjacentHTML("beforeend", singleInstrument);
+  // }
 
   function showTab(n) {
     // This function will display the specified tab of the form...
@@ -156,57 +156,57 @@ const schadenMelden = (function schadenMelden() {
   }
 
   // Catch all clicks on form
-  document.addEventListener("click", function(event) {
-    // If user clicks "add instrument"-buttton
-    if (event.target.matches('button[data-name="addInstrument"]')) {
-      // Disable "add instrument" button at 10 slots
-      if (instrumentCount > 9) {
-        document
-          .querySelector('button[data-name="addInstrument"]')
-          .setAttribute("disabled", "disabled");
-      }
-      // Add instrument
-      addInstrument();
+  // document.addEventListener("click", function(event) {
+  // If user clicks "add instrument"-buttton
+  // if (event.target.matches('button[data-name="addInstrument"]')) {
+  //   // Disable "add instrument" button at 10 slots
+  //   if (instrumentCount > 9) {
+  //     document
+  //       .querySelector('button[data-name="addInstrument"]')
+  //       .setAttribute("disabled", "disabled");
+  //   }
+  //   // Add instrument
+  //   addInstrument();
 
-      // Set focus to newly created instrument field
-      document.querySelector(".single-instrument:last-of-type input").focus();
+  // // Set focus to newly created instrument field
+  // document.querySelector(".single-instrument:last-of-type input").focus();
 
-      // Get existing data from localStorage
-      var saved = localStorage.getItem(storageID);
-      saved = saved ? JSON.parse(saved) : {};
-      // Save the insrumentCounter to it
-      saved.instrumentCount = instrumentCount;
-      // Save the object back to localStorage
-      localStorage.setItem(storageID, JSON.stringify(saved));
-    }
-    // Show / hide input andd price calculation for IM SOUND
-    var totalValueLabel = document.getElementById("totalValue");
-    if (event.target.matches("[data-imsound]")) {
-      // Reveal the hidden totalValue field...
-      if (totalValueLabel.classList.contains("hidden")) {
-        totalValueLabel.classList.remove("hidden");
-        document
-          .querySelector('input[name="totalValue"]')
-          .setAttribute("required", "required");
-      }
-      return;
-    }
-    if (event.target.matches("[data-sinfonima]")) {
-      // Hide totalValue field
-      if (!totalValueLabel.classList.contains("hidden")) {
-        totalValueLabel.className += "hidden";
-        totalValueLabel.removeAttribute("required");
-        document
-          .querySelector('input[name="totalValue"]')
-          .removeAttribute("required");
-      }
-      return;
-    }
-  });
+  // // Get existing data from localStorage
+  // var saved = localStorage.getItem(storageID);
+  // saved = saved ? JSON.parse(saved) : {};
+  // // Save the insrumentCounter to it
+  // saved.instrumentCount = instrumentCount;
+  // // Save the object back to localStorage
+  // localStorage.setItem(storageID, JSON.stringify(saved));
+  // }
+  // Show / hide input andd price calculation for IM SOUND
+  // var totalValueLabel = document.getElementById("totalValue");
+  // if (event.target.matches("[data-imsound]")) {
+  //   // Reveal the hidden totalValue field...
+  //   if (totalValueLabel.classList.contains("hidden")) {
+  //     totalValueLabel.classList.remove("hidden");
+  //     document
+  //       .querySelector('input[name="totalValue"]')
+  //       .setAttribute("required", "required");
+  //   }
+  //   return;
+  // }
+  //   if (event.target.matches("[data-sinfonima]")) {
+  //     // Hide totalValue field
+  //     if (!totalValueLabel.classList.contains("hidden")) {
+  //       totalValueLabel.className += "hidden";
+  //       totalValueLabel.removeAttribute("required");
+  //       document
+  //         .querySelector('input[name="totalValue"]')
+  //         .removeAttribute("required");
+  //     }
+  //     return;
+  //   }
+  // });
 
   // Automatically saving form
   // Variables
-  var storageID = "form-auto-save";
+  var storageID = document.querySelector("[data-auto-save]").id;
 
   // Methods
   /**
@@ -231,14 +231,14 @@ const schadenMelden = (function schadenMelden() {
     if (!saved) return;
     saved = JSON.parse(saved);
 
-    // Check if instruments had been added previously
-    if (saved.instrumentCount != instrumentCount) {
-      // Add instruments until the count is equal
-      while (instrumentCount <= saved.instrumentCount) {
-        // Add instrument
-        addInstrument();
-      }
-    }
+    // // Check if instruments had been added previously
+    // if (saved.instrumentCount != instrumentCount) {
+    //   // Add instruments until the count is equal
+    //   while (instrumentCount <= saved.instrumentCount) {
+    //     // Add instrument
+    //     addInstrument();
+    //   }
+    // }
     // Get all of the form fields
     var fields = document.querySelectorAll(
       "[data-auto-save] input, [data-auto-save] textarea, [data-auto-save] select"
@@ -366,7 +366,7 @@ const schadenMelden = (function schadenMelden() {
       )
         return;
 
-      //   If
+      // If the clicked element has the right selector run function
       if (event.target.matches("#nextBtn")) {
         nextPrev(1);
       } else if (event.target.matches("#prevBtn")) {

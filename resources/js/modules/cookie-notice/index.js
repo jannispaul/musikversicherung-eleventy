@@ -1,23 +1,3 @@
-// import $$ from "@utilities/selectors";
-
-// const cookieNotice = (function cookieNotice() {
-//   document.addEventListener(
-//     "click",
-//     function(event) {
-//       // If the clicked element doesn't have the right selector, bail
-//       if (!event.target.matches("[data-accept-cookies]")) return;
-
-//       // Don't follow the link
-//       event.preventDefault();
-
-//       // Log the clicked element in the console
-//       console.log(event.target);
-//     },
-//     false
-//   );
-// })();
-// export default cookieNotice;
-
 const cookieNotice = (function cookieNotice() {
   // When in client browser, run getCookie to look for "cookiesAccepted"
   function checkCookie() {
@@ -64,12 +44,13 @@ const cookieNotice = (function cookieNotice() {
   function hideCookieNotice() {
     // Get cookieNotice element from dom
     let cookieNotice = document.querySelector("[data-cookie-notice]");
-
-    // Add hidden class
-    cookieNotice.classList.add("hidden");
-
-    // remove display:flex class
-    cookieNotice.classList.remove("md:flex");
+    // Check if cookieNotice is defined
+    if (cookieNotice) {
+      // Add hidden class
+      cookieNotice.classList.add("hidden");
+      // remove display:flex class
+      cookieNotice.classList.remove("md:flex");
+    }
   }
 
   document.addEventListener(

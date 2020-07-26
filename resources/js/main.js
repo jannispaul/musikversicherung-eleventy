@@ -4,3 +4,4 @@ import "@modules/mobile-nav";
 import "@modules/cookie-notice";
 import "@modules/notice";
 import "@modules/schaden-melden";
+import "@modules/anfrage";

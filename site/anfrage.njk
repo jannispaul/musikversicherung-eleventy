@@ -1,0 +1,281 @@
+---
+layout: default
+meta_title: Instrumentenversicherung – Anfrage
+meta_description: Musikinstrumente, Equipment und Zubehör einfach online versichern
+    ✅ weltweiter Schutz ✅ auch im Auto ✅ kostenlose, individuelle Beratung
+    vom Experten
+body_class: home
+title: Anfrage
+---
+<form id="anfrage-form" method="post" class="text-x2 md:text-x1 lg:text-x0p5 px-x1p5" data-auto-save="data-auto-save">
+    <div>
+        <!-- One "tab" for each step in the form: -->
+        {# Tab 1 #}
+        <div class="tab flex flex-col lg:w-4/6 m-auto">
+            <p class="text-x1p5 md:text-x0p25">Schritt 1 von 3</p>
+            <h2 class="text-x3 md:text-x2 text-primary mb-x1 leading-tighter">
+                Was möchtest Du versichern?
+            </h2>
+            <div class="relative toggle inline md:flex md:items-stretch overflow-hidden">
+                <input type="radio" value="SINFONIMA" id="SINFONIMA" name="versicherungstyp"/>
+                <label for="SINFONIMA" class="option block p-x1 md:py-x0p25 md:px-x0p5 flex-1 flex md:mr-x0p5 mb-x1 items-center justify-center" data-sinfonima="data-sinfonima">
+                    Akustische Instrumente
+                </label>
+                <input type="radio" value="IAMSOUND" id="IAMSOUND" name="versicherungstyp"/>
+                <label class="option block p-x1 md:py-x0p25 md:px-x0p5 flex-1 flex mb-x1 items-center justify-center" for="IAMSOUND" data-imsound="data-imsound">
+                    Elektronische Instrumente
+                    <br/>
+                    & Equipment
+                </label>
+            </div>
+            <label class="flex flex-col hidden" data-totalvalue="data-totalvalue">
+                Gesamtwert der Instrumente in vollen Euro ohne Nachkommastellen *
+                <input type="number" pattern="\d*" name="gesamtWert" autofocus="autofocus" min="0" step="1"/>
+            </label>
+        </div>
+        {# Tab 2 #}
+        <div class="tab hidden flex flex-col lg:w-4/6 m-auto">
+            <p class="text-x1p5 md:text-x0p25">Schritt 2 von 3</p>
+            <h2 class="text-x3 md:text-x2 text-primary mb-x1">
+                Persönliche Informationen
+            </h2>
+            <div class="grid md:grid-cols-2 gap-x0p5">
+                <label class="inline-flex flex-col ">
+                    Anrede *
+                    <select autofocus="autofocus">
+                        <option value="Frau">Frau</option>
+                        <option value="Herr">Herr</option>
+                    </select>
+                </label>
+                <label class="inline-flex flex-col ">
+                    Vorname *
+                    <input type="text" name="fname" autocomplete="given-name" required="required"/>
+                </label>
+                <label class="inline-flex flex-col ">
+                    Nachname *
+                    <input type="text" name="lname" autocomplete="family-name" required="required"/>
+                </label>
+                <label class="inline-flex flex-col ">
+                    E-Mail *
+                    <input name="email" autocomplete="email" required="required"/>
+                </label>
+                <label class="inline-flex flex-col ">
+                    Telefonnummer für Rückfragen
+                    <input type="tel" name="telefon" autocomplete="tel"/>
+                </label>
+                <label class="inline-flex flex-col ">
+                    Status *
+                    <select required="required">
+                        <option value="Hobbymusiker">Hobbymusiker</option>
+                        <option value="Eltern von Musikschüler/in">
+                            Eltern von Musikschüler/in
+                        </option>
+                        <option value="Musiklehrer">Musiklehrer</option>
+                        <option value="Musikschüler/in">Musikschüler/in</option>
+                        <option value="Musikstudent">Musikstudent</option>
+                        <option value="Berufsmusiker (selbstständig)">
+                            Berufsmusiker (selbstständig)
+                        </option>
+                        <option value="Berufsmusiker (angestellt)">
+                            Berufsmusiker (angestellt)
+                        </option>
+                        <option value="DJ">DJ</option>
+                        <option value="Homestudio">Homestudio</option>
+                        <option value="Produzent">Produzent</option>
+                        <option value="Sammler von Vintageinstrumenten">
+                            Sammler von Vintageinstrumenten
+                        </option>
+                        <option value="Musikstudent">Musikstudent</option>
+                    </select>
+                </label>
+                <label class="inline-flex flex-col ">
+                    Wohnsitz in *
+                    <select required="required" data-residency="data-residency">
+                        <option value="Deutschland">Deutschland</option>
+                        <option value="Österreich">Österreich</option>
+                        <option value="Schweiz">Schweiz</option>
+                        <option value="anderesLand">Anderes Land</option>
+                    </select>
+                </label>
+                <label class="inline-flex flex-col justify-end hidden" data-customcountry="data-customCountry">
+                    <input name="anderesLand" placeholder="Wohnsitz" data-customcountry="data-customCountry"/>
+                </label>
+                <label class="inline-flex flex-col hidden" data-organization="data-organization">
+                    Mitgliedschaft in einer Organisation
+                    <select data-organization="data-organization">
+                        <option value="Kein Mitglied">Kein Mitglied</option>
+                        <option value="Bund Dt. Zupfmusiker">
+                            Bund Dt. Zupfmusiker
+                        </option>
+                        <option value="Student/in an deutschen Musikhochschulen">
+                            Student/in an deutschen Musikhochschulen
+                        </option>
+                        <option value="Deutsche Orchestervereinigung (DOV)">
+                            Deutsche Orchestervereinigung (DOV)
+                        </option>
+                        <option value="Deutscher Musikrat">Deutscher Musikrat</option>
+                        <option value="Deutscher Tonkünstlerverband (DTKV)">
+                            Deutscher Tonkünstlerverband (DTKV)
+                        </option>
+                        <option value="Jeunesse Musicales Deutschland">
+                            Jeunesse Musicales Deutschland
+                        </option>
+                        <option value="Jugend musiziert">Jugend musiziert</option>
+                        <option value="Musikalische Jugend Deutschlands">
+                            Musikalische Jugend Deutschlands
+                        </option>
+                        <option value="Organisation: Lehrer an einer VDM-Musikschule">
+                            Lehrer an einer VDM-Musikschule
+                        </option>
+                        <option value="Verband Deutscher Musikerzieher und konzertierender
+                            Künstler (VDMK)" class="">
+                            VDMK - Verband Deutscher Musikerzieher...
+                        </option>
+                        <option value="Bundesverband Musikunterricht">
+                            Bundesverband Musikunterricht
+                        </option>
+                        <option value="Verband Deutscher Tonmeister">
+                            Verband Deutscher Tonmeister
+                        </option>
+                        <option value="Verdi - Fachverband Musik">
+                            Verdi - Fachverband Musik
+                        </option>
+                        <option value="Viola Gesellschaft">Viola Gesellschaft</option>
+                        <option value="Union deutscher Jazzmusiker">
+                            Union deutscher Jazzmusiker
+                        </option>
+                        <option value="Sonstige">Sonstige</option>
+                    </select>
+                </label>
+                <label class="inline-flex flex-col justify-end hidden" data-customorganization="data-customorganization">
+                    <input name="AndereOrganisation" placeholder="Organisaton" data-customorganization="data-customOrganization"/>
+                </label>
+            </div>
+            <div class="text-warning mt-x0p5 md:text-center hidden">
+                Bitte fülle alle mit * markierten Felder aus.
+            </div>
+        </div>
+        {# Tab 3 #}
+        <div class="tab hidden lg:w-4/6 lg:mx-auto ">
+            {# Sinfonima only part #}
+            <p class="text-x1p5 md:text-x0p25">Schritt 3 von 3</p>
+            <div data-sinfonimasection="data-sinfonimasection">
+                <h2 class="text-x3 md:text-x2 text-primary mb-x1">
+                    Deine Instrumente
+                </h2>
+                <div class="instrument-list">
+                    <p>Instrumente</p>
+                </div>
+                <button type="button" class="t-x1 p-x1 w-full mb-x1 add-instrument">
+                    Weiteres Instrument / Zubehör hinzufügen
+                </button>
+            </div>
+
+            {# IM SOund Only Part #}
+            <div class="hidden" data-imsoundsection="data-imsound">
+                <h2 class="text-x3 md:text-x2 text-primary mb-x1">
+                    Weitere Details
+                </h2>
+                <div class="inline flex flex-wrap md:items-stretch toggle">
+                    <label class="w-full flex-0">
+                        Ist ein Proberaum vorhanden? *
+                    </label>
+                    <input type="radio" value="ja" id="proberaum-ja"/>
+                    <label class="option block p-x1 md:p-x0p5 flex-1 flex mr-x0p5 mb-x1 items-center" for="proberaum-ja">
+                        <p>Ja</p>
+                    </label>
+                    <input type="radio" value="nein" id="proberaum-nein"/>
+                    <label class="option block p-x1 md:p-x0p5 flex-1 flex mb-x1 items-center" for="proberaum-nein">
+                        <p>Nein</p>
+                    </label>
+                </div>
+
+                <div class="inline flex flex-wrap md:items-stretch toggle ">
+                    <span class="w-full flex-0">
+                        Befindet sich der Proberaum in einem auch ansonsten bewohnten Gebäude? *
+                    </span>
+                    <input type="radio" value="ja" id="bewohnt-ja"/>
+                    <label class="option block p-x1 md:p-x0p5 flex-1 flex mr-x0p5 mb-x1
+                    items-center" for="bewohnt-ja">
+                        <p>Ja</p>
+                    </label>
+                    <input type="radio" value="nein" id="bewohnt-nein"/>
+                    <label class="option block p-x1 md:p-x0p5 flex-1 flex mb-x1
+                    items-center" for="bewohnt-nein">
+                        <p>Nein</p>
+                    </label>
+                </div>
+                <label class="inline-flex flex-col justify-end w-full mb-x1">
+                    Bitte beschreibe kurz die Örtlichkeit und Sicherungen des Proberaums *
+                    <textarea name="Beschreibung w-full" rows="4" class="w-full border-primary"></textarea>
+                </label>
+                <div class="inline flex flex-wrap md:items-stretch toggle">
+                    <label class="w-full flex-0">
+                        Wird das Equipment in einem Anhänger transportiert / gelagert? *
+                    </label>
+                    <input type="radio" value="ja" id="anhaenger-ja"/>
+                    <label class="option block p-x1 md:p-x0p5 flex-1 flex mr-x0p5 mb-x1
+                    items-center" for="anhaenger-ja">
+                        <p>Ja</p>
+                    </label>
+                    <input type="radio" value="nein" id="anhaenger-nein"/>
+                    <label class="option block p-x1 md:p-x0p5 flex-1 flex mb-x1
+                    items-center" for="anhaenger-nein">
+                        <p>Nein</p>
+                    </label>
+                </div>
+                <div class="inline flex flex-wrap md:items-stretch toggle">
+                    <label class="w-full flex-0">
+                        Verdienst Du Geld mit Deiner Musik (haupt- oder nebenberuflich)? *
+                    </label>
+                    <input type="radio" value="ja" id="verdient-geld-ja" name="verdient-geld-ja"/>
+                    <label class="option block p-x1 md:p-x0p5 flex-1 flex mr-x0p5 mb-x1
+                    items-center" for="verdient-geld-ja">
+                        <p>Ja</p>
+                    </label>
+                    <input type="radio" value="nein" id="verdient-geld-nein" name="verdient-geld-nein"/>
+                    <label class="option block p-x1 md:p-x0p5 flex-1 flex mb-x1
+                    items-center" for="verdient-geld-nein">
+                        <p>Nein</p>
+                    </label>
+                </div>
+                <div class="inline flex flex-wrap md:items-stretch toggle hidden" data-musikerhaftpflicht="data-musikerhaftpflicht">
+                    <label class="w-full flex-0">
+                        Möchtest Du auch ein Angebot für eine Musikerhaftpflichtversicherung? *
+                    </label>
+                    <input type="radio" value="ja" id="musikerhaftpflicht-ja"/>
+                    <label class="option block p-x1 md:p-x0p5 flex-1 flex mr-x0p5 mb-x1
+                    items-center" for="musikerhaftpflicht-ja">
+                        <p>Ja</p>
+                    </label>
+                    <input type="radio" value="nein" id="musikerhaftpflicht-nein"/>
+                    <label class="option block p-x1 md:p-x0p5 flex-1 flex mb-x1
+                        items-center" for="musikerhaftpflicht-nein">
+                        <p>Nein</p>
+                    </label>
+                </div>
+            </div>
+
+            {# Part for Sinfonima & IM SOund #}
+            <label for="" class="block">
+                Anmerkungen & Fragen
+                <textarea rows="4" class="w-full border-primary"></textarea>
+            </label>
+            {# Accept terms #}
+            <label class="flex items-center mt-x0p5 mb-x1 cursor-pointer">
+                <input type="checkbox" name="terms" class="w-1/6 md:w-auto mr-x1 md:mr-x0p5 "/>
+                <span class="">
+                    Ich akzeptiere die Übertragung und Speicherung meiner Daten zum Zwecke des angebotenen Services.
+                    <a href="/datenschutz" class="underline">
+                        Mehr erfahren
+                    </a>
+                </span>
+            </label>
+        </div>
+        {# Prev/Next/Send Buttons #}
+        <div class="grid gap-x0p5 grid-cols-2 md:flex md:justify-center">
+            <button type="button" id="prevBtn" class="primary-button order-2 w-full mr-x0p5">Zurück</button>
+            <button type="button" id="nextBtn" data-submit="data-submit" class="primary-button order-2 w-full">Weiter</button>
+        </div>
+    </div>
+</form>

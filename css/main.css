@@ -1139,10 +1139,6 @@ video {
   outline: 0;
 }
 
-.form .input {
-  height: 3rem;
-}
-
 .form .textarea {
   height: 6rem;
 }
@@ -1188,7 +1184,6 @@ input[type=radio] {
 }
 
 input {
-  height: 5vw;
   min-height: -webkit-fit-content;
   min-height: -moz-fit-content;
   min-height: fit-content;
@@ -1264,7 +1259,6 @@ select {
   /* Input styles */
 
   input {
-    height: 2vw;
     min-height: -webkit-fit-content;
     min-height: -moz-fit-content;
     min-height: fit-content;
@@ -1275,7 +1269,6 @@ select {
   }
 
   select {
-    height: 2vw;
     min-height: -webkit-fit-content;
     min-height: -moz-fit-content;
     min-height: fit-content;

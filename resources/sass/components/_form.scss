@@ -34,9 +34,9 @@
     }
   }
 
-  .input {
-    @apply h-12;
-  }
+  // .input {
+  //   @apply h-12;
+  // }
 
   .textarea {
     @apply h-24;
@@ -83,7 +83,7 @@ input[type="radio"] {
 }
 
 input {
-  height: 5vw;
+  // height: 5vw;
   min-height: fit-content;
   padding: 1.5vw;
   margin-bottom: 4vw;
@@ -147,7 +147,7 @@ select {
   }
   /* Input styles */
   input {
-    height: 2vw;
+    // height: 2vw;
     min-height: fit-content;
     padding: 0.75vw;
     margin-bottom: 2vw;
@@ -156,7 +156,7 @@ select {
   }
 
   select {
-    height: 2vw;
+    // height: 2vw;
     min-height: fit-content;
     padding: 0.75vw;
     margin-bottom: 2vw;
