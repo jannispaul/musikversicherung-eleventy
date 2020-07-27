@@ -3,5 +3,5 @@ import "@modules/mobile-nav";
 // import "@modules/lazyload";
 import "@modules/cookie-notice";
 import "@modules/notice";
-import "@modules/schaden-melden";
-import "@modules/anfrage";
+import "@modules/forms";
+// import "@modules/anfrage";

@@ -18,11 +18,11 @@ title: Anfrage
             </h2>
             <div class="relative toggle inline md:flex md:items-stretch overflow-hidden">
                 <input type="radio" value="SINFONIMA" id="SINFONIMA" name="versicherungstyp"/>
-                <label for="SINFONIMA" class="option block p-x1 md:py-x0p25 md:px-x0p5 flex-1 flex md:mr-x0p5 mb-x1 items-center justify-center" data-sinfonima="data-sinfonima">
+                <label for="SINFONIMA" class="option block py-x1 md:py-x1 md:px-x0p5 flex-1 flex md:mr-x0p5 mb-x1 items-center justify-center" data-sinfonima="data-sinfonima">
                     Akustische Instrumente
                 </label>
                 <input type="radio" value="IAMSOUND" id="IAMSOUND" name="versicherungstyp"/>
-                <label class="option block p-x1 md:py-x0p25 md:px-x0p5 flex-1 flex mb-x1 items-center justify-center" for="IAMSOUND" data-imsound="data-imsound">
+                <label class="option block py-x1 md:py-x1 md:px-x0p5 flex-1 flex mb-x1 items-center justify-center" for="IAMSOUND" data-imsound="data-imsound">
                     Elektronische Instrumente
                     <br/>
                     & Equipment
@@ -163,10 +163,8 @@ title: Anfrage
                 <h2 class="text-x3 md:text-x2 text-primary mb-x1">
                     Deine Instrumente
                 </h2>
-                <div class="instrument-list">
-                    <p>Instrumente</p>
-                </div>
-                <button type="button" class="t-x1 p-x1 w-full mb-x1 add-instrument">
+                <div class="instrument-list"></div>
+                <button type="button" class="primary-button p-x1 w-full mb-x1p5" data-name="addInstrument">
                     Weiteres Instrument / Zubehör hinzufügen
                 </button>
             </div>
@@ -180,32 +178,32 @@ title: Anfrage
                     <label class="w-full flex-0">
                         Ist ein Proberaum vorhanden? *
                     </label>
-                    <input type="radio" value="ja" id="proberaum-ja"/>
+                    <input type="radio" value="ja" id="proberaum-ja" name="proberaum"/>
                     <label class="option block p-x1 md:p-x0p5 flex-1 flex mr-x0p5 mb-x1 items-center" for="proberaum-ja">
                         <p>Ja</p>
                     </label>
-                    <input type="radio" value="nein" id="proberaum-nein"/>
+                    <input type="radio" value="nein" id="proberaum-nein" name="proberaum"/>
                     <label class="option block p-x1 md:p-x0p5 flex-1 flex mb-x1 items-center" for="proberaum-nein">
                         <p>Nein</p>
                     </label>
                 </div>
 
-                <div class="inline flex flex-wrap md:items-stretch toggle ">
+                <div class="inline flex flex-wrap md:items-stretch toggle hidden" data-proberaumort="data-proberaumort">
                     <span class="w-full flex-0">
                         Befindet sich der Proberaum in einem auch ansonsten bewohnten Gebäude? *
                     </span>
-                    <input type="radio" value="ja" id="bewohnt-ja"/>
+                    <input type="radio" value="ja" id="bewohnt-ja" name="bewohnt"/>
                     <label class="option block p-x1 md:p-x0p5 flex-1 flex mr-x0p5 mb-x1
                     items-center" for="bewohnt-ja">
                         <p>Ja</p>
                     </label>
-                    <input type="radio" value="nein" id="bewohnt-nein"/>
+                    <input type="radio" value="nein" id="bewohnt-nein" name="bewohnt"/>
                     <label class="option block p-x1 md:p-x0p5 flex-1 flex mb-x1
                     items-center" for="bewohnt-nein">
                         <p>Nein</p>
                     </label>
                 </div>
-                <label class="inline-flex flex-col justify-end w-full mb-x1">
+                <label class="inline-flex flex-col justify-end w-full mb-x1 hidden" data-proberaumbeschreibung="data-proberaumbeschreibung">
                     Bitte beschreibe kurz die Örtlichkeit und Sicherungen des Proberaums *
                     <textarea name="Beschreibung w-full" rows="4" class="w-full border-primary"></textarea>
                 </label>
@@ -213,12 +211,12 @@ title: Anfrage
                     <label class="w-full flex-0">
                         Wird das Equipment in einem Anhänger transportiert / gelagert? *
                     </label>
-                    <input type="radio" value="ja" id="anhaenger-ja"/>
+                    <input type="radio" value="ja" id="anhaenger-ja" name="anhaenger"/>
                     <label class="option block p-x1 md:p-x0p5 flex-1 flex mr-x0p5 mb-x1
                     items-center" for="anhaenger-ja">
                         <p>Ja</p>
                     </label>
-                    <input type="radio" value="nein" id="anhaenger-nein"/>
+                    <input type="radio" value="nein" id="anhaenger-nein" name="anhaenger"/>
                     <label class="option block p-x1 md:p-x0p5 flex-1 flex mb-x1
                     items-center" for="anhaenger-nein">
                         <p>Nein</p>
@@ -228,12 +226,12 @@ title: Anfrage
                     <label class="w-full flex-0">
                         Verdienst Du Geld mit Deiner Musik (haupt- oder nebenberuflich)? *
                     </label>
-                    <input type="radio" value="ja" id="verdient-geld-ja" name="verdient-geld-ja"/>
+                    <input type="radio" value="ja" id="verdient-geld-ja" name="verdient-geld"/>
                     <label class="option block p-x1 md:p-x0p5 flex-1 flex mr-x0p5 mb-x1
                     items-center" for="verdient-geld-ja">
                         <p>Ja</p>
                     </label>
-                    <input type="radio" value="nein" id="verdient-geld-nein" name="verdient-geld-nein"/>
+                    <input type="radio" value="nein" id="verdient-geld-nein" name="verdient-geld"/>
                     <label class="option block p-x1 md:p-x0p5 flex-1 flex mb-x1
                     items-center" for="verdient-geld-nein">
                         <p>Nein</p>
@@ -243,12 +241,12 @@ title: Anfrage
                     <label class="w-full flex-0">
                         Möchtest Du auch ein Angebot für eine Musikerhaftpflichtversicherung? *
                     </label>
-                    <input type="radio" value="ja" id="musikerhaftpflicht-ja"/>
+                    <input type="radio" value="ja" id="musikerhaftpflicht-ja" name="musikerhaftpflicht"/>
                     <label class="option block p-x1 md:p-x0p5 flex-1 flex mr-x0p5 mb-x1
                     items-center" for="musikerhaftpflicht-ja">
                         <p>Ja</p>
                     </label>
-                    <input type="radio" value="nein" id="musikerhaftpflicht-nein"/>
+                    <input type="radio" value="nein" id="musikerhaftpflicht-nein" name="musikerhaftpflicht"/>
                     <label class="option block p-x1 md:p-x0p5 flex-1 flex mb-x1
                         items-center" for="musikerhaftpflicht-nein">
                         <p>Nein</p>
@@ -274,7 +272,7 @@ title: Anfrage
         </div>
         {# Prev/Next/Send Buttons #}
         <div class="grid gap-x0p5 grid-cols-2 md:flex md:justify-center">
-            <button type="button" id="prevBtn" class="primary-button order-2 w-full mr-x0p5">Zurück</button>
+            <button type="button" id="prevBtn" class="primary-button order-2 w-full ">Zurück</button>
             <button type="button" id="nextBtn" data-submit="data-submit" class="primary-button order-2 w-full">Weiter</button>
         </div>
     </div>

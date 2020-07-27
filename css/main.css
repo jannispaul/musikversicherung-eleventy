@@ -1218,6 +1218,7 @@ select {
 
 .toggle {
   position: relative;
+  flex: 1 0 20%;
 }
 
 .toggle > label.option {
@@ -1285,12 +1286,21 @@ select {
   /* TOggle indicator styles  */
 
   .toggle > label.option {
-    height: 8vw;
+    height: 4.9vw;
+    margin-bottom: 2vw;
     border: 0.2vw solid #6b46c1;
   }
 
-  .toggle > label.option.small {
-    height: 4.9vw;
+  .toggle > label {
+    padding-left: 1vw;
+    padding-right: 1vw;
+    height: 4.1vw;
+    display: flex;
+    align-items: center;
+  }
+
+  .toggle .overlap {
+    margin-right: -0.2vw;
   }
 
   select {
