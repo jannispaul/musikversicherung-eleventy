@@ -202,12 +202,12 @@ var cookieNotice = function cookieNotice() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var forms = function forms() {
-  // This script handles form pages called tabs, adding instruments to the list and saves the form's state to localstorage
+  // This script handles form pages called tabs, adding instruments to the list and saves the form's state to localstorage and loads it
   // Set variables
-  var currentTab = 0; // Current tab is set to be the first tab (0)
+  // Current tab is set to be the first tab (0)
+  var currentTab = 0; // Display the current tab
 
-  showTab(currentTab); // Display the current tab
-  // Instrument counter starts with 0 instrument
+  showTab(currentTab); // Instrument counter starts with 0 instrument
 
   var instrumentCount = 0; // Increment instrument count
 
@@ -342,14 +342,15 @@ var forms = function forms() {
     // If user clicks "add instrument"-buttton
     if (event.target.matches('button[data-name="addInstrument"]')) {
       // Disable "add instrument" button at 10 slots
-      if (instrumentCount > 9) {
+      if (instrumentCount < 10) {
+        // Add instrument
+        addInstrument(); // Set focus to newly created instrument field
+
+        document.querySelector(".single-instrument:last-of-type input").focus();
+      } else {
         document.querySelector('button[data-name="addInstrument"]').setAttribute("disabled", "disabled");
-      } // Add instrument
+      } // Get existing data from localStorage
 
-
-      addInstrument(); // Set focus to newly created instrument field
-
-      document.querySelector(".single-instrument:last-of-type input").focus(); // Get existing data from localStorage
 
       var saved = localStorage.getItem(storageID);
       saved = saved ? JSON.parse(saved) : {}; // Save the insrumentCounter to it
@@ -467,7 +468,9 @@ var forms = function forms() {
 
 
   var loadData = function loadData() {
-    // Get localStorage data
+    console.log("test");
+    addInstrument(); // Get localStorage data
+
     var saved = localStorage.getItem(storageID);
     if (!saved) return;
     saved = JSON.parse(saved); // Check if instruments had been added previously

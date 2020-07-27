@@ -1,9 +1,13 @@
 const forms = (function forms() {
-  // This script handles form pages called tabs, adding instruments to the list and saves the form's state to localstorage
+  // This script handles form pages called tabs, adding instruments to the list and saves the form's state to localstorage and loads it
 
   // Set variables
-  var currentTab = 0; // Current tab is set to be the first tab (0)
-  showTab(currentTab); // Display the current tab
+
+  // Current tab is set to be the first tab (0)
+  var currentTab = 0;
+
+  // Display the current tab
+  showTab(currentTab);
 
   // Instrument counter starts with 0 instrument
   let instrumentCount = 0;
@@ -197,16 +201,16 @@ const forms = (function forms() {
     // If user clicks "add instrument"-buttton
     if (event.target.matches('button[data-name="addInstrument"]')) {
       // Disable "add instrument" button at 10 slots
-      if (instrumentCount > 9) {
+      if (instrumentCount < 10) {
+        // Add instrument
+        addInstrument();
+        // Set focus to newly created instrument field
+        document.querySelector(".single-instrument:last-of-type input").focus();
+      } else {
         document
           .querySelector('button[data-name="addInstrument"]')
           .setAttribute("disabled", "disabled");
       }
-      // Add instrument
-      addInstrument();
-
-      // Set focus to newly created instrument field
-      document.querySelector(".single-instrument:last-of-type input").focus();
 
       // Get existing data from localStorage
       var saved = localStorage.getItem(storageID);
@@ -245,6 +249,7 @@ const forms = (function forms() {
       return;
     }
   });
+
   // Conditional fields based on drop downs
   document.addEventListener("change", function(event) {
     // If residency is in other country show custom country input
@@ -328,6 +333,8 @@ const forms = (function forms() {
 
   // Load saved form data from localStorage
   var loadData = function() {
+    console.log("test");
+    addInstrument();
     // Get localStorage data
     var saved = localStorage.getItem(storageID);
     if (!saved) return;
