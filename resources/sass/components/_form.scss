@@ -114,6 +114,9 @@ select {
   position: relative;
   flex: 1 0 20%;
 }
+.toggle input:focus + label {
+  @apply border-pink-500 outline-none;
+}
 .toggle > label.option {
   height: 16vw;
   display: flex;

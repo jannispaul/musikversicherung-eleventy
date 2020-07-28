@@ -42,7 +42,7 @@ title: Anfrage
             <div class="grid md:grid-cols-2 gap-x0p5">
                 <label class="inline-flex flex-col ">
                     Anrede *
-                    <select autofocus="autofocus">
+                    <select name="anrede" autofocus="autofocus">
                         <option value="Frau">Frau</option>
                         <option value="Herr">Herr</option>
                     </select>
@@ -65,7 +65,7 @@ title: Anfrage
                 </label>
                 <label class="inline-flex flex-col ">
                     Status *
-                    <select required="required">
+                    <select required="required" name="status">
                         <option value="Hobbymusiker">Hobbymusiker</option>
                         <option value="Eltern von Musikschüler/in">
                             Eltern von Musikschüler/in
@@ -90,19 +90,19 @@ title: Anfrage
                 </label>
                 <label class="inline-flex flex-col ">
                     Wohnsitz in *
-                    <select required="required" data-residency="data-residency">
+                    <select required="required" data-residency="data-residency" name="wohnsitz">
                         <option value="Deutschland">Deutschland</option>
                         <option value="Österreich">Österreich</option>
                         <option value="Schweiz">Schweiz</option>
-                        <option value="anderesLand">Anderes Land</option>
+                        <option value="anderes Land">Anderes Land</option>
                     </select>
                 </label>
                 <label class="inline-flex flex-col justify-end hidden" data-customcountry="data-customCountry">
                     <input name="anderesLand" placeholder="Wohnsitz" data-customcountry="data-customCountry"/>
                 </label>
-                <label class="inline-flex flex-col hidden" data-organization="data-organization">
+                <label class="inline-flex flex-col" data-organization="data-organization">
                     Mitgliedschaft in einer Organisation
-                    <select data-organization="data-organization">
+                    <select data-organization="data-organization" name="organisation">
                         <option value="Kein Mitglied">Kein Mitglied</option>
                         <option value="Bund Dt. Zupfmusiker">
                             Bund Dt. Zupfmusiker
@@ -205,7 +205,7 @@ title: Anfrage
                 </div>
                 <label class="inline-flex flex-col justify-end w-full mb-x1 hidden" data-proberaumbeschreibung="data-proberaumbeschreibung">
                     Bitte beschreibe kurz die Örtlichkeit und Sicherungen des Proberaums *
-                    <textarea name="Beschreibung w-full" rows="4" class="w-full border-primary"></textarea>
+                    <textarea name="Beschreibung" rows="4" class="w-full border-primary"></textarea>
                 </label>
                 <div class="inline flex flex-wrap md:items-stretch toggle">
                     <label class="w-full flex-0">
@@ -257,7 +257,7 @@ title: Anfrage
             {# Part for Sinfonima & IM SOund #}
             <label for="" class="block">
                 Anmerkungen & Fragen
-                <textarea rows="4" class="w-full border-primary"></textarea>
+                <textarea rows="4" class="w-full border-primary" name="fragen"></textarea>
             </label>
             {# Accept terms #}
             <label class="flex items-center mt-x0p5 mb-x1 cursor-pointer">
@@ -272,7 +272,7 @@ title: Anfrage
         </div>
         {# Prev/Next/Send Buttons #}
         <div class="grid gap-x0p5 grid-cols-2 md:flex md:justify-center">
-            <button type="button" id="prevBtn" class="primary-button order-2 w-full ">Zurück</button>
+            <button type="button" id="prevBtn" class="primary-button order-2 w-full " tab-index="0">Zurück</button>
             <button type="button" id="nextBtn" data-submit="data-submit" class="primary-button order-2 w-full">Weiter</button>
         </div>
     </div>

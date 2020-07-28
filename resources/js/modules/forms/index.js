@@ -15,14 +15,20 @@ const forms = (function forms() {
   let incrementInstrumentCount = () => instrumentCount++;
 
   // DOM-Elements as variables
-  let customCountryLabel = document.querySelector("label[data-customCountry]");
-  let customCountryInput = document.querySelector("input[data-customCountry]");
+  let totalValueLabel = document.querySelector("[data-totalValue]");
+  let totalValueInput = document.querySelector('input[name="gesamtWert"]');
+  let organizationLabel = document.querySelector("label[data-organization]");
+  let organizationSelect = document.querySelector("select[data-organization]");
   let customOrganizationLabel = document.querySelector(
-    "label[data-customOrganization]"
+    "label[data-customorganization]"
   );
   let customOrganizationInput = document.querySelector(
-    "input[data-customOrganization]"
+    "input[data-customorganization]"
   );
+  let imSoundSection = document.querySelector("div[data-imsoundsection]");
+  let sinfonimasection = document.querySelector("div[data-sinfonimasection]");
+  let customCountryLabel = document.querySelector("label[data-customCountry]");
+  let customCountryInput = document.querySelector("input[data-customCountry]");
   let musikerhaftpflichtLabel = document.querySelector(
     "div[data-musikerhaftpflicht]"
   );
@@ -33,7 +39,7 @@ const forms = (function forms() {
 
   // Add instrument
   function addInstrument() {
-    // Increment count
+    // Increment instrument count
     incrementInstrumentCount();
 
     // Single instrument html to add more instruments
@@ -79,7 +85,7 @@ const forms = (function forms() {
     </label>
   </div>
 </div>`;
-    // Add to DOM
+    // Add to DOM after class singleInstrument
     document
       .querySelector(".instrument-list")
       .insertAdjacentHTML("beforeend", singleInstrument);
@@ -101,6 +107,7 @@ const forms = (function forms() {
     } else {
       document.getElementById("nextBtn").innerHTML = "Weiter";
     }
+
     //... and run a function that will display the correct step indicator:
     {
       {
@@ -120,6 +127,7 @@ const forms = (function forms() {
     // }
     // Increase or decrease the current tab by 1:
     currentTab = currentTab + n;
+
     // if you have reached the end of the form...
     if (currentTab >= tabs.length) {
       // ... the form gets submitted:
@@ -220,44 +228,28 @@ const forms = (function forms() {
       // Save the object back to localStorage
       localStorage.setItem(storageID, JSON.stringify(saved));
     }
-
-    // Define variabls for show/hide parts of form
-    let totalValueLabel = document.querySelector("[data-totalValue]");
-    let totalValueInput = document.querySelector('input[name="gesamtWert"]');
-    let organizationLabel = document.querySelector("label[data-organization]");
-    let organizationSelect = document.querySelector(
-      "select[data-organization]"
-    );
-    let imSoundSection = document.querySelector("div[data-imsoundsection]");
-    let sinfonimasection = document.querySelector("div[data-sinfonimasection]");
-
-    // Hide input and price calculation, show organization in tab 2
-    if (event.target.matches("[data-sinfonima]")) {
-      // Hide totalValue field
-      hideElement(totalValueLabel, totalValueInput);
-      showElement(organizationLabel, organizationSelect);
-      hideElement(imSoundSection);
-      showElement(sinfonimasection);
-      return;
-    }
-    if (event.target.matches("[data-imsound]")) {
-      // Reveal the hidden totalValue field for IM SOUND
-      showElement(totalValueLabel, totalValueInput);
-      hideElement(organizationLabel, organizationSelect);
-      showElement(imSoundSection);
-      hideElement(sinfonimasection);
-      return;
-    }
   });
 
   // Conditional fields based on drop downs
   document.addEventListener("change", function(event) {
+    // Reveal Sinfonima fields and section
+    if (event.target.matches("#SINFONIMA")) {
+      // Hide totalValue field
+      sinfonimaState();
+      return;
+    }
+    if (event.target.matches("#IAMSOUND")) {
+      // Reveal IMSOUND fields and section
+      iamsoundState();
+      return;
+    }
+
     // If residency is in other country show custom country input
     if (event.target.matches("select[data-residency]")) {
-      if (event.target.value === "anderesLand")
+      if (event.target.value === "anderes Land")
         showElement(customCountryLabel, customCountryInput);
       // if it is not another country hide custom country input
-      if (event.target.value !== "anderesLand")
+      if (event.target.value !== "anderes Land")
         hideElement(customCountryLabel, customCountryInput);
     }
 
@@ -279,7 +271,7 @@ const forms = (function forms() {
           hideElement(probeRaumBeschreibungLabel);
     }
 
-    // If proberaum is not in a inhabitat building show description input
+    // If proberaum is not in an inhabitat building show description input
     if (event.target.matches("input[name='bewohnt']")) {
       if (event.target.value !== "ja") showElement(probeRaumBeschreibungLabel);
       // If proberaum is in a inhabitat building hide description input
@@ -333,7 +325,6 @@ const forms = (function forms() {
 
   // Load saved form data from localStorage
   var loadData = function() {
-    console.log("test");
     addInstrument();
     // Get localStorage data
     var saved = localStorage.getItem(storageID);
@@ -378,7 +369,33 @@ const forms = (function forms() {
         field.value = saved[name];
       }
     });
+    restoreState(saved);
   };
+
+  function restoreState(saved) {
+    console.log(saved);
+    if (saved.versicherungstyp === "SINFONIMA") sinfonimaState();
+    if (saved.versicherungstyp === "IAMSOUND") iamsoundState();
+    if (saved.wohnsitz === "anderes Land")
+      showElement(customCountryLabel, customCountryInput);
+  }
+  function sinfonimaState() {
+    // Hide imsound input, show organization in tab 2 and sinfonima section
+    hideElement(totalValueLabel, totalValueInput);
+    showElement(organizationLabel, organizationSelect);
+    hideElement(imSoundSection);
+    showElement(sinfonimasection);
+    if (organizationSelect.value === "Sonstige")
+      showElement(customOrganizationLabel);
+  }
+  function iamsoundState() {
+    // Reveal the hidden totalValue field for IM SOUND, hide sinfonima seciton
+    showElement(totalValueLabel, totalValueInput);
+    hideElement(organizationLabel, organizationSelect);
+    showElement(imSoundSection);
+    hideElement(sinfonimasection);
+    hideElement(customOrganizationLabel, customOrganizationInput);
+  }
 
   /**
    * Handle input events

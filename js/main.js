@@ -216,19 +216,25 @@ var forms = function forms() {
   }; // DOM-Elements as variables
 
 
+  var totalValueLabel = document.querySelector("[data-totalValue]");
+  var totalValueInput = document.querySelector('input[name="gesamtWert"]');
+  var organizationLabel = document.querySelector("label[data-organization]");
+  var organizationSelect = document.querySelector("select[data-organization]");
+  var customOrganizationLabel = document.querySelector("label[data-customorganization]");
+  var customOrganizationInput = document.querySelector("input[data-customorganization]");
+  var imSoundSection = document.querySelector("div[data-imsoundsection]");
+  var sinfonimasection = document.querySelector("div[data-sinfonimasection]");
   var customCountryLabel = document.querySelector("label[data-customCountry]");
   var customCountryInput = document.querySelector("input[data-customCountry]");
-  var customOrganizationLabel = document.querySelector("label[data-customOrganization]");
-  var customOrganizationInput = document.querySelector("input[data-customOrganization]");
   var musikerhaftpflichtLabel = document.querySelector("div[data-musikerhaftpflicht]");
   var probeRaumOrtLabel = document.querySelector("div[data-proberaumort]");
   var probeRaumBeschreibungLabel = document.querySelector("label[data-proberaumbeschreibung]"); // Add instrument
 
   function addInstrument() {
-    // Increment count
+    // Increment instrument count
     incrementInstrumentCount(); // Single instrument html to add more instruments
 
-    var singleInstrument = "<div class=\"single-instrument flex flex-wrap md:flex-no-wrap items-end mb-x1p5 md:mb-x0p5\">\n  <label class=\"flex md:flex-grow flex-col items-start flex-none md:flex-auto w-full md:w-1/2 md:mr-x0p5\">\n    Instrument / Zubeh\xF6r ".concat(instrumentCount, "\n    <input\n      name=\"instrument").concat(instrumentCount, "\"\n      type=\"text\"\n      class=\"w-full \"\n      autofocus />\n  </label>\n  <label\n    class=\"flex flex-col flex-grow-0 flex-1 order-1 mr-x0p5 w-2/6 md:w-auto\n    md:w-1/6\">\n    Wert in \u20AC\n    <input\n      type=\"number\"\n      name=").concat("value" + instrumentCount, "\n      pattern=\"d*\"/>\n  </label>\n  <div class=\"toggle flex order-2 md:order-2\">\n    <input\n      type=\"radio\"\n      name=").concat("valueType" + instrumentCount, "\n      value=\"Neuwert\"\n      id=").concat("neuwert" + instrumentCount, " />\n    <label\n      class=\"option overlap flex-1\"\n      for=").concat("neuwert" + instrumentCount, ">\n      <p>Neuwert</p>\n    </label>\n    <!-- <label for=\"Zeitwert\"> -->\n    <input\n      type=\"radio\"\n      name=").concat("valueType" + instrumentCount, "\n      value=\"Zeitwert\"\n      id=").concat("zeitwert" + instrumentCount, " />\n    <label\n      class=\"option flex-1\"\n      for=").concat("zeitwert" + instrumentCount, ">\n      <p>Zeitwert</p>\n    </label>\n  </div>\n</div>"); // Add to DOM
+    var singleInstrument = "<div class=\"single-instrument flex flex-wrap md:flex-no-wrap items-end mb-x1p5 md:mb-x0p5\">\n  <label class=\"flex md:flex-grow flex-col items-start flex-none md:flex-auto w-full md:w-1/2 md:mr-x0p5\">\n    Instrument / Zubeh\xF6r ".concat(instrumentCount, "\n    <input\n      name=\"instrument").concat(instrumentCount, "\"\n      type=\"text\"\n      class=\"w-full \"\n      autofocus />\n  </label>\n  <label\n    class=\"flex flex-col flex-grow-0 flex-1 order-1 mr-x0p5 w-2/6 md:w-auto\n    md:w-1/6\">\n    Wert in \u20AC\n    <input\n      type=\"number\"\n      name=").concat("value" + instrumentCount, "\n      pattern=\"d*\"/>\n  </label>\n  <div class=\"toggle flex order-2 md:order-2\">\n    <input\n      type=\"radio\"\n      name=").concat("valueType" + instrumentCount, "\n      value=\"Neuwert\"\n      id=").concat("neuwert" + instrumentCount, " />\n    <label\n      class=\"option overlap flex-1\"\n      for=").concat("neuwert" + instrumentCount, ">\n      <p>Neuwert</p>\n    </label>\n    <!-- <label for=\"Zeitwert\"> -->\n    <input\n      type=\"radio\"\n      name=").concat("valueType" + instrumentCount, "\n      value=\"Zeitwert\"\n      id=").concat("zeitwert" + instrumentCount, " />\n    <label\n      class=\"option flex-1\"\n      for=").concat("zeitwert" + instrumentCount, ">\n      <p>Zeitwert</p>\n    </label>\n  </div>\n</div>"); // Add to DOM after class singleInstrument
 
     document.querySelector(".instrument-list").insertAdjacentHTML("beforeend", singleInstrument);
   }
@@ -358,41 +364,28 @@ var forms = function forms() {
       saved.instrumentCount = instrumentCount; // Save the object back to localStorage
 
       localStorage.setItem(storageID, JSON.stringify(saved));
-    } // Define variabls for show/hide parts of form
-
-
-    var totalValueLabel = document.querySelector("[data-totalValue]");
-    var totalValueInput = document.querySelector('input[name="gesamtWert"]');
-    var organizationLabel = document.querySelector("label[data-organization]");
-    var organizationSelect = document.querySelector("select[data-organization]");
-    var imSoundSection = document.querySelector("div[data-imsoundsection]");
-    var sinfonimasection = document.querySelector("div[data-sinfonimasection]"); // Hide input and price calculation, show organization in tab 2
-
-    if (event.target.matches("[data-sinfonima]")) {
-      // Hide totalValue field
-      hideElement(totalValueLabel, totalValueInput);
-      showElement(organizationLabel, organizationSelect);
-      hideElement(imSoundSection);
-      showElement(sinfonimasection);
-      return;
-    }
-
-    if (event.target.matches("[data-imsound]")) {
-      // Reveal the hidden totalValue field for IM SOUND
-      showElement(totalValueLabel, totalValueInput);
-      hideElement(organizationLabel, organizationSelect);
-      showElement(imSoundSection);
-      hideElement(sinfonimasection);
-      return;
     }
   }); // Conditional fields based on drop downs
 
   document.addEventListener("change", function (event) {
-    // If residency is in other country show custom country input
-    if (event.target.matches("select[data-residency]")) {
-      if (event.target.value === "anderesLand") showElement(customCountryLabel, customCountryInput); // if it is not another country hide custom country input
+    // Reveal Sinfonima fields and section
+    if (event.target.matches("#SINFONIMA")) {
+      // Hide totalValue field
+      sinfonimaState();
+      return;
+    }
 
-      if (event.target.value !== "anderesLand") hideElement(customCountryLabel, customCountryInput);
+    if (event.target.matches("#IAMSOUND")) {
+      // Reveal IMSOUND fields and section
+      iamsoundState();
+      return;
+    } // If residency is in other country show custom country input
+
+
+    if (event.target.matches("select[data-residency]")) {
+      if (event.target.value === "anderes Land") showElement(customCountryLabel, customCountryInput); // if it is not another country hide custom country input
+
+      if (event.target.value !== "anderes Land") hideElement(customCountryLabel, customCountryInput);
     } // If organization is set to sonstige show custom input
 
 
@@ -407,7 +400,7 @@ var forms = function forms() {
       if (event.target.value === "ja") showElement(probeRaumOrtLabel); // If proberaum is not used hide further proberaum inputs
 
       if (event.target.value !== "ja") hideElement(probeRaumOrtLabel) & hideElement(probeRaumBeschreibungLabel);
-    } // If proberaum is not in a inhabitat building show description input
+    } // If proberaum is not in an inhabitat building show description input
 
 
     if (event.target.matches("input[name='bewohnt']")) {
@@ -468,7 +461,6 @@ var forms = function forms() {
 
 
   var loadData = function loadData() {
-    console.log("test");
     addInstrument(); // Get localStorage data
 
     var saved = localStorage.getItem(storageID);
@@ -507,7 +499,33 @@ var forms = function forms() {
         field.value = saved[name];
       }
     });
+    restoreState(saved);
   };
+
+  function restoreState(saved) {
+    console.log(saved);
+    if (saved.versicherungstyp === "SINFONIMA") sinfonimaState();
+    if (saved.versicherungstyp === "IAMSOUND") iamsoundState();
+    if (saved.wohnsitz === "anderes Land") showElement(customCountryLabel, customCountryInput);
+  }
+
+  function sinfonimaState() {
+    // Hide imsound input, show organization in tab 2 and sinfonima section
+    hideElement(totalValueLabel, totalValueInput);
+    showElement(organizationLabel, organizationSelect);
+    hideElement(imSoundSection);
+    showElement(sinfonimasection);
+    if (organizationSelect.value === "Sonstige") showElement(customOrganizationLabel);
+  }
+
+  function iamsoundState() {
+    // Reveal the hidden totalValue field for IM SOUND, hide sinfonima seciton
+    showElement(totalValueLabel, totalValueInput);
+    hideElement(organizationLabel, organizationSelect);
+    showElement(imSoundSection);
+    hideElement(sinfonimasection);
+    hideElement(customOrganizationLabel, customOrganizationInput);
+  }
   /**
    * Handle input events
    * @param  {Event} event The event object

@@ -1090,6 +1090,27 @@ video {
   transition-delay: 6.75s;
 }
 
+.skip-to-main:focus,
+.skip-to-main:active {
+  color: #fff;
+  background-color: #000;
+  top: auto;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: auto;
+  overflow: auto;
+  margin-top: 10px;
+  padding: 5px 15px;
+  border: 4px solid yellow;
+  text-align: center;
+  z-index: 999;
+}
+
 .form .row {
   margin-bottom: 1.5rem;
 }
@@ -1219,6 +1240,13 @@ select {
 .toggle {
   position: relative;
   flex: 1 0 20%;
+}
+
+.toggle input:focus + label {
+  --border-opacity: 1;
+  border-color: #ed64a6;
+  border-color: rgba(237, 100, 166, var(--border-opacity));
+  outline: 0;
 }
 
 .toggle > label.option {
