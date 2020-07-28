@@ -86,9 +86,11 @@ const forms = (function forms() {
   </div>
 </div>`;
     // Add to DOM after class singleInstrument
-    document
-      .querySelector(".instrument-list")
-      .insertAdjacentHTML("beforeend", singleInstrument);
+    if (storageID) {
+      document
+        .querySelector(".instrument-list")
+        .insertAdjacentHTML("beforeend", singleInstrument);
+    }
   }
 
   function showTab(n) {
@@ -305,8 +307,9 @@ const forms = (function forms() {
 
   // Automatically saving form
   // Variables
-  var storageID = document.querySelector("[data-auto-save]").id;
-
+  if (document.querySelector("[data-auto-save]")) {
+    var storageID = document.querySelector("[data-auto-save]").id;
+  }
   // Methods
   /**
    * Get an ID for a field
