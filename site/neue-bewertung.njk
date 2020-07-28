@@ -1,0 +1,102 @@
+---
+layout: default
+meta_title: Contact
+meta_description: Contact page description
+body_class: contact
+title: Contact Us
+---
+
+<main id="main" class="main  flex flex-1 flex-col py-10 lg:py-20 focus:outline-none" tabindex="-1">
+    <div class="text-x2 md:text-x1 lg:text-x0p5 md:px-x1p5 md:grid grid-cols-2 md:-mt-x1">
+        <h1 class="text-x3 md:text-x2 text-primary mb-x1 font-medium md:h-100
+      md:text-light md:flex md:items-center md:text-center md:bg-primary">
+            Ich freue mich über Deine Bewertung!
+        </h1>
+        <form class=" flex-col md:p-x1" method="POST" action="https://mystaticman.herokuapp.com/v3/entry/github/jannispaul/musikversicherung/master/reviews">
+            <input type="hidden" name="options[redirect]" value="https://musikversicherung.com/bewertung-erfolgreich"/>
+            <div class="block">
+                <fieldset class="rating">
+                    <input type="radio" id="star5" name="fields[rating]" value="5" checked="checked"/>
+                    <label class="full" for="star5" title="5 Sterne"></label>
+                    <input type="radio" id="star4" name="fields[rating]" value="4"/>
+                    <label class="full" for="star4" title="4 Sterne"></label>
+                    <input type="radio" id="star3" name="fields[rating]" value="3"/>
+                    <label class="full" for="star3" title="3 Sterne"></label>
+                    <input type="radio" id="star2" name="fields[rating]" value="2"/>
+                    <label class="full" for="star2" title="2 Sterne"></label>
+                    <input type="radio" id="star1" name="fields[rating]" value="1"/>
+                    <label class="full" for="star1" title="1 Stern"></label>
+                </fieldset>
+            </div>
+
+            <label class="flex flex-col  mb-x0p75 w-full">
+                <span class="">Name</span>
+                <input type="text" id="form[name]" name="fields[name]" required="required" class="mb-0"/>
+            </label>
+
+            <label class="flex flex-col mb-x0p75 ">
+                <span class="">Deine Rezension</span>
+                <textarea name="fields[review]" rows="4" required="required" class=""></textarea>
+            </label>
+
+            <button class="primary-button block w-full" type="submit" name="action">
+                Absenden
+            </button>
+        </form>
+    </div>
+</main>
+
+<style>
+
+    /****** Style Star Rating Widget *****/
+
+    .rating {
+        border: none;
+        float: left;
+    }
+
+    .rating > input {
+        display: none;
+    }
+    .rating > label:before {
+        margin: 5px;
+        font-size: 8vw;
+
+        display: inline-block;
+        content: "\2605";
+    }
+
+    .rating > .half:before {
+        content: "\2605";
+        position: absolute;
+    }
+
+    .rating > label {
+        color: #ccc;
+        float: right;
+    }
+
+    /***** CSS Magic to Highlight Stars on Hover *****/
+
+    .rating > input:checked ~ label,
+    /* show gold star when clicked */
+    .rating:not(:checked) > label:hover,
+    /* hover current star */
+    .rating:not(:checked) > label:hover ~ label {
+        color: #ffd700;
+    }
+    /* hover previous stars in list */
+
+    .rating > input:checked + label:hover,
+    /* hover current star when changing rating */
+    .rating > input:checked ~ label:hover, .rating > label:hover ~ input:checked ~ label,
+    /* lighten current selection */
+    .rating > input:checked ~ label:hover ~ label {
+        color: #ffed85;
+    }
+    @media (min-width: 768px) {
+        .rating > label:before {
+            font-size: 3.8vw;
+        }
+    }
+</style>
