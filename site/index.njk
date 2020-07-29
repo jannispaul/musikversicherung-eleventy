@@ -66,6 +66,33 @@ paragraph: "Versicherungsschutz besteht sowohl dann, wenn der Schaden selbst ver
 		{% include "components/home/10-more-advantages.njk" %}
 		{% include "components/home/11-video.njk" %}
 
+
+
+
+   {# an optional and basic local business schema example #}
+    {# <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "{{ site.name }}",
+        "image": "{{ site.url }}{{ site.images.logo }}",
+        "url": "{{ site.url }}{{ page.url }}",
+        "email": "{{ site.contact.email }}",
+        "telephone": "{{ site.contact.phone }}",
+        "priceRange": "£",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "{{ site.address.street }}",
+            "addressLocality": "{{ site.address.city }}",
+            "postalCode": "{{ site.address.postcode }}",
+            "addressCountry": "{{ site.address.country }}"
+        },
+        "sameAs": [
+            "{{ site.social_links.twitter }}",
+            "{{ site.social_links.facebook }}",
+            "{{ site.social_links.instagram }}"
+        ]
+    }
+    </script> #}
+
 </main>
-
-

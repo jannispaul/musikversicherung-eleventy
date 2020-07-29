@@ -7,7 +7,7 @@
     },
     "images": {
         "logo": "/images/logo/logo.svg",
-        "favicon": "/images/favicons/favicon.ico",
+        "favicon": "/images/favicons/",
         "twitter": "/images/meta/socialimage.jpg",
         "og": "/images/meta/socialimage.jpg"
     },

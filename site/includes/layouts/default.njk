@@ -1,59 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de" class="min-h-full antialiased">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>
-			{% if meta_title %}
-				{{ meta_title }}
-			{% else %}
-				{{ title }}
-			{% endif %}
-			|
-			{{ site.name }}</title>
-		<meta name="description" content="{% if meta_description %}{{ meta_description }}{% else %}{{ excerpt }}{% endif %}">
-		<meta name="robots" content="index,follow"/>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% if meta_title %}
+      {{ meta_title }}
+      {% else %}
+      {{ title }}
+      {% endif %} |
+      {{ site.name }}
+    </title>
+    <meta
+      name="description"
+      content="{% if meta_description %}{{ meta_description }}{% else %}{{
+        excerpt
+      }}{% endif %}"
+    />
+    <meta name="robots" content="index,follow" />
 
-		{# if your site's entire CSS comes in under 14kb, you may want to inline in the head #}
-		{# include main.css if in development mode #}
-			{% if helpers.environment === "development" %}
-			<link rel="stylesheet" href="/css/main.css">
-		{% else %}
-			{# else, use the minified css file for production #}
-			<link rel="stylesheet" href="/css/main.min.css">
-		{% endif %}
+    {# if your site's entire CSS comes in under 14kb, you may want to inline in
+    the head #} {# include main.css if in development mode #} {% if
+    helpers.environment === "development" %}
+    <link rel="stylesheet" href="/css/main.css" />
+    {% else %} {# else, use the minified css file for production #}
+    <link rel="stylesheet" href="/css/main.min.css" />
+    {% endif %} {# include scripts #} {% if helpers.environment ===
+    "development" %}
+    <script src="/js/main.js" defer="defer"></script>
+    {% else %}
+    <script src="/js/main.min.js" defer="defer"></script>
+    {% endif %} {# include social meta tags #} {% include
+    "components/social-meta.njk" %} {# lastly include favicon, fonts, etc #}
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ site.images.favicon }}favicon.png"
+    />
 
-		{# include scripts #}
-		{% if helpers.environment === "development" %}
-			<script src="/js/main.js" defer></script>
-		{% else %}
-			<script src="/js/main.min.js" defer></script>
-		{% endif %}
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{{ site.images.favicon }}apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{{ site.images.favicon }}favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{{ site.images.favicon }}favicon-16x16.png"
+    />
+    <link
+      rel="mask-icon"
+      href="{{ site.images.favicon }}safari-pinned-tab.svg"
+      color="#6b46c1"
+    />
+    <link rel="shortcut icon" href="{{ site.images.favicon }}favicon.ico" />
+    <meta name="msapplication-TileColor" content="#6B46C1" />
+    {#
+    <meta
+      name="msapplication-config"
+      content="{{ site.images.favicon }}browserconfig.xml"
+    />
+    #}
+    <meta name="theme-color" content="#6B46C1" />
 
-		{# include social meta tags #}
-		{% include "components/social-meta.njk" %}
+    {# canonical #}
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+  </head>
+  <body {% if body_class %} id="wrapper" {% endif %} class="bg-light">
+    {# <a class="sr-only" href="#main">Skip to content</a> #} {# include
+    special-notice #} {% include "components/special-notice.njk" %} {# include
+    header #} {% include "components/header.njk" %}
+    <div class="mt-x1 relative z-0" id="main">
+      {# include content #}
+      {{ content | safe }}
 
-		{# lastly include favicon, fonts, etc #}
-		<link
-		rel="icon" type="image/png" href="{{ site.images.favicon }}">
-
-		{# canonical #}
-		<link rel="canonical" href="{{ site.url }}{{ page.url }}">
-	</head>
-	<body {% if body_class %} id="{{ body_class }}" {% endif %} class="bg-light" id="wrapper">
-		{# <a class="sr-only" href="#main">Skip to content</a> #}
-		
-		{# include special-notice #}
-		{% include "components/special-notice.njk" %}
-		{# include header #}
-		{% include "components/header.njk" %}
-			<div
-			class="mt-x1 relative z-0" id="main"> {# include content #}
-			{{ content | safe }}
-
-			{# include footer #}
-			{% include "components/footer.njk" %}
-		</div>
-		{# include cookie-notice #}
-		{% include "components/cookie-notice.njk" %}</body>
+      {# include footer #} {% include "components/footer.njk" %}
+    </div>
+    {# include cookie-notice #} {% include "components/cookie-notice.njk" %}
+  </body>
 </html>
