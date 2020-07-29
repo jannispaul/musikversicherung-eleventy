@@ -86,7 +86,7 @@ const forms = (function forms() {
   </div>
 </div>`;
     // Add to DOM after class singleInstrument
-    if (storageID) {
+    if (storageID === "anfrage-form") {
       document
         .querySelector(".instrument-list")
         .insertAdjacentHTML("beforeend", singleInstrument);
