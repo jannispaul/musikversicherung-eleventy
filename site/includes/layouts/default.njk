@@ -1,141 +1,167 @@
 <!DOCTYPE html>
 <html lang="de" class="min-h-full antialiased">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      {% if meta_title %}
-      {{ meta_title }}
-      {% else %}
-      {{ title }}
-      {% endif %} |
-      {{ site.name }}
-    </title>
-    <meta
-      name="description"
-      content="{% if meta_description %}{{ meta_description }}{% else %}{{
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>
+            {% if meta_title %}
+                {{ meta_title }}
+            {% else %}
+                {{ title }}
+            {% endif %}
+            |
+            {{ site.name }}
+        </title>
+        <meta name="description" content="{% if meta_description %}{{ meta_description }}{% else %}{{
         excerpt
-      }}{% endif %}"
-    />
-    <meta name="robots" content="index,follow" />
+      }}{% endif %}"/>
+        <meta name="robots" content="index,follow"/>
 
-    {# if your site's entire CSS comes in under 14kb, you may want to inline in
-    the head #} {# include main.css if in development mode #} {% if
-    helpers.environment === "development" %}
-    <link rel="stylesheet" href="/css/main.css" />
-    {% else %} {# else, use the minified css file for production #}
-    <link rel="stylesheet" href="/css/main.min.css" />
-    {% endif %} {# include scripts #} {% if helpers.environment ===
-    "development" %}
-    <script src="/js/main.js" defer="defer"></script>
-    {% else %}
-    <script src="/js/main.min.js" defer="defer"></script>
-    {% endif %} {# include social meta tags #} {% include
-    "components/social-meta.njk" %} {# lastly include favicon, fonts, etc #}
-    <link
-      rel="icon"
-      type="image/png"
-      href="{{ site.images.favicon }}favicon.png"
-    />
+        {# if your site's entire CSS comes in under 14kb, you may want to inline in
+    the head #}
+        {# include main.css if in development mode #}
+        {% if
+        helpers.environment === "development" %}
+            <link rel="stylesheet" href="/css/main.css"/>
+        {% else %}
+            {# else, use the minified css file for production #}
+            <link rel="stylesheet" href="/css/main.min.css"/>
+        {% endif %}
+        {# include scripts #}
+        {% if helpers.environment === "development" %}
+            <script src="/js/main.js" defer="defer"></script>
+        {% else %}
+            <script src="/js/main.min.js" defer="defer"></script>
+        {% endif %}
+        {# include social meta tags #}
+        {% include
+    "components/social-meta.njk" %}
+        {# lastly include favicon, fonts, etc #}
+        <link rel="icon" type="image/png" href="{{ site.images.favicon }}favicon.png"/>
 
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="{{ site.images.favicon }}apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="{{ site.images.favicon }}favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="{{ site.images.favicon }}favicon-16x16.png"
-    />
-    <link
-      rel="mask-icon"
-      href="{{ site.images.favicon }}safari-pinned-tab.svg"
-      color="#6b46c1"
-    />
-    <link rel="shortcut icon" href="{{ site.images.favicon }}favicon.ico" />
-    <meta name="msapplication-TileColor" content="#6B46C1" />
-    {#
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ site.images.favicon }}apple-touch-icon.png"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ site.images.favicon }}favicon-32x32.png"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ site.images.favicon }}favicon-16x16.png"/>
+        <link rel="mask-icon" href="{{ site.images.favicon }}safari-pinned-tab.svg" color="#6b46c1"/>
+        <link rel="shortcut icon" href="{{ site.images.favicon }}favicon.ico"/>
+        <meta name="msapplication-TileColor" content="#6B46C1"/>
+        {#
     <meta
       name="msapplication-config"
       content="{{ site.images.favicon }}browserconfig.xml"
     />
     #}
-    <meta name="theme-color" content="#6B46C1" />
+        <meta name="theme-color" content="#6B46C1"/>
 
-    {# canonical #}
-    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+        {# canonical #}
+        <link rel="canonical" href="{{ site.url }}{{ page.url }}"/>
 
+        {# Reviews in JSON-LD for index and reviews pages #}
+        {% if page.url == "/" or page.url == "/reviews/" %}
+            <script type="application/ld+json">
+                {
+                    "@context": "http://schema.org",
+                    "@type": "Product",
+                    "image": "https://musikversicherung.com/social-image.jpg",
+                    "name": "SINFONIMA / I'M SOUND Instrumentenversicherung",
+                    "brand": {
+                        "@type": "Brand",
+                        "name": "Mannheimer Versicherung AG"
+                    },
+                    "aggregateRating": {
+                        "@type": "AggregateRating",
+                        "ratingValue": "{{ reviews | ratingAverage}}",
+                        "reviewCount": "{{ reviews | length }}"
+                    },
+                    "review": [
+                        {% set recentReviews = reviews | toArray | sort(true, true, 'date') %}
+                        {% for review in recentReviews %}
+                            {
+                                "@type": "Review",
+                                "author": {
+                                    "@type": "Person",
+                                    "name": "{{ review.name }}"
+                                },
+                                "datePublished": "{{ review.date }}",
+                                "reviewBody": "{{ review.review | striptags(false)  }}",
+                                "reviewRating": {
+                                    "@type": "Rating",
+                                    "bestRating": "5",
+                                    "ratingValue": "{{ review.rating }}",
+                                    "worstRating": "1"
+                                }
+                            }{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    ],
+                    "description": "Deine Versicherung für Instrumente und Equipment."
+                }
+            </script>
+        {% endif %}
 
+        {# FAQs in JSON-LD for index page #}
+        {% if page.url == "/" %}
+            <script type="application/ld+json">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    "mainEntity": [
+                        {% for faq in faqs %}
+                            {% if loop.index == 1 or loop.index == 5 or loop.index == 10 or loop.index == 12 %}
+                                {
+                                    "@type": "Question",
+                                    "name": "{{ faq.question }}",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "{{ faq.answer | striptags(false) }}"
+                                    }
+                                }
+                                {% if loop.index == 1 or loop.index == 5 or loop.index == 10 %},{% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    ]
+                }
+            </script>
+        {% endif %}
 
-   {#JSON-LD for reviews and FAQ #}
-	<script type="application/ld+json">
-	[{   "@context": "http://schema.org",
-    "@type": "Product",
-    "image": "https://musikversicherung.com/social-image.jpg",
-    "name": "SINFONIMA / I'M SOUND Instrumentenversicherung",
-    "brand": {
-      "@type": "Brand",
-      "name": "Mannheimer Versicherung AG"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "{{ reviews | ratingAverage}}",
-      "reviewCount": "{{ reviews | length }}"
-    },
-    "review": [{% set recentReviews = reviews | toArray | sort(true, true, 'date')%}
-			{% for review in recentReviews  %}
-	{"@type": "Review",
-    "author": {
-      "@type": "Person",
-      "name": "{{ review.name }}"
-    },
-    "datePublished": "{{ review.date }}",
-    "reviewBody": "{{ review.review | striptags(false)  }}",
-    "reviewRating": {
-      "@type": "Rating",
-      "bestRating": "5",
-      "ratingValue": "{{ review.rating }}",
-      "worstRating": "1"
-    }}{% if not loop.last %},{% endif %}
-	{% endfor %}],
-    "description": "Deine Versicherung für Instrumente und Equipment."
-	}, {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        	{% for faq in faqs %}
-                {% if loop.index == 1 or loop.index == 5 or loop.index == 10 or loop.index == 12 %}
-                    {"@type": "Question",
-                    "name": "{{ faq.question }}",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "{{ faq.answer | striptags(false) }}"
-                        }
-                    }
-                    {% if loop.index == 1 or loop.index == 5 or loop.index == 10 %},{% endif %}
-                {% endif %}	
-            {% endfor %}
-            ]}]
-    </script> 
-  </head>
-  <body {% if body_class %} id="wrapper" {% endif %} class="bg-light">
-    {# <a class="sr-only" href="#main">Skip to content</a> #} {# include
-    special-notice #} {% include "components/special-notice.njk" %} {# include
-    header #} {% include "components/header.njk" %}
-    <div class="mt-x1 relative z-0" id="main">
-      {# include content #}
-      {{ content | safe }}
+        {# FAQ in JSON-LD for faq page #}
+        {% if page.url == "/faq/" %}
+            <script type="application/ld+json">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    "mainEntity": [
+                        {% for faq in faqs %}
+                            {
+                                "@type": "Question",
+                                "name": "{{ faq.question }}",
+                                "acceptedAnswer": {
+                                    "@type": "Answer",
+                                    "text": "{{ faq.answer | striptags(false) }}"
+                                }
+                            }
+                            {% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    ]
+                }
+            </script>
+        {% endif %}
+    </head>
+    <body {% if body_class %} id="wrapper" {% endif %} class="bg-light">
+        {# <a class="sr-only" href="#main">Skip to content</a> #}
+        {# include
+    special-notice #}
+        {% include "components/special-notice.njk" %}
+        {# include
+    header #}
+        {% include "components/header.njk" %}
+        <div class="mt-x1 relative z-0" id="main">
+            {# include content #}
+            {{ content | safe }}
 
-      {# include footer #} {% include "components/footer.njk" %}
-    </div>
-    {# include cookie-notice #} {% include "components/cookie-notice.njk" %}
-  </body>
+            {# include footer #}
+            {% include "components/footer.njk" %}
+        </div>
+        {# include cookie-notice #}
+        {% include "components/cookie-notice.njk" %}
+    </body>
 </html>
