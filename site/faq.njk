@@ -1,24 +1,23 @@
 ---
 layout: default
 meta_title: Instrumentenversicherung – FAQ
-meta_description: Musikinstrumente, Equipment und Zubehör einfach online versichern
-    ✅ weltweiter Schutz ✅ auch im Auto ✅ kostenlose, individuelle Beratung
-    vom Experten
+meta_description:
+  Musikinstrumente, Equipment und Zubehör einfach online versichern
+  ✅ weltweiter Schutz ✅ auch im Auto ✅ kostenlose, individuelle Beratung
+  vom Experten
 body_class: home
 title: Welcome to Skeleventy!
 ---
 
 <main id="main" class="" tabindex="-1">
-<section class="px-x1p5" itemscope itemtype="https://schema.org/FAQPage">
+  <section class="" itemscope="itemscope" itemtype="https://schema.org/FAQPage">
     <h1 class="text-primary text-x6 leading-tight mb-x2 border-solid">
       Häufig gestellte Fragen
     </h1>
     <div class="grid md:grid-cols-2 gap-x1">
-	{% for faq in faqs %}
-    {% include "components/faq-item.njk" %}
-	{% endfor %}
+      {% for faq in faqs %}
+        {% include "components/faq-item.njk" %}
+      {% endfor %}
     </div>
   </section>
 </main>
-
-

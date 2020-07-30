@@ -72,6 +72,59 @@
 
     {# canonical #}
     <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+
+
+
+   {#JSON-LD for reviews and FAQ #}
+	<script type="application/ld+json">
+	[{   "@context": "http://schema.org",
+    "@type": "Product",
+    "image": "https://musikversicherung.com/social-image.jpg",
+    "name": "SINFONIMA / I'M SOUND Instrumentenversicherung",
+    "brand": {
+      "@type": "Brand",
+      "name": "Mannheimer Versicherung AG"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "{{ reviews | ratingAverage}}",
+      "reviewCount": "{{ reviews | length }}"
+    },
+    "review": [{% set recentReviews = reviews | toArray | sort(true, true, 'date')%}
+			{% for review in recentReviews  %}
+	{"@type": "Review",
+    "author": {
+      "@type": "Person",
+      "name": "{{ review.name }}"
+    },
+    "datePublished": "{{ review.date }}",
+    "reviewBody": "{{ review.review | striptags(false)  }}",
+    "reviewRating": {
+      "@type": "Rating",
+      "bestRating": "5",
+      "ratingValue": "{{ review.rating }}",
+      "worstRating": "1"
+    }}{% if not loop.last %},{% endif %}
+	{% endfor %}],
+    "description": "Deine Versicherung für Instrumente und Equipment."
+	}, {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        	{% for faq in faqs %}
+                {% if loop.index == 1 or loop.index == 5 or loop.index == 10 or loop.index == 12 %}
+                    {"@type": "Question",
+                    "name": "{{ faq.question }}",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "{{ faq.answer | striptags(false) }}"
+                        }
+                    }
+                    {% if loop.index == 1 or loop.index == 5 or loop.index == 10 %},{% endif %}
+                {% endif %}	
+            {% endfor %}
+            ]}]
+    </script> 
   </head>
   <body {% if body_class %} id="wrapper" {% endif %} class="bg-light">
     {# <a class="sr-only" href="#main">Skip to content</a> #} {# include

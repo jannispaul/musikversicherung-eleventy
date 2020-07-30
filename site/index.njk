@@ -65,42 +65,6 @@ paragraph: "Versicherungsschutz besteht sowohl dann, wenn der Schaden selbst ver
 		{{ text(headline="Egal, wer den Schaden verursacht hat", paragraph="Versicherungsschutz besteht sowohl dann, wenn der Schaden selbst verursacht, als auch, wenn er von Dritten verschuldet wird. Selbst grob fahrlässig herbeigeführte Schäden bis zu einer Höhe von 2.500 Euro fallen unter den Versicherungsschutz dieser Instrumentenversicherung. Das ist nicht selbstverständlich. Andere Anbieter kürzen bei der Regulierung oder leisten gar nicht. Oft gibt es bei Mitbewerbern keine Leistung, wenn ein Schaden von Familienangehörigen verursacht wird. Für SINFONIMA und I’M SOUND ist das alles kein Problem.")}}
 		{% include "components/home/10-more-advantages.njk" %}
 		{% include "components/home/11-video.njk" %}
-
-
-
-
-   {# an optional and basic local business schema example #}
-	<script type="application/ld+json">
-	{   "@context": "http://schema.org",
-    "@type": "Product",
-    image: "https://musikversicherung.com/social-image.jpg",
-    name: "SINFONIMA / I'M SOUND Instrumentenversicherung",
-    brand: {
-      "@type": "Brand",
-      name: "Mannheimer Versicherung AG"
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: {{ reviews | ratingAverage}}
-      reviewCount: {{ reviews | length }}
-    },
-    review: {% for review in reviews %}
-	{"@type": "Review",
-    author: {
-      "@type": "Person",
-      name: {{ review.name }}
-    },
-    datePublished: {{ review.date }},
-    reviewBody: {{ review.review }},
-    reviewRating: {
-      "@type": "Rating",
-      bestRating: "5",
-      ratingValue: {{ review.rating }},
-      worstRating: "1"
-    }}
-	{% endfor %},
-    description: "Deine Versicherung für Instrumente und Equipment."
-	}
-    </script> 
+		{% include "components/home/12-faq-teaser.njk" %}
   
 </main>
