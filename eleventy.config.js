@@ -33,6 +33,25 @@ module.exports = (eleventyConfig) => {
     return average.toFixed(2);
   });
 
+  eleventyConfig.addFilter("gradientOffset", function(obj) {
+    // Create array from reviews object
+    let arr = Object.values(obj);
+    // Calculate average
+    let average =
+      arr.reduce((sum, e) => sum + parseInt(e.rating), 0) / arr.length;
+
+    // Create offset array and put in the fraction as percentage or 100
+    let offset = [];
+    for (let i = 0; i < 5; i++) {
+      if (average < i + 1) {
+        offset.push((average - i) * 100);
+      } else {
+        offset.push(100);
+      }
+    }
+    return offset;
+  });
+
   // Limit array items
   eleventyConfig.addFilter("limit", function(arr) {
     return arr.slice(3);

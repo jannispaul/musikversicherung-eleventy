@@ -118,7 +118,7 @@ styleFullStarColor: "#fff"
 			rating={reviewData.averageRating} stylestarwidth="40" {style}/> #}
 			<!-- <p class="text-x2 md:text-x0p5 transition duration-500 ease-in-out "> -->
 			<p class="text-x2 md:text-x0p25 mt-x0p1">
-				&nbsp; von {{ reviews | length }} Bewertungen
+				{% include "components/star-rating-complex.njk" %}&nbsp; von {{ reviews | length }} Bewertungen
 			</p>
 		</a>
 	</div>
