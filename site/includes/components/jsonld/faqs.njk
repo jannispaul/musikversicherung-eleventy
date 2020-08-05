@@ -1,0 +1,47 @@
+{# FAQs in JSON-LD for index page #}
+{% if page.url == "/" %}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {% for faq in faqs %}
+                    {% if loop.index == 1 or loop.index == 5 or loop.index == 10 or loop.index == 12 %}
+                        {
+                            "@type": "Question",
+                            "name": "{{ faq.question }}",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "{{ faq.answer | striptags(false) }}"
+                            }
+                        }
+                        {% if loop.index == 1 or loop.index == 5 or loop.index == 10 %},{% endif %}
+                    {% endif %}
+                {% endfor %}
+            ]
+        }
+    </script>
+{% endif %}
+
+{# FAQ in JSON-LD for faq page #}
+{% if page.url == "/faq/" %}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {% for faq in faqs %}
+                    {
+                        "@type": "Question",
+                        "name": "{{ faq.question }}",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "{{ faq.answer | striptags(false) }}"
+                        }
+                    }
+                    {% if not loop.last %},{% endif %}
+                {% endfor %}
+            ]
+        }
+    </script>
+{% endif %}

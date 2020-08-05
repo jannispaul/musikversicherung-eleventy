@@ -45,106 +45,30 @@
         <link rel="mask-icon" href="{{ site.images.favicon }}safari-pinned-tab.svg" color="#6b46c1"/>
         <link rel="shortcut icon" href="{{ site.images.favicon }}favicon.ico"/>
         <meta name="msapplication-TileColor" content="#6B46C1"/>
-        {#
-    <meta
-      name="msapplication-config"
-      content="{{ site.images.favicon }}browserconfig.xml"
-    />
-    #}
+        {#<meta
+            name="msapplication-config"
+            content="{{ site.images.favicon }}browserconfig.xml"
+            />#}
         <meta name="theme-color" content="#6B46C1"/>
 
         {# canonical #}
         <link rel="canonical" href="{{ site.url }}{{ page.url }}"/>
+        
+        {# Include json-ld #}
+        {% include "../components/jsonld/reviews.njk" %}
+        {% include "../components/jsonld/faqs.njk" %}
 
-        {# Reviews in JSON-LD for index and reviews pages #}
-        {% if page.url == "/" or page.url == "/reviews/" %}
-            <script type="application/ld+json">
-                {
-                    "@context": "http://schema.org",
-                    "@type": "Product",
-                    "image": "https://musikversicherung.com/social-image.jpg",
-                    "name": "SINFONIMA / I'M SOUND Instrumentenversicherung",
-                    "brand": {
-                        "@type": "Brand",
-                        "name": "Mannheimer Versicherung AG"
-                    },
-                    "aggregateRating": {
-                        "@type": "AggregateRating",
-                        "ratingValue": "{{ reviews | ratingAverage}}",
-                        "reviewCount": "{{ reviews | length }}"
-                    },
-                    "review": [
-                        {% set recentReviews = reviews | toArray | sort(true, true, 'date') %}
-                        {% for review in recentReviews %}
-                            {
-                                "@type": "Review",
-                                "author": {
-                                    "@type": "Person",
-                                    "name": "{{ review.name }}"
-                                },
-                                "datePublished": "{{ review.date }}",
-                                "reviewBody": "{{ review.review | striptags(false)  }}",
-                                "reviewRating": {
-                                    "@type": "Rating",
-                                    "bestRating": "5",
-                                    "ratingValue": "{{ review.rating }}",
-                                    "worstRating": "1"
-                                }
-                            }{% if not loop.last %},{% endif %}
-                        {% endfor %}
-                    ],
-                    "description": "Deine Versicherung für Instrumente und Equipment."
-                }
-            </script>
-        {% endif %}
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        {# <script async="async" src="https://www.googletagmanager.com/gtag/js?id=UA-99324592-3"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
 
-        {# FAQs in JSON-LD for index page #}
-        {% if page.url == "/" %}
-            <script type="application/ld+json">
-                {
-                    "@context": "https://schema.org",
-                    "@type": "FAQPage",
-                    "mainEntity": [
-                        {% for faq in faqs %}
-                            {% if loop.index == 1 or loop.index == 5 or loop.index == 10 or loop.index == 12 %}
-                                {
-                                    "@type": "Question",
-                                    "name": "{{ faq.question }}",
-                                    "acceptedAnswer": {
-                                        "@type": "Answer",
-                                        "text": "{{ faq.answer | striptags(false) }}"
-                                    }
-                                }
-                                {% if loop.index == 1 or loop.index == 5 or loop.index == 10 %},{% endif %}
-                            {% endif %}
-                        {% endfor %}
-                    ]
-                }
-            </script>
-        {% endif %}
-
-        {# FAQ in JSON-LD for faq page #}
-        {% if page.url == "/faq/" %}
-            <script type="application/ld+json">
-                {
-                    "@context": "https://schema.org",
-                    "@type": "FAQPage",
-                    "mainEntity": [
-                        {% for faq in faqs %}
-                            {
-                                "@type": "Question",
-                                "name": "{{ faq.question }}",
-                                "acceptedAnswer": {
-                                    "@type": "Answer",
-                                    "text": "{{ faq.answer | striptags(false) }}"
-                                }
-                            }
-                            {% if not loop.last %},{% endif %}
-                        {% endfor %}
-                    ]
-                }
-            </script>
-        {% endif %}
+            gtag('config', 'UA-99324592-3');
+        </script> #}
     </head>
     <body {% if body_class %} id="wrapper" {% endif %} class="bg-light">
         {# <a class="sr-only" href="#main">Skip to content</a> #}
