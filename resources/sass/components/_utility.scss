@@ -1,12 +1,16 @@
 #main:focus {
   outline: 0;
 }
+
 @media (min-width: 768px) {
   .col-2 {
     column-count: 2;
     // hyphens: auto;
     // word-wrap: break-all;
   }
+}
+.iframe-container {
+  padding-top: 56.25%;
 }
 @media (max-width: 768px) {
   .mobile-bg {
