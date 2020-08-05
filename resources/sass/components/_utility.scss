@@ -8,3 +8,8 @@
     // word-wrap: break-all;
   }
 }
+@media (max-width: 768px) {
+  .mobile-bg {
+    background: linear-gradient(0deg, black, transparent);
+  }
+}
