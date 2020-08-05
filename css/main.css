@@ -1370,6 +1370,17 @@ input[type=checkbox].invalid + span {
   transform: rotate(45deg);
 }
 
+#main:focus {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .col-2 {
+    -moz-column-count: 2;
+         column-count: 2;
+  }
+}
+
 .space-y-0 > :not(template) ~ :not(template){
   --space-y-reverse: 0;
   margin-top: calc(0px * calc(1 - var(--space-y-reverse)));
@@ -12104,8 +12115,32 @@ input[type=checkbox].invalid + span {
   max-height: 100vh;
 }
 
+.max-h-50vh{
+  max-height: 50vh;
+}
+
+.max-h-60vh{
+  max-height: 60vh;
+}
+
+.max-h-70vh{
+  max-height: 70vh;
+}
+
 .max-h-75vh{
   max-height: 75vh;
+}
+
+.max-h-80vh{
+  max-height: 80vh;
+}
+
+.max-h-90vh{
+  max-height: 90vh;
+}
+
+.max-h-100vh{
+  max-height: 100vh;
 }
 
 .max-w-none{
@@ -12181,6 +12216,30 @@ input[type=checkbox].invalid + span {
 }
 
 .min-h-screen{
+  min-height: 100vh;
+}
+
+.min-h-50vh{
+  min-height: 50vh;
+}
+
+.min-h-60vh{
+  min-height: 60vh;
+}
+
+.min-h-70vh{
+  min-height: 70vh;
+}
+
+.min-h-80vh{
+  min-height: 80vh;
+}
+
+.min-h-90vh{
+  min-height: 90vh;
+}
+
+.min-h-100vh{
   min-height: 100vh;
 }
 
@@ -37484,8 +37543,32 @@ input[type=checkbox].invalid + span {
     max-height: 100vh;
   }
 
+  .sm\:max-h-50vh{
+    max-height: 50vh;
+  }
+
+  .sm\:max-h-60vh{
+    max-height: 60vh;
+  }
+
+  .sm\:max-h-70vh{
+    max-height: 70vh;
+  }
+
   .sm\:max-h-75vh{
     max-height: 75vh;
+  }
+
+  .sm\:max-h-80vh{
+    max-height: 80vh;
+  }
+
+  .sm\:max-h-90vh{
+    max-height: 90vh;
+  }
+
+  .sm\:max-h-100vh{
+    max-height: 100vh;
   }
 
   .sm\:max-w-none{
@@ -37561,6 +37644,30 @@ input[type=checkbox].invalid + span {
   }
 
   .sm\:min-h-screen{
+    min-height: 100vh;
+  }
+
+  .sm\:min-h-50vh{
+    min-height: 50vh;
+  }
+
+  .sm\:min-h-60vh{
+    min-height: 60vh;
+  }
+
+  .sm\:min-h-70vh{
+    min-height: 70vh;
+  }
+
+  .sm\:min-h-80vh{
+    min-height: 80vh;
+  }
+
+  .sm\:min-h-90vh{
+    min-height: 90vh;
+  }
+
+  .sm\:min-h-100vh{
     min-height: 100vh;
   }
 
@@ -62865,8 +62972,32 @@ input[type=checkbox].invalid + span {
     max-height: 100vh;
   }
 
+  .md\:max-h-50vh{
+    max-height: 50vh;
+  }
+
+  .md\:max-h-60vh{
+    max-height: 60vh;
+  }
+
+  .md\:max-h-70vh{
+    max-height: 70vh;
+  }
+
   .md\:max-h-75vh{
     max-height: 75vh;
+  }
+
+  .md\:max-h-80vh{
+    max-height: 80vh;
+  }
+
+  .md\:max-h-90vh{
+    max-height: 90vh;
+  }
+
+  .md\:max-h-100vh{
+    max-height: 100vh;
   }
 
   .md\:max-w-none{
@@ -62942,6 +63073,30 @@ input[type=checkbox].invalid + span {
   }
 
   .md\:min-h-screen{
+    min-height: 100vh;
+  }
+
+  .md\:min-h-50vh{
+    min-height: 50vh;
+  }
+
+  .md\:min-h-60vh{
+    min-height: 60vh;
+  }
+
+  .md\:min-h-70vh{
+    min-height: 70vh;
+  }
+
+  .md\:min-h-80vh{
+    min-height: 80vh;
+  }
+
+  .md\:min-h-90vh{
+    min-height: 90vh;
+  }
+
+  .md\:min-h-100vh{
     min-height: 100vh;
   }
 
@@ -88246,8 +88401,32 @@ input[type=checkbox].invalid + span {
     max-height: 100vh;
   }
 
+  .lg\:max-h-50vh{
+    max-height: 50vh;
+  }
+
+  .lg\:max-h-60vh{
+    max-height: 60vh;
+  }
+
+  .lg\:max-h-70vh{
+    max-height: 70vh;
+  }
+
   .lg\:max-h-75vh{
     max-height: 75vh;
+  }
+
+  .lg\:max-h-80vh{
+    max-height: 80vh;
+  }
+
+  .lg\:max-h-90vh{
+    max-height: 90vh;
+  }
+
+  .lg\:max-h-100vh{
+    max-height: 100vh;
   }
 
   .lg\:max-w-none{
@@ -88323,6 +88502,30 @@ input[type=checkbox].invalid + span {
   }
 
   .lg\:min-h-screen{
+    min-height: 100vh;
+  }
+
+  .lg\:min-h-50vh{
+    min-height: 50vh;
+  }
+
+  .lg\:min-h-60vh{
+    min-height: 60vh;
+  }
+
+  .lg\:min-h-70vh{
+    min-height: 70vh;
+  }
+
+  .lg\:min-h-80vh{
+    min-height: 80vh;
+  }
+
+  .lg\:min-h-90vh{
+    min-height: 90vh;
+  }
+
+  .lg\:min-h-100vh{
     min-height: 100vh;
   }
 
@@ -113627,8 +113830,32 @@ input[type=checkbox].invalid + span {
     max-height: 100vh;
   }
 
+  .xl\:max-h-50vh{
+    max-height: 50vh;
+  }
+
+  .xl\:max-h-60vh{
+    max-height: 60vh;
+  }
+
+  .xl\:max-h-70vh{
+    max-height: 70vh;
+  }
+
   .xl\:max-h-75vh{
     max-height: 75vh;
+  }
+
+  .xl\:max-h-80vh{
+    max-height: 80vh;
+  }
+
+  .xl\:max-h-90vh{
+    max-height: 90vh;
+  }
+
+  .xl\:max-h-100vh{
+    max-height: 100vh;
   }
 
   .xl\:max-w-none{
@@ -113704,6 +113931,30 @@ input[type=checkbox].invalid + span {
   }
 
   .xl\:min-h-screen{
+    min-height: 100vh;
+  }
+
+  .xl\:min-h-50vh{
+    min-height: 50vh;
+  }
+
+  .xl\:min-h-60vh{
+    min-height: 60vh;
+  }
+
+  .xl\:min-h-70vh{
+    min-height: 70vh;
+  }
+
+  .xl\:min-h-80vh{
+    min-height: 80vh;
+  }
+
+  .xl\:min-h-90vh{
+    min-height: 90vh;
+  }
+
+  .xl\:min-h-100vh{
     min-height: 100vh;
   }
 

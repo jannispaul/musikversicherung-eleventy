@@ -110,20 +110,21 @@ styleFullStarColor: "#fff"
 }</style>
 
 #}
-<section class="relative flex items-end md:items-center h-60vw md:max-h-75vh overflow-hidden -mt-x3 md:-mt-x1 text-center ">
+<section class="relative flex items-end md:items-center md:h-60vw md:max-h-75vh overflow-hidden  md:-mt-x1 text-center min-h-50vh">
 <div class="w-full z-10 relative content md:w-10/12 md:flex md:flex-col md:justify-center mx-auto md:-mt-x1 px-x1p5">
-	<div class="reviews md:mw-1/2">
-		<a href="#reviews" class="w-auto inline-flex text-white my-x1 md:my-x0p25 md:order-1 border boder-white border-x0p1 rounded-full hover:bg-black-x0p2 p-x0p5 md:py-x0p25 md:items-center ">
+	<div class="reviews">
+		<a href="#reviews" class="w-auto inline-flex text-white mt-x2 mb-x1 md:my-x0p25 md:order-1 border boder-white border-x0p1 rounded-full hover:bg-black-x0p2 p-x0p5 md:py-x0p25 items-center ">
 			{# <StarRating
 			rating={reviewData.averageRating} stylestarwidth="40" {style}/> #}
 			<!-- <p class="text-x2 md:text-x0p5 transition duration-500 ease-in-out "> -->
+			{% include "components/star-rating-complex.njk" %}
 			<p class="text-x2 md:text-x0p25 mt-x0p1">
-				{% include "components/star-rating-complex.njk" %}&nbsp; von {{ reviews | length }} Bewertungen
+				&nbsp; von {{ reviews | length }} Bewertungen
 			</p>
 		</a>
 	</div>
 	<!-- <div class="content z-20 md:flex md:flex-wrap md:items-start "> -->
-	<h1 class="text-white text-x7 md:text-x3 mb-x1 leading-tighter font-medium block md:mb-x1 ">
+	<h1 class="text-white text-x5 md:text-x3 mb-x1 leading-tighter font-medium block md:mb-x1 ">
 		Instrumentenversicherung
 		<br/>
 		– auch für Equipment
@@ -135,11 +136,11 @@ styleFullStarColor: "#fff"
 
 </div>
 
-<div class="absolute images top-0 z-0 h-60vw w-full overflow-hidden mw-full">
-	<div class="relative md:px-x1p5 w-full">
-		<div
-			class="bg-primary h-60vw w-full">
-			<img src="/images/piano_y1wv8n/piano_y1wv8n_c_scale,w_2160.jpg" />
-		</div>
+<div class="absolute images top-0 z-0 md:h-60vw w-full overflow-hidden h-full md:px-x1p5">
+	<div class="relative bg-primary h-full w-full">
+		{# <div
+			class="bg-primary md:h-60vw w-full"> #}
+			<img src="/images/piano_y1wv8n/piano_y1wv8n_c_scale,w_2160.jpg" class="object-cover h-full"/>
+		{# </div> #}
 	</div>
 </div></section>

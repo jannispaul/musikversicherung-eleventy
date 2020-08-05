@@ -1,8 +1,6 @@
 {% macro youtube(videoId, title) %}
-	<div class="iframe-container mb-x1"style="overflow: hidden;
-    padding-top: 56.25%;
-    position: relative;
-    width: 100%;">
-		<iframe title={{ title }} src="https://www.youtube-nocookie.com/embed/{{ videoId }}?rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full"/>
+	<div class="iframe-container mb-x1 relative w-full overflow-hidden" style="
+    padding-top: 56.25%;">
+		<iframe title={{ title }} src="https://www.youtube-nocookie.com/embed/{{ videoId }}?rel=0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="absolute inset-0 w-full h-full"/>
 	</div>
 {% endmacro %}

@@ -44,6 +44,15 @@ module.exports = {
         "50vh": "50vh",
         "60vh": "60vh",
         "70vh": "70vh",
+        "75vh": "75vh",
+        "80vh": "80vh",
+        "90vh": "90vh",
+        "100vh": "100vh",
+      },
+      minHeight: {
+        "50vh": "50vh",
+        "60vh": "60vh",
+        "70vh": "70vh",
         "80vh": "80vh",
         "90vh": "90vh",
         "100vh": "100vh",
@@ -85,9 +94,6 @@ module.exports = {
         x27: "calc(100vw * 27 / 27)",
         "stars-md": "calc(100vw * 0.4/ 27)",
         "60vw": "55vw",
-      },
-      maxHeight: {
-        "75vh": "75vh",
       },
       margin: {
         "-2": "-2px",
