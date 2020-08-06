@@ -96,7 +96,6 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_mobile_nav__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @modules/mobile-nav */ "./resources/js/modules/mobile-nav/index.js");
-/* harmony import */ var _modules_mobile_nav__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_modules_mobile_nav__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _modules_cookie_notice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @modules/cookie-notice */ "./resources/js/modules/cookie-notice/index.js");
 /* harmony import */ var _modules_notice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @modules/notice */ "./resources/js/modules/notice/index.js");
 /* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @modules/forms */ "./resources/js/modules/forms/index.js");
@@ -625,9 +624,11 @@ var forms = function forms() {
 /*!**************************************************!*\
   !*** ./resources/js/modules/mobile-nav/index.js ***!
   \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 // import $$ from "@utilities/selectors";
 // const MobileNav = (function MobileNav() {
 //   $$.mobileNavToggle.addEventListener("click", function() {
@@ -642,6 +643,17 @@ var forms = function forms() {
 //   });
 // })();
 // export default MobileNav;
+// import $$ from "@utilities/selectors";
+var MobileNav = function MobileNav() {
+  var mobileMenuButton = document.querySelector(".mobile-icon");
+  var mobileMenu = document.querySelector(".mobile-menu");
+  mobileMenuButton.addEventListener("click", function () {
+    mobileMenuButton.classList.toggle("active");
+    mobileMenu.classList.toggle("expanded");
+  });
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (MobileNav);
 
 /***/ }),
 

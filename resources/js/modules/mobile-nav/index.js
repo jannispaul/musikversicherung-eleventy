@@ -15,3 +15,16 @@
 // })();
 
 // export default MobileNav;
+// import $$ from "@utilities/selectors";
+
+const MobileNav = (function MobileNav() {
+  const mobileMenuButton = document.querySelector(".mobile-icon");
+  const mobileMenu = document.querySelector(".mobile-menu");
+
+  mobileMenuButton.addEventListener("click", function() {
+    mobileMenuButton.classList.toggle("active");
+    mobileMenu.classList.toggle("expanded");
+  });
+})();
+
+export default MobileNav;

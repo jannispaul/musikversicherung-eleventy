@@ -1,17 +1,10 @@
-{# <header id="header" class="header bg-purple-900 flex flex-col md:flex-row md:justify-between items-center p-4 md:p-6">
-
-	{% include "components/logo.njk" %}
-	{% include 'components/nav.njk' %}
-
-</header> #}
-
 <header class="w-full z-50 top-0 sticky">
 	<a href="#main" class="skip-to-main absolute z-0 w-1 h-1 overflow-hidden text-x2 md:text-x1" title="Navigation überspringen">
 		Navigation überspringen
 	</a>
 	<nav class="flex items-center justify-between flex-wrap bg-light py-x1 md:py-0 px-x1p5">
 		<div class="relative flex justify-between flex-wrap w-full">
-			<div class="flex justify-between flex-wrap w-full items-center flex-shrink-0 text-white mr-6">
+			<div class="flex justify-between flex-wrap w-full items-center flex-shrink-0 text-white mr-6 ">
 				<a href="/" title="Startseite aufrufen" class="text-x2 text-primary md:text-x0p75 lg:text-x0p25 mt-1 ">
 					<strong>
 						Musikversicherung
@@ -21,18 +14,18 @@
 				<div class="mobile-icon md:hidden w-x1p5 h-x1">
 					<div class="middle-line"></div>
 				</div>
-				<div class="hidden mobile-menu relative md:relative bg-light md:bg-transparent top-0 w-screen block px-x1p5 pb-x2 mt-x3 -mx-x1p5 md:mt-0 md:py-x0p5 md:mb-0 md:flex md:items-center md:w-auto">
-					<div class="text-x3 md:text-x0p75 lg:text-x0p25 md:flex-grow">
-						<a rel="prefetch" href="/faq" title="FAQs aufrufen" class="block mt-4 md:inline-block md:mt-0 text-primary hover:text-primary mr-x0p5 hover:underline">
+				<div class="mobile-menu-container absolute h-screen md:h-auto md:relative overflow-hidden top-0 w-screen block -mx-x1p5 md:mb-0 md:flex md:items-center md:w-auto">
+					<div class="mobile-menu flex flex-col content-stretch text-center text-x3 md:text-x0p75 lg:text-x0p25  h-full bg-light px-x1p5 py-x4 md:bg-transparent md:text-left md:flex-grow md:inline-block md:py-x0p5">
+						<a href="/faq" title="FAQs aufrufen" class="flex-1 flex justify-center items-center  md:inline-block  text-primary hover:text-primary md:mr-x0p5 hover:underline">
 							FAQ
 						</a>
-						<a rel="prefetch" href="/schaden-melden" title="Schaden melden" class="block mt-4 md:inline-block md:mt-0 text-primary hover:underline mr-x0p5 ">
+						<a href="/schaden-melden" title="Schaden melden" class="flex-1 flex justify-center items-center  md:inline-block  text-primary hover:underline md:mr-x0p5 ">
 							Schaden melden
 						</a>
-						<a rel="prefetch" href="/kontakt" title="Kontakt" class="block mt-4 md:inline-block md:mt-0 text-primary hover:underline mr-x0p5">
+						<a href="/kontakt" title="Kontakt" class="flex-1 flex justify-center items-center  md:inline-block  text-primary hover:underline md:mr-x0p5">
 							Kontakt
 						</a>
-						<a rel="prefetch" href="/anfrage" title="Angebot anfragen" class="block mt-4 md:inline-block md:mt-0 text-primary hover:underline">
+						<a href="/anfrage" title="Angebot anfragen" class="flex-1 flex justify-center items-center  md:inline-block  text-primary hover:underline">
 							Jetzt anfragen
 						</a>
 					</div>

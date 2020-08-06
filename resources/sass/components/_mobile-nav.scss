@@ -1,81 +1,149 @@
-//========== Mobile Navigation ==========//
+// //========== Mobile Navigation ==========//
 
-$transition-easing: cubic-bezier(0.77, 0, 0.175, 1);
-$transition-length: 0.5s;
+// $transition-easing: cubic-bezier(0.77, 0, 0.175, 1);
+// $transition-length: 0.5s;
 
-// menu toggle button
-.mobile-nav-toggle {
-  .mobile-nav-icon-line {
-    height: 2px;
+// // menu toggle button
+// .mobile-nav-toggle {
+//   .mobile-nav-icon-line {
+//     height: 2px;
+//   }
+
+//   // when menu toggle is clicked
+//   &.menu-toggle-active {
+//     .mobile-nav-icon-line {
+//       @apply m-0 bg-pink-500;
+
+//       &:nth-child(1) {
+//         transform: rotate(45deg) translateY(3px);
+//       }
+
+//       &:nth-child(2) {
+//         @apply opacity-0;
+//       }
+
+//       &:nth-child(3) {
+//         transform: rotate(-45deg) translateY(-3px);
+//       }
+//     }
+//   }
+// }
+
+// // mobile menu
+// .mobile-nav {
+//   transform: translate3d(-100%, 0, 0);
+//   transition: transform $transition-length $transition-easing;
+//   transition-delay: 0.1s;
+//   will-change: transform;
+
+//   // when menu is visible
+//   &.menu-visible {
+//     transform: translate3d(0, 0, 0);
+
+//     .item {
+//       @apply opacity-100;
+//       transform: translate3d(0, 0, 0);
+//     }
+//   }
+
+//   .item {
+//     transition: opacity 0.5s ease,
+//       transform $transition-length $transition-easing;
+//     transform: translate3d(-50%, 0, 0);
+//     transition-delay: $transition-length;
+
+//     // incrementally delay our animations
+//     @for $i from 0 through 100 {
+//       &:nth-child(#{$i}) {
+//         transition-delay: $transition-length * $i / 8 + 0.5;
+//       }
+//     }
+//   }
+// }
+
+// .skip-to-main:focus,
+// .skip-to-main:active {
+//   color: #fff;
+//   background-color: #000;
+//   top: auto;
+//   margin-left: auto;
+//   margin-right: auto;
+//   left: 0;
+//   right: 0;
+//   width: max-content;
+//   height: auto;
+//   overflow: auto;
+//   margin-top: 10px;
+//   padding: 5px 15px;
+//   border: 4px solid yellow;
+//   text-align: center;
+//   z-index: 999;
+// }
+.mobile-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.mobile-icon:after,
+.mobile-icon:before,
+.middle-line {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 0.5vw;
+  min-height: 2px;
+  background-color: #6b46c1;
+  transition: all 0.4s;
+  transform-origin: 47%;
+}
+
+.mobile-icon:before,
+.middle-line {
+  top: 0;
+}
+
+.mobile-icon:after,
+.middle-line {
+  bottom: 0;
+}
+
+.middle-line {
+  margin: auto;
+}
+
+.mobile-icon:hover:before,
+.mobile-icon:hover:after,
+.mobile-icon.active:before,
+.mobile-icon.active:after,
+.mobile-icon.active .middle-line {
+  width: 100%;
+}
+
+.mobile-icon.active:before,
+.mobile-icon.active:after {
+  top: 50%;
+  transform: rotate(-45deg);
+}
+
+.mobile-icon.active .middle-line {
+  transform: rotate(45deg);
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-container {
+    z-index: -1;
   }
-
-  // when menu toggle is clicked
-  &.menu-toggle-active {
-    .mobile-nav-icon-line {
-      @apply m-0 bg-pink-500;
-
-      &:nth-child(1) {
-        transform: rotate(45deg) translateY(3px);
-      }
-
-      &:nth-child(2) {
-        @apply opacity-0;
-      }
-
-      &:nth-child(3) {
-        transform: rotate(-45deg) translateY(-3px);
-      }
-    }
+  .mobile-menu {
+    transform: translateX(100vw);
+    transition: all 400ms ease;
+  }
+  .expanded {
+    transform: translateY(0px);
+    transition: all 400ms ease;
   }
 }
 
-// mobile menu
-.mobile-nav {
-  transform: translate3d(-100%, 0, 0);
-  transition: transform $transition-length $transition-easing;
-  transition-delay: 0.1s;
-  will-change: transform;
-
-  // when menu is visible
-  &.menu-visible {
-    transform: translate3d(0, 0, 0);
-
-    .item {
-      @apply opacity-100;
-      transform: translate3d(0, 0, 0);
-    }
-  }
-
-  .item {
-    transition: opacity 0.5s ease,
-      transform $transition-length $transition-easing;
-    transform: translate3d(-50%, 0, 0);
-    transition-delay: $transition-length;
-
-    // incrementally delay our animations
-    @for $i from 0 through 100 {
-      &:nth-child(#{$i}) {
-        transition-delay: $transition-length * $i / 8 + 0.5;
-      }
-    }
-  }
-}
-
-.skip-to-main:focus,
-.skip-to-main:active {
-  color: #fff;
-  background-color: #000;
-  top: auto;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  width: max-content;
-  height: auto;
-  overflow: auto;
-  margin-top: 10px;
-  padding: 5px 15px;
-  border: 4px solid yellow;
-  text-align: center;
-  z-index: 999;
+header,
+nav {
+  transition: all 400ms ease;
 }

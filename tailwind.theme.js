@@ -67,6 +67,7 @@ module.exports = {
         x1: "calc(100vw * 1/ 27)",
         x1p5: "calc(100vw * 1.5/ 27)",
         x2: "calc(100vw * 2 / 27)",
+        x2p5: "calc(100vw * 2.5 / 27)",
         x3: "calc(100vw * 3 / 27)",
         x4: "calc(100vw * 4 / 27)",
         x5: "calc(100vw * 5 / 27)",
