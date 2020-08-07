@@ -114,7 +114,7 @@ module.exports = (eleventyConfig) => {
     dir: {
       input: "site",
       output: "dist",
-      includes: "site/includes",
+      includes: "includes",
       data: "global",
     },
   };
