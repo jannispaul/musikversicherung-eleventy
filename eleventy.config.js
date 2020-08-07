@@ -13,11 +13,6 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addFilter("limit", function(obj, limit) {
     return Object.entries(obj).slice(0, limit);
   });
-  // eleventyConfig.addFilter("limit", require("./filters/limit.js"));
-  // limit filter
-  // eleventyConfig.addNunjucksFilter("limit", function(array, limit) {
-  //   return Object.entries(array).slice(0, limit);
-  // });
 
   // Add a HTML timestamp formatter filter to Nunjucks
   eleventyConfig.addFilter(
@@ -95,7 +90,6 @@ module.exports = (eleventyConfig) => {
 
   // Layout aliases
   eleventyConfig.addLayoutAlias("default", "layouts/default.njk");
-  //   eleventyConfig.addLayoutAlias("post", "layouts/post.njk");
 
   // Include our static assets
   eleventyConfig.addPassthroughCopy("css");
