@@ -1,9 +1,21 @@
 img {
   object-fit: cover;
-  max-height: 80vh;
 }
 #main:focus {
   outline: 0;
+}
+
+.iframe-container {
+  padding-top: 56.25%;
+}
+
+@media (max-width: 768px) {
+  .mobile-bg {
+    background: linear-gradient(0deg, black, transparent);
+  }
+  img {
+    max-height: 80vh;
+  }
 }
 
 @media (min-width: 768px) {
@@ -11,13 +23,5 @@ img {
     column-count: 2;
     // hyphens: auto;
     // word-wrap: break-all;
-  }
-}
-.iframe-container {
-  padding-top: 56.25%;
-}
-@media (max-width: 768px) {
-  .mobile-bg {
-    background: linear-gradient(0deg, black, transparent);
   }
 }

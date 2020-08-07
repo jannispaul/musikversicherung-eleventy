@@ -974,18 +974,10 @@ input[type=checkbox].invalid + span {
 img {
   -o-object-fit: cover;
      object-fit: cover;
-  max-height: 80vh;
 }
 
 #main:focus {
   outline: 0;
-}
-
-@media (min-width: 768px) {
-  .col-2 {
-    -moz-column-count: 2;
-         column-count: 2;
-  }
 }
 
 .iframe-container {
@@ -995,6 +987,17 @@ img {
 @media (max-width: 768px) {
   .mobile-bg {
     background: linear-gradient(0deg, black, transparent);
+  }
+
+  img {
+    max-height: 80vh;
+  }
+}
+
+@media (min-width: 768px) {
+  .col-2 {
+    -moz-column-count: 2;
+         column-count: 2;
   }
 }
 
