@@ -98,6 +98,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("js");
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("robots.txt");
+  eleventyConfig.addPassthroughCopy("sw.js");
 
   return {
     templateFormats: ["md", "njk"],

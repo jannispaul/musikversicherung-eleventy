@@ -53,7 +53,7 @@
 
         {# canonical #}
         <link rel="canonical" href="{{ site.url }}{{ page.url }}"/>
-        
+
         {# Include json-ld #}
         {% include "../components/jsonld/reviews.njk" %}
         {% include "../components/jsonld/faqs.njk" %}
@@ -87,5 +87,13 @@
         </div>
         {# include cookie-notice #}
         {% include "components/cookie-notice.njk" %}
+        <script>
+            // Initialize the service worker
+            if (navigator && navigator.serviceWorker) {
+                navigator
+                    .serviceWorker
+                    .register('sw.js');
+            }
+        </script>
     </body>
 </html>
