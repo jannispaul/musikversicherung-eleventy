@@ -980,7 +980,8 @@ img {
      object-fit: cover;
 }
 
-#main:focus {
+#main:focus,
+video:focus {
   outline: 0;
 }
 

@@ -1,14 +1,14 @@
 img {
   object-fit: cover;
 }
-#main:focus {
+#main:focus,
+video:focus {
   outline: 0;
 }
 
 .iframe-container {
   padding-top: 56.25%;
 }
-
 
 @media (max-width: 768px) {
   .mobile-bg {

@@ -97,6 +97,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("pdfs");
   eleventyConfig.addPassthroughCopy("js");
   eleventyConfig.addPassthroughCopy("images");
+  eleventyConfig.addPassthroughCopy("videos");
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy("sw.js");
 

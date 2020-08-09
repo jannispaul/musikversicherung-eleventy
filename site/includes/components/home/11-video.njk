@@ -1,18 +1,23 @@
 {% from "components/youtube.njk" import youtube %}
 
 <section id="ueber-mich" class=" px-x1p5 pb-x3 md:py-x2 w-100 md:flex relative items-center">
-	<div class="video-container md:-mr-x1p5 mb-x2 md:m-0 w-full">
-	{{ youtube(videoId='F2IZ9GeyaSs', title='Heiner Blaskewitz von B!-Das Versicherungsbüro stellt sich vor') }}
-	</div>
-	<div class="md:bg-secondary md:p-x1 md:relative md:z-0 md:flex flex-col md:w-1/2">
-		<h3 class="text-x6 text-primary md:text-light md:text-x1 mb-x1 leading-tight md:mb-x0p5 font-medium whitespace-no-wrap">
-			Wer ist der Typ hinter
-			<br/>
-			musikversicherung.com?
-		</h3>
-		<p class="text-x2 mb-x1 md:text-x0p25 md:mb-0 md:text-light ">
-			Wenn Du wissen willst, mit wem Du es zu tun hast, schau Dir dieses kleine Video an. Hier erfährst Du, wer ich bin und was mich antreibt. Viel Spaß!
-		</p>
-	</div>
-
+				<div class="video-container md:-mr-x1p5 mb-x2 md:m-0 w-full">
+								{#
+    {{ youtube(videoId='F2IZ9GeyaSs', title='Heiner Blaskewitz von B!-Das Versicherungsbüro stellt sich vor') }}
+    #}
+								<video width="1280" height="720" controls="controls">
+												<source src="/videos/vorstellung.mp4" type="video/mp4"/>
+												Dein Browser unterstütz leider nicht den HTML-Video-Tag.
+								</video>
+				</div>
+				<div class="md:bg-secondary md:p-x1 md:relative md:z-0 md:flex flex-col md:w-1/2">
+								<h3 class="text-x6 text-primary md:text-light md:text-x1 mb-x1 leading-tight md:mb-x0p5 font-medium whitespace-no-wrap">
+												Wer ist der Typ hinter
+												<br/>
+												musikversicherung.com?
+								</h3>
+								<p class="text-x2 mb-x1 md:text-x0p25 md:mb-0 md:text-light ">
+												Wenn Du wissen willst, mit wem Du es zu tun hast, schau Dir dieses kleine Video an. Hier erfährst Du, wer ich bin und was mich antreibt. Viel Spaß!
+								</p>
+				</div>
 </section>
