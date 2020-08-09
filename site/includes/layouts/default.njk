@@ -34,9 +34,9 @@
             <script src="/js/main.min.js" defer="defer"></script>
         {% endif %}
         {# include social meta tags #}
-        {% include
-    "components/social-meta.njk" %}
-        {# lastly include favicon, fonts, etc #}
+        {% include "components/social-meta.njk" %}
+
+        {# lastly include favicon, fonts, manifest, etc #}
         <link rel="icon" type="image/png" href="{{ site.images.favicon }}favicon.png"/>
 
         <link rel="apple-touch-icon" sizes="180x180" href="{{ site.images.favicon }}apple-touch-icon.png"/>
@@ -73,12 +73,10 @@
         </script> #}
     </head>
     <body {% if body_class %} id="wrapper" {% endif %} class="bg-light max-w-100vw">
-        {# <a class="sr-only" href="#main">Skip to content</a> #}
-        {# include
-    special-notice #}
+
+        {# include special-notice #}
         {% include "components/special-notice.njk" %}
-        {# include
-    header #}
+        {# include header #}
         {% include "components/header.njk" %}
         <div>
             {# include content #}
