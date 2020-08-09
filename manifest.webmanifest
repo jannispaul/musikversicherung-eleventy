@@ -20,7 +20,7 @@
             "purpose": "any maskable"
         }
     ],
-    "start_url": ".",
+    "start_url": "/",
     "background_color": "#F8F5FF",
     "display": "standalone",
     "scope": "/",
