@@ -40,6 +40,9 @@ module.exports = {
         x6: "8vw",
         x7: "9.5vw",
       },
+      maxWidth: {
+        "100vw": "100vw",
+      },
       maxHeight: {
         "50vh": "50vh",
         "60vh": "60vh",

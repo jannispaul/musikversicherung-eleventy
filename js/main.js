@@ -647,9 +647,14 @@ __webpack_require__.r(__webpack_exports__);
 var MobileNav = function MobileNav() {
   var mobileMenuButton = document.querySelector(".mobile-icon");
   var mobileMenu = document.querySelector(".mobile-menu");
+  var mobileMenuContainer = document.querySelector(".mobile-menu-container");
+  var main = document.querySelector("#main");
+  var body = document.querySelector("body");
   mobileMenuButton.addEventListener("click", function () {
+    mobileMenuContainer.classList.toggle("invisible");
     mobileMenuButton.classList.toggle("active");
     mobileMenu.classList.toggle("expanded");
+    body.classList.toggle("fixed");
   });
 }();
 

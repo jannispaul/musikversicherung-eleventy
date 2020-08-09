@@ -94,7 +94,7 @@
   min-height: 2px;
   background-color: #6b46c1;
   transition: all 0.4s;
-  transform-origin: 47%;
+  transform-origin: 50%;
 }
 
 .mobile-icon:before,
@@ -119,14 +119,17 @@
   width: 100%;
 }
 
-.mobile-icon.active:before,
+.mobile-icon.active:before {
+  top: 50%;
+  transform: rotate(45deg);
+}
 .mobile-icon.active:after {
   top: 50%;
   transform: rotate(-45deg);
 }
 
 .mobile-icon.active .middle-line {
-  transform: rotate(45deg);
+  opacity: 0;
 }
 
 @media (max-width: 768px) {
