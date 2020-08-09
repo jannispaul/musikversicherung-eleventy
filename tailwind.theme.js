@@ -53,6 +53,7 @@ module.exports = {
         "100vh": "100vh",
       },
       minHeight: {
+        "48": "48px",
         "50vh": "50vh",
         "60vh": "60vh",
         "70vh": "70vh",
@@ -101,6 +102,9 @@ module.exports = {
       },
       margin: {
         "-2": "-2px",
+      },
+      opacity: {
+        "81": "0.81",
       },
       flex: {
         half: "1 0 40%",
