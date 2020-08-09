@@ -100,6 +100,7 @@ module.exports = (eleventyConfig) => {
   eleventyConfig.addPassthroughCopy("videos");
   eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy("sw.js");
+  eleventyConfig.addPassthroughCopy("manifest.webmanifest");
 
   return {
     templateFormats: ["md", "njk"],
