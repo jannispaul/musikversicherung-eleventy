@@ -233,7 +233,7 @@ var forms = function forms() {
     // Increment instrument count
     incrementInstrumentCount(); // Single instrument html to add more instruments
 
-    var singleInstrument = "<div class=\"single-instrument flex flex-wrap md:flex-no-wrap items-end mb-x1p5 md:mb-x0p5\">\n  <label class=\"flex md:flex-grow flex-col items-start flex-none md:flex-auto w-full md:w-1/2 md:mr-x0p5\">\n    Instrument / Zubeh\xF6r ".concat(instrumentCount, "\n    <input\n      name=\"instrument").concat(instrumentCount, "\"\n      type=\"text\"\n      class=\"w-full \"\n      autofocus />\n  </label>\n  <label\n    class=\"flex flex-col flex-grow-0 flex-1 order-1 mr-x0p5 w-2/6 md:w-auto\n    md:w-1/6\">\n    Wert in \u20AC\n    <input\n      type=\"number\"\n      name=").concat("value" + instrumentCount, "\n      pattern=\"d*\"/>\n  </label>\n  <div class=\"toggle flex order-2 md:order-2\">\n    <input\n      type=\"radio\"\n      name=").concat("valueType" + instrumentCount, "\n      value=\"Neuwert\"\n      id=").concat("neuwert" + instrumentCount, " />\n    <label\n      class=\"option overlap flex-1\"\n      for=").concat("neuwert" + instrumentCount, ">\n      <p>Neuwert</p>\n    </label>\n    <!-- <label for=\"Zeitwert\"> -->\n    <input\n      type=\"radio\"\n      name=").concat("valueType" + instrumentCount, "\n      value=\"Zeitwert\"\n      id=").concat("zeitwert" + instrumentCount, " />\n    <label\n      class=\"option flex-1\"\n      for=").concat("zeitwert" + instrumentCount, ">\n      <p>Zeitwert</p>\n    </label>\n  </div>\n</div>"); // Add to DOM after class singleInstrument
+    var singleInstrument = "<div class=\"single-instrument flex flex-wrap md:flex-no-wrap items-end mb-x1p5 md:mb-x0p5\">\n  <label class=\"flex md:flex-grow flex-col items-start flex-none md:flex-auto w-full md:w-1/2 md:mr-x0p5\">\n    Instrument / Zubeh\xF6r ".concat(instrumentCount, "\n    <input\n      name=\"instrument").concat(instrumentCount, "\"\n      type=\"text\"\n      class=\"w-full \"\n      autofocus />\n  </label>\n  <label\n    class=\"flex flex-col flex-grow-0 flex-1 order-1 mr-x0p5 w-2/6 md:w-auto\n    md:w-1/6\">\n    Wert in \u20AC\n    <input\n      type=\"number\"\n      name=").concat("value" + instrumentCount, "\n      pattern=\"d*\"/>\n  </label>\n  <div class=\"toggle flex order-2 md:order-2\">\n    <input\n      type=\"radio\"\n      name=").concat("valueType" + instrumentCount, "\n      value=\"Neuwert\"\n      id=").concat("neuwert" + instrumentCount, " />\n    <label\n      class=\"option overlap flex-1 small\"\n      for=").concat("neuwert" + instrumentCount, ">\n      <p>Neuwert</p>\n    </label>\n    <!-- <label for=\"Zeitwert\"> -->\n    <input\n      type=\"radio\"\n      name=").concat("valueType" + instrumentCount, "\n      value=\"Zeitwert\"\n      id=").concat("zeitwert" + instrumentCount, " />\n    <label\n      class=\"option flex-1 small\"\n      for=").concat("zeitwert" + instrumentCount, ">\n      <p>Zeitwert</p>\n    </label>\n  </div>\n</div>"); // Add to DOM after class singleInstrument
 
     if (storageID === "anfrage-form") {
       document.querySelector(".instrument-list").insertAdjacentHTML("beforeend", singleInstrument);
@@ -270,18 +270,19 @@ var forms = function forms() {
     // This function will figure out which tab to display
     var tabs = document.getElementsByClassName("tab"); // Exit the function if any field in the current tab is invalid:
 
-    if (n == 1 && !validateForm()) return false; // Hide the current tab:
-    // if (n !== tabs.length) {
+    if (n == 1 && !validateForm()) return false; // Hide the current tab if its not the last:
 
-    tabs[currentTab].style.display = "none"; // }
-    // Increase or decrease the current tab by 1:
+    if (n !== tabs.length) {
+      tabs[currentTab].style.display = "none";
+    } // Increase or decrease the current tab by 1:
+
 
     currentTab = currentTab + n; // if you have reached the end of the form...
 
     if (currentTab >= tabs.length) {
       // ... the form gets submitted:
       //   document.getElementById("form").submit();
-      document.getElementById("form").dispatchEvent(new Event("submit", {
+      document.querySelector("form").dispatchEvent(new Event("submit", {
         bubbles: true
       }));
       return false;
@@ -289,6 +290,9 @@ var forms = function forms() {
 
 
     showTab(currentTab);
+    window.scrollTo({
+      top: 0
+    });
   }
 
   function validateForm() {
@@ -507,7 +511,7 @@ var forms = function forms() {
   };
 
   function restoreState(saved) {
-    console.log(saved);
+    // console.log(saved);
     if (saved.versicherungstyp === "SINFONIMA") sinfonimaState();
     if (saved.versicherungstyp === "IAMSOUND") iamsoundState();
     if (saved.wohnsitz === "anderes Land") showElement(customCountryLabel, customCountryInput);
@@ -565,12 +569,12 @@ var forms = function forms() {
 
   var submitHandler = function submitHandler(event) {
     // Prevent default form submit
-    // event.preventDefault();
-    // Ignore forms that are actively being submitted
+    event.preventDefault(); // Ignore forms that are actively being submitted
+
     if (event.target.classList.contains("submitting")) return; // Show submitting message
 
     var status = event.target.querySelector("[data-submit]");
-    status.innerHTML = "Submitting..."; // Add form .submitting state class for styling
+    status.innerHTML = "Sendet..."; // Add form .submitting state class for styling
 
     event.target.classList.add("submitting"); // Confige fetch request options
 
@@ -578,14 +582,18 @@ var forms = function forms() {
       method: "POST",
       body: new FormData(event.target),
       redirect: "follow"
-    }; // Post to formbackend
-    // fetch("https://www.formbackend.com/f/706ac99a74b44def", requestOptions)
+    };
+    var requestUrl = "";
+    var redirectUrl = "";
+    storageID === "anfrage-form" ? requestUrl = "https://hook.integromat.com/7q9cty966y5maxfo1igss3vvw1qu0vi8" : requestUrl = "https://www.formbackend.com/f/706ac99a74b44def";
+    storageID === "anfrage-form" ? redirectUrl = "/danke/" : redirectUrl = "/schaden-gemeldet/"; // Post to formbackend
 
-    fetch("https://1454459a-1de0-4477-9d83-6534dee946eb.mock.pstmn.io/v1", requestOptions).then(function (response) {
+    fetch(requestUrl, requestOptions) // fetch("https://1454459a-1de0-4477-9d83-6534dee946eb.mock.pstmn.io/v1", requestOptions)
+    .then(function (response) {
       // If response is ok
       if (response.ok) {
         // redirect to schaden-gemeldet page and remove
-        window.location.href = "/schaden-gemeldet/"; // Clear saved formdata from localstorage
+        window.location.href = redirectUrl; // Clear saved formdata from localstorage
         // localStorage.removeItem(storageID);
       }
     }) // If there is an error log it to console and reidrect to fehler page

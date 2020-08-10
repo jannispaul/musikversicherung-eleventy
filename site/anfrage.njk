@@ -7,7 +7,7 @@ meta_description: Musikinstrumente, Equipment und Zubehör einfach online versic
 body_class: home
 title: Anfrage
 ---
-<form id="anfrage-form" method="post" class="text-x2 md:text-x1 lg:text-x0p5 px-x1p5" data-auto-save="data-auto-save">
+<form id="anfrage-form" method="post" class="text-x2 md:text-x1 lg:text-x0p5 px-x1p5 pt-x2 md:pt-x1p5" data-auto-save="data-auto-save">
     <div>
         <!-- One "tab" for each step in the form: -->
         {# Tab 1 #}
@@ -39,7 +39,7 @@ title: Anfrage
             <h2 class="text-x3 md:text-x2 text-primary mb-x1">
                 Persönliche Informationen
             </h2>
-            <div class="grid md:grid-cols-2 gap-x0p5">
+            <div class="grid md:grid-cols-2 gap-x0p5 mb-x0p5">
                 <label class="inline-flex flex-col ">
                     Anrede *
                     <select name="anrede" autofocus="autofocus">
@@ -164,7 +164,7 @@ title: Anfrage
                     Deine Instrumente
                 </h2>
                 <div class="instrument-list"></div>
-                <button type="button" class="primary-button p-x1 w-full mb-x1p5" data-name="addInstrument">
+                <button type="button" class="primary-button p-x1 w-full mb-x1p5 md:p-x0p75" data-name="addInstrument">
                     Weiteres Instrument / Zubehör hinzufügen
                 </button>
             </div>
@@ -261,7 +261,7 @@ title: Anfrage
             </label>
             {# Accept terms #}
             <label class="flex items-center mt-x0p5 mb-x1 cursor-pointer">
-                <input type="checkbox" name="terms" class="w-1/6 md:w-auto mr-x1 md:mr-x0p5 "/>
+                <input type="checkbox" name="terms" required="required" class="w-1/6 md:w-auto mr-x1 md:mr-x0p5 "/>
                 <span class="">
                     Ich akzeptiere die Übertragung und Speicherung meiner Daten zum Zwecke des angebotenen Services.
                     <a href="/datenschutz" class="underline">
@@ -271,8 +271,8 @@ title: Anfrage
             </label>
         </div>
         {# Prev/Next/Send Buttons #}
-        <div class="grid gap-x0p5 grid-cols-2 md:flex md:justify-center">
-            <button type="button" id="prevBtn" class="primary-button order-2 w-full">Zurück</button>
+        <div class="flex md:justify-center lg:w-4/6 m-auto mb-x2">
+            <button type="button" id="prevBtn" class="primary-button order-2 w-full mr-x0p5">Zurück</button>
             <button type="button" id="nextBtn" data-submit="data-submit" class="primary-button order-2 w-full">Weiter</button>
         </div>
     </div>

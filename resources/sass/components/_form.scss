@@ -102,12 +102,12 @@ select {
   background-size: 2vw;
   background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTQiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0wIDZMNS42NTcuMzQzIDExLjMxNCA2SDB6bTAgMmw1LjY1NyA1LjY1N0wxMS4zMTQgOEgweiIgZmlsbD0iIzMzMyIvPjwvc3ZnPg==);
   background-color: white;
-  height: 5vw;
   min-height: fit-content;
   padding: 1vw 1.5vw;
   margin-bottom: 4vw;
   border: 0.2vw solid #6b46c1;
   border-radius: 0;
+  height: 9vw;
 }
 
 .toggle {
@@ -117,16 +117,22 @@ select {
 .toggle input:focus + label {
   @apply border-pink-500 outline-none;
 }
+
 .toggle > label.option {
-  height: 16vw;
   display: flex;
   align-items: center;
   flex: 1 0 45%;
-  border: 0.1vw solid #000;
+  // border: 0.1vw solid #000;
+  border: 1px solid #6b46c1;
   opacity: 0.5;
   cursor: pointer;
   position: relative;
   text-align: center;
+  height: 9vw;
+  margin-bottom: 4vw;
+}
+.toggle > label.option:not(.small) {
+  height: 16vw;
 }
 .toggle > label.option:hover {
   opacity: 0.8;
@@ -145,6 +151,15 @@ select {
 /* :global(label.active) {
     opacity: 1;
   } */
+
+.invalid,
+textarea.invalid,
+input.invalid + label::before {
+  border-color: red;
+}
+input[type="checkbox"].invalid + span {
+  color: red;
+}
 
 @media (min-width: 768px) {
   .primary-button,
@@ -175,40 +190,30 @@ select {
   }
   /* TOggle indicator styles  */
 
-  .toggle > label.option {
-    height: 4.9vw;
-    margin-bottom: 2vw;
-    border: 0.2vw solid #6b46c1;
+  .toggle > label.option:not(.small) {
+    height: 9vw;
   }
-  // .toggle > label.option.small {
-  //   height: 4.9vw;
-  // }
-
-  .toggle > label {
+  .toggle > label.option {
     padding-left: 1vw;
     padding-right: 1vw;
-    height: 4.1vw;
+    height: 4.9vw;
     display: flex;
     align-items: center;
-    // margin-right: -0.2vw;
+    margin-bottom: 2vw;
+    border: 0.2vw solid #6b46c1;
   }
   .toggle .overlap {
     margin-right: -0.2vw;
   }
-  //   .primary-button:hover:not(:disabled) {
-  //     /* background: rgba(107, 70, 193, 0.3); */
-  //     /* background: none; */
-  //   }
   select {
+    height: 4.9vw;
     background-size: 1vw;
   }
 }
 
-.invalid,
-textarea.invalid,
-input.invalid + label::before {
-  border-color: red;
-}
-input[type="checkbox"].invalid + span {
-  color: red;
+@media (min-width: 1024px) {
+  select,
+  .toggle > label.option {
+    height: 4.1vw;
+  }
 }

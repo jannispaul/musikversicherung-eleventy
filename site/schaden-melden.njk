@@ -8,127 +8,80 @@ body_class: home
 title: Kontakt
 ---
 
-<form id="schaden-form" method="post" class="text-x2 md:text-x1 lg:text-x0p5 px-x1p5" data-auto-save>
+<form id="schaden-form" method="post" class="text-x2 md:text-x1 lg:text-x0p5 px-x1p5 pt-x2 md:pt-x1p5" data-auto-save="data-auto-save">
     <div>
         <!-- One "tab" for each step in the form: -->
-        <div class="tab flex flex-col lg:w-4/6 m-auto" data-tab-one >
+        <div class="tab flex flex-col lg:w-4/6 m-auto" data-tab-one="data-tab-one">
             <p class="text-x1p5 md:text-x0p25">Schritt 1 von 2</p>
             <h2 class="text-x3 md:text-x2 text-primary mb-x1">Schaden melden</h2>
             <div class="flex flex-col md:grid md:grid-cols-2 gap-x0p5">
-            <label class="inline-flex flex-col">
-                Anrede *
-                <select data-anrede autofocus >
-                    <option value="Frau">Frau</option>
-                    <option value="Herr">Herr</option>
-                </select>
-            </label>
-            <label class="inline-flex flex-col ">
-                Vorname *
-                <input
-                name="fname"
-                data-vorname
-                required
-                autocomplete="given-name" />
-            </label>
-            <label class="inline-flex flex-col">
-                Nachname *
-                <input
-                name="lname"
-                data-nachname
-                required
-                autocomplete="family-name" />
-            </label>
-            <label class="inline-flex flex-col ">
-                E-Mail *
-                <input
-                name="email"
-                data-email
-                required    
-                autocomplete="email" />
-            </label>
-            <label class="inline-flex flex-col ">
-                Telefonnummer *
-                <input
-                name="telefon"
-                data-telefon
-                required
-                autocomplete="tel" />
-            </label>
-            <label class="inline-flex flex-col ">
-                Versicherungsscheinnummer *
-            <input name="scheinnr" data-scheinnr required/>
-
-            </label>
-            <label class="inline-flex flex-col ">
-                Schadendatum *
-            <input name="date" data-datum required/>
-
-            </label>
-            <label class="inline-flex flex-col ">
-                Schadenort *
-                <input
-                name="schadenort"
-                data-schadenort 
-                required/>
-            </label>
-            <label class="inline-flex flex-col ">
-                Schadenhöhe (soweit schon bekannt)
-                <input
-                name="schadenhoehe"
-                data-schadenhoehe 
-                />
-            </label>
-            <div class="inline flex flex-wrap toggle ">
-                <span class="w-full flex-0">
-                Bist Du vorsteuerabzugsberechtigt? *
-                </span>
-                <input
-                    type="radio"
-                    data-vorsteuerabzug
-                    value="ja"
-                    name="vorsteuerabzug"
-                    id="vorsteuerabzug-ja" />
-                <label
-                    class=" option small block flex-1 flex mr-x0p5 mb-x1 items-center"
-                    for="vorsteuerabzug-ja"
-                >
-                <p>Ja</p>
+                <label class="inline-flex flex-col">
+                    Anrede *
+                    <select data-anrede="data-anrede" autofocus="autofocus">
+                        <option value="Frau">Frau</option>
+                        <option value="Herr">Herr</option>
+                    </select>
                 </label>
-                <input
-                    type="radio"
-                    data-vorsteuerabzug
-                    value="nein"
-                    name="vorsteuerabzug"
-                    id="vorsteuerabzug-nein" />
-                <label
-                class="option small block flex-1 flex mb-x1 items-center"
-                for="vorsteuerabzug-nein">
-                <p>Nein</p>
+                <label class="inline-flex flex-col ">
+                    Vorname *
+                    <input name="fname" data-vorname="data-vorname" required="required" autocomplete="given-name"/>
                 </label>
-            </div>
-            <label class="inline-flex flex-col ">
-                Wer hat den Schaden verursacht? *
-                <input
-                    name="verursacher"
-                    data-verursacher 
-                    required />
+                <label class="inline-flex flex-col">
+                    Nachname *
+                    <input name="lname" data-nachname="data-nachname" required="required" autocomplete="family-name"/>
+                </label>
+                <label class="inline-flex flex-col ">
+                    E-Mail *
+                    <input name="email" data-email="data-email" required="required" autocomplete="email"/>
+                </label>
+                <label class="inline-flex flex-col ">
+                    Telefonnummer *
+                    <input name="telefon" data-telefon="data-telefon" required="required" autocomplete="tel"/>
+                </label>
+                <label class="inline-flex flex-col ">
+                    Versicherungsscheinnummer *
+                    <input name="scheinnr" data-scheinnr="data-scheinnr" required="required"/>
 
-            </label>
-            <label class="inline-flex flex-col ">
-                Betroffener Gegenstand? *
-                <input
-                    name="gegenstand"
-                    data-gegenstand 
-                    required/>
-            </label>
-            <label for="" class=" block col-span-2 mb-x1">
-                Kurze Schadenschilderung *
-                <textarea
-                name="schilderung"
-                data-schilderung
-                rows="4"
-                class="w-full border-primary" required></textarea>
-            </label>
+                </label>
+                <label class="inline-flex flex-col ">
+                    Schadendatum *
+                    <input name="date" data-datum="data-datum" required="required"/>
+
+                </label>
+                <label class="inline-flex flex-col ">
+                    Schadenort *
+                    <input name="schadenort" data-schadenort="data-schadenort" required="required"/>
+                </label>
+                <label class="inline-flex flex-col ">
+                    Schadenhöhe (soweit schon bekannt)
+                    <input name="schadenhoehe" data-schadenhoehe="data-schadenhoehe"/>
+                </label>
+                <div class="inline flex flex-wrap toggle ">
+                    <span class="w-full flex-0">
+                        Bist Du vorsteuerabzugsberechtigt? *
+                    </span>
+                    <input type="radio" data-vorsteuerabzug="data-vorsteuerabzug" value="ja" name="vorsteuerabzug" id="vorsteuerabzug-ja"/>
+                    <label class=" option small block flex-1 flex mr-x0p5 mb-x1 items-center" for="vorsteuerabzug-ja">
+                        <p>Ja</p>
+                    </label>
+                    <input type="radio" data-vorsteuerabzug="data-vorsteuerabzug" value="nein" name="vorsteuerabzug" id="vorsteuerabzug-nein"/>
+                    <label class="option small block flex-1 flex mb-x1 items-center" for="vorsteuerabzug-nein">
+                        <p>Nein</p>
+                    </label>
+                </div>
+                <label class="inline-flex flex-col ">
+                    Wer hat den Schaden verursacht? *
+                    <input name="verursacher" data-verursacher="data-verursacher" required="required"/>
+
+                </label>
+                <label class="inline-flex flex-col ">
+                    Betroffener Gegenstand? *
+                    <input name="gegenstand" data-gegenstand="data-gegenstand" required="required"/>
+                </label>
+                <label for="" class=" block col-span-2 mb-x1">
+                    Kurze Schadenschilderung *
+                    <textarea name="schilderung" data-schilderung="data-schilderung" rows="4" class="w-full border-primary" required="required"></textarea>
+                </label>
 
                 {# <div class="text-warning col-span-2 md:text-center mb-x1" data-error>
                 Bitte fülle alle mit * markierten Felder aus.
@@ -136,7 +89,7 @@ title: Kontakt
 
             </div>
             <div class="md:flex md:justify-center md:w-2/3 md:m-auto">
-            {# <button
+                {# <button
                 type="button"
                 id="nextBtn"
                 class="primary-button order-2 w-full">
@@ -144,24 +97,22 @@ title: Kontakt
             </button> #}
             </div>
         </div>
-    
-        <div class="tab hidden flex flex-col lg:w-4/6 m-auto" data-tab-two>
+
+        <div class="tab hidden flex flex-col lg:w-4/6 m-auto" data-tab-two="data-tab-two">
             <p class="text-x1p5 md:text-x0p25">Schritt 2 von 2</p>
             <h2 class="text-x3 md:text-x2 text-primary mb-x1">
-            An wen soll die Entschädigung gezahlt werden?
+                An wen soll die Entschädigung gezahlt werden?
             </h2>
             <div class="grid md:grid-cols-2 gap-x0p5 mb-x0p5">
-            <label class="inline-flex flex-col ">
-                Name *
-                <input
-                name="konto-name"
-                data-kontoInhaber required/>
+                <label class="inline-flex flex-col ">
+                    Name *
+                    <input name="konto-name" data-kontoinhaber="data-kontoInhaber" required="required"/>
 
-            </label>
-            <label class="inline-flex flex-col ">
-                IBAN *
-                <input name="iban" data-iban required/>
-            </label>
+                </label>
+                <label class="inline-flex flex-col ">
+                    IBAN *
+                    <input name="iban" data-iban="data-iban" required="required"/>
+                </label>
             </div>
 
             {# <FileUpload bind:files>
@@ -169,54 +120,27 @@ title: Kontakt
             Kostenvoranschlag, …) beifügen möchtest, kannst Du sie hier
             hochladen.
             </FileUpload> #}
-<label for="fileUpload" class="block">Wenn schon eine Rechnung vorliegt oder Du weitere Unterlagen (Fotos, Kostenvoranschlag, …) beifügen möchtest, kannst Du sie hier hochladen.</label>
+            <label for="fileUpload" class="block">Wenn schon eine Rechnung vorliegt oder Du weitere Unterlagen (Fotos, Kostenvoranschlag, …) beifügen möchtest, kannst Du sie hier hochladen.</label>
 
-            {# <div class="drop-area flex flex-col justify-center items-center mt-x0p5" >
-                <input type="file" id="fileUpload" multiple accept="image/*" name="files"  class="hidden"/>
-                <label class="primary-button cursor-pointer px-x1" for="fileUpload">
-                    Datei auswählen
-                </label>
-            </div> #}
+            <input id="fileUpload" type="file" name="files" accept="image/*" multiple="multiple" class="hidden">
+            <label class="primary-button cursor-pointer px-x1 inline-block w-full text-center mb-x2  md:mb-x1" for="fileUpload">Datei auswählen</label>
 
-            <input id="fileUpload" type="file" name="files" accept="image/*" multiple class="hidden">
-            <label class="primary-button cursor-pointer px-x1 inline-block" for="fileUpload">Datei auswählen</label>
-
-            <label class="flex items-center my-x0p5 cursor-pointer">
-            <input
-                type="checkbox"
-                name="terms"
-                required
-                class="mr-x1 md:mr-x0p5 " />
-            <span>
-                Ich akzeptiere die Übertragung und Speicherung meiner Daten zum
-                Zwecke des angebotenen Services.
-                <a rel="prefetch" href="/datenschutz" class="underline">
-                Mehr erfahren
-                </a>
-            </span>
+            <label class="flex items-center mb-x2 md:mb-x1 cursor-pointer">
+                <input type="checkbox" name="terms" required="required" class="mr-x1 md:mr-x0p5 "/>
+                <span>
+                    Ich akzeptiere die Übertragung und Speicherung meiner Daten zum Zwecke des angebotenen Services.
+                    <a rel="prefetch" href="/datenschutz" class="underline">
+                        Mehr erfahren
+                    </a>
+                </span>
             </label>
             {# <div class="text-warning mb-x1" data-error>
                 Bitte fülle alle mit * markierten Felder aus und akzeptiere die Bedingungen.
             </div> #}
-            </div>
-            <div class="grid gap-x0p5 grid-cols-2 md:flex md:justify-center">
+        </div>
+        <div class="flex m-auto mb-x2  md:justify-center lg:w-4/6">
             <button type="button" id="prevBtn" class="primary-button order-2 w-full mr-x0p5">Zurück</button>
-            <button type="button" id="nextBtn" data-submit class="primary-button order-2 w-full">Weiter</button>
-
-
-            {# <button
-                type="submit"
-                class="primary-button order-2 w-full">
-                Absenden
-            </button>
-            <button
-                type="button"
-                id="prevBtn"
-                class="primary-button order-1 mr-x0p5 w-full">
-                Zurück
-            </button> #}
+            <button type="button" id="nextBtn" data-submit="data-submit" class="primary-button order-2 w-full">Weiter</button>
         </div>
     </div>
 </form>
-
-

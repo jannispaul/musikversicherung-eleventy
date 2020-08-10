@@ -68,7 +68,7 @@ const forms = (function forms() {
       value="Neuwert"
       id=${"neuwert" + instrumentCount} />
     <label
-      class="option overlap flex-1"
+      class="option overlap flex-1 small"
       for=${"neuwert" + instrumentCount}>
       <p>Neuwert</p>
     </label>
@@ -79,7 +79,7 @@ const forms = (function forms() {
       value="Zeitwert"
       id=${"zeitwert" + instrumentCount} />
     <label
-      class="option flex-1"
+      class="option flex-1 small"
       for=${"zeitwert" + instrumentCount}>
       <p>Zeitwert</p>
     </label>
@@ -123,10 +123,10 @@ const forms = (function forms() {
     var tabs = document.getElementsByClassName("tab");
     // Exit the function if any field in the current tab is invalid:
     if (n == 1 && !validateForm()) return false;
-    // Hide the current tab:
-    // if (n !== tabs.length) {
-    tabs[currentTab].style.display = "none";
-    // }
+    // Hide the current tab if its not the last:
+    if (n !== tabs.length) {
+      tabs[currentTab].style.display = "none";
+    }
     // Increase or decrease the current tab by 1:
     currentTab = currentTab + n;
 
@@ -135,12 +135,13 @@ const forms = (function forms() {
       // ... the form gets submitted:
       //   document.getElementById("form").submit();
       document
-        .getElementById("form")
+        .querySelector("form")
         .dispatchEvent(new Event("submit", { bubbles: true }));
       return false;
     }
     // Otherwise, display the correct tab:
     showTab(currentTab);
+    window.scrollTo({ top: 0 });
   }
 
   function validateForm() {
@@ -376,7 +377,7 @@ const forms = (function forms() {
   };
 
   function restoreState(saved) {
-    console.log(saved);
+    // console.log(saved);
     if (saved.versicherungstyp === "SINFONIMA") sinfonimaState();
     if (saved.versicherungstyp === "IAMSOUND") iamsoundState();
     if (saved.wohnsitz === "anderes Land")
@@ -434,14 +435,14 @@ const forms = (function forms() {
    */
   var submitHandler = function(event) {
     // Prevent default form submit
-    // event.preventDefault();
+    event.preventDefault();
 
     // Ignore forms that are actively being submitted
     if (event.target.classList.contains("submitting")) return;
 
     // Show submitting message
     var status = event.target.querySelector("[data-submit]");
-    status.innerHTML = "Submitting...";
+    status.innerHTML = "Sendet...";
 
     // Add form .submitting state class for styling
     event.target.classList.add("submitting");
@@ -452,18 +453,25 @@ const forms = (function forms() {
       body: new FormData(event.target),
       redirect: "follow",
     };
+    let requestUrl = "";
+    let redirectUrl = "";
 
+    storageID === "anfrage-form"
+      ? (requestUrl =
+          "https://hook.integromat.com/7q9cty966y5maxfo1igss3vvw1qu0vi8")
+      : (requestUrl = "https://www.formbackend.com/f/706ac99a74b44def");
+
+    storageID === "anfrage-form"
+      ? (redirectUrl = "/danke/")
+      : (redirectUrl = "/schaden-gemeldet/");
     // Post to formbackend
-    // fetch("https://www.formbackend.com/f/706ac99a74b44def", requestOptions)
-    fetch(
-      "https://1454459a-1de0-4477-9d83-6534dee946eb.mock.pstmn.io/v1",
-      requestOptions
-    )
+    fetch(requestUrl, requestOptions)
+      // fetch("https://1454459a-1de0-4477-9d83-6534dee946eb.mock.pstmn.io/v1", requestOptions)
       .then((response) => {
         // If response is ok
         if (response.ok) {
           // redirect to schaden-gemeldet page and remove
-          window.location.href = "/schaden-gemeldet/";
+          window.location.href = redirectUrl;
           // Clear saved formdata from localstorage
           // localStorage.removeItem(storageID);
         }
