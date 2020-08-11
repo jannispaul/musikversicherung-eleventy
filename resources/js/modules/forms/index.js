@@ -472,7 +472,7 @@ const forms = (function forms() {
           // redirect to schaden-gemeldet page and remove
           window.location.href = redirectUrl;
           // Clear saved formdata from localstorage
-          // localStorage.removeItem(storageID);
+          localStorage.removeItem(storageID);
         }
       })
       // If there is an error log it to console and reidrect to fehler page
