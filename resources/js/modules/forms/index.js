@@ -457,8 +457,7 @@ const forms = (function forms() {
     let redirectUrl = "";
 
     storageID === "anfrage-form"
-      ? (requestUrl =
-          "https://hook.integromat.com/7q9cty966y5maxfo1igss3vvw1qu0vi8")
+      ? (requestUrl = "https://www.formbackend.com/f/1cf344532f65848f")
       : (requestUrl = "https://www.formbackend.com/f/706ac99a74b44def");
 
     storageID === "anfrage-form"
