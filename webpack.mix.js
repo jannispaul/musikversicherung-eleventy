@@ -74,6 +74,7 @@ if (mix.inProduction()) {
         "row",
         "visually-hidden",
         "menu-visible",
+        "invalid",
       ],
     })
 
