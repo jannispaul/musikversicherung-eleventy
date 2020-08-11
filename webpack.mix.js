@@ -75,6 +75,8 @@ if (mix.inProduction()) {
         "visually-hidden",
         "menu-visible",
         "invalid",
+        "md:flex-no-wrap",
+        "flex-no-wrap",
       ],
     })
 
