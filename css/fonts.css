@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Space Grotesk";
+
+  font-weight: 400;
+
+  src: url(/fonts/SpaceGrotesk-Regular.woff) format("woff");
+
+  src: url(/fonts/SpaceGrotesk-Regular.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+
+  font-weight: 500;
+
+  src: url(/fonts/SpaceGrotesk-Medium.woff) format("woff");
+
+  src: url(/fonts/SpaceGrotesk-Medium.woff2) format("woff2");
+}
+
+a {
+  transition: all 200ms;
+}

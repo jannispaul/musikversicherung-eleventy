@@ -55,6 +55,10 @@
 
         {# canonical #}
         <link rel="canonical" href="{{ site.url }}{{ page.url }}"/>
+        <link rel="canonical" href="{{ site.url }}{{ page.url }}"/>
+        
+        {# Include fonts asynchronously #}
+        <link rel="stylesheet" href="/css/fonts.min.css" media="print" onload="this.media='all'; this.onload=null;">
 
         {# Include json-ld #}
         {% include "../components/jsonld/reviews.njk" %}

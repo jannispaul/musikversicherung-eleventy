@@ -8,6 +8,10 @@ const paths = {
     source: "./resources/sass/main.scss",
     dest: "css/",
   },
+  sass: {
+    source: "./resources/sass/fonts.scss",
+    dest: "css/",
+  },
   javascript: {
     source: "./resources/js/main.js",
     singles: "./resources/js/singles/*",
@@ -82,5 +86,6 @@ if (mix.inProduction()) {
 
     // Minifies CSS & JS files
     .minify(paths.sass.dest + "main.css")
+    .minify(paths.sass.dest + "fonts.css")
     .minify(paths.javascript.dest + "main.js");
 }

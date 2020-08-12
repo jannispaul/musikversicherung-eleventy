@@ -4,7 +4,7 @@ const reviews = (function forms() {
     var reviewSubmitHandler = function(event) {
       // Prevent default form submit
       // event.preventDefault();
-      console.log(event);
+      // console.log(event);
 
       // Ignore forms that are actively being submitted
       if (event.target.classList.contains("submitting")) return;

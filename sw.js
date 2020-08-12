@@ -1,7 +1,7 @@
 // SW code from https://adactio.com/
 "use strict";
 
-const version = "20200811";
+const version = "20200812";
 const staticCacheName = version + "static";
 const pagesCacheName = "pages";
 const imagesCacheName = "images";
@@ -16,6 +16,14 @@ function updateStaticCache() {
     // These items won't block the installation of the Service Worker
     staticCache.addAll([
       "/images/piano_y1wv8n/piano_y1wv8n_c_scale,w_2160.jpg",
+      "/images/drums_ulbs6v/drums_ulbs6v_c_scale,w_2160.jpg",
+      "/images/guitar_k2skaw/guitar_k2skaw_c_scale,w_2160.jpg",
+      "/images/mixer_a6lonu/mixer_a6lonu_c_scale,w_2160.jpg",
+      "/images/sax_lcabmf/sax_lcabmf_c_scale,w_2160.jpg",
+      "/images/violins_kzmb3h/violins_kzmb3h_c_scale,w_1263.jpg",
+      "/Beschwerdeverfahren.pdf",
+      "/Empfehlungen-zu-Auslandsreisen.pdf",
+      "/css/fonts.min.css",
     ]);
     // These items must be cached for the Service Worker to complete installation
     return staticCache.addAll(["/js/main.min.js", "/css/main.min.css"]); // "/offline",
