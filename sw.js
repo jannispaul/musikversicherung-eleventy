@@ -1,7 +1,7 @@
 // SW code from https://adactio.com/
 "use strict";
 
-const version = "20200812";
+const version = "20200821";
 const staticCacheName = version + "static";
 const pagesCacheName = "pages";
 const imagesCacheName = "images";
@@ -23,7 +23,6 @@ function updateStaticCache() {
       "/images/violins_kzmb3h/violins_kzmb3h_c_scale,w_1263.jpg",
       "/Beschwerdeverfahren.pdf",
       "/Empfehlungen-zu-Auslandsreisen.pdf",
-      "/css/fonts.min.css",
     ]);
     // These items must be cached for the Service Worker to complete installation
     return staticCache.addAll(["/js/main.min.js", "/css/main.min.css"]); // "/offline",

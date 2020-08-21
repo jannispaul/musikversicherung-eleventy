@@ -88,11 +88,11 @@ input {
   padding: 1.5vw;
   margin-bottom: 4vw;
   background: white;
-  border: 0.2vw solid #6b46c1;
+  border: 1.5px solid #6b46c1;
 }
 textarea {
   padding: 1.5vw;
-  border: 0.2vw solid #6b46c1;
+  border: 1.5px solid #6b46c1;
 }
 select {
   -webkit-appearance: none;
@@ -105,7 +105,7 @@ select {
   min-height: fit-content;
   padding: 1vw 1.5vw;
   margin-bottom: 4vw;
-  border: 0.2vw solid #6b46c1;
+  border: 1.5px solid #6b46c1;
   border-radius: 0;
   height: 9vw;
 }
@@ -123,7 +123,7 @@ select {
   align-items: center;
   flex: 1 0 45%;
   // border: 0.1vw solid #000;
-  border: 1px solid #6b46c1;
+  border: 1.5px solid #6b46c1;
   opacity: 0.5;
   cursor: pointer;
   position: relative;
@@ -138,7 +138,6 @@ select {
   opacity: 0.8;
 }
 .toggle input:checked + .option {
-  border: 0.3vw solid #6b46c1;
   opacity: 1;
 }
 .option p {
@@ -154,8 +153,9 @@ select {
 
 .invalid,
 textarea.invalid,
-input.invalid + label::before {
-  border-color: red;
+input.invalid + label::before,
+label.invalid {
+  border-color: red !important;
 }
 input[type="checkbox"].invalid + span {
   color: red;
@@ -194,13 +194,21 @@ input[type="checkbox"].invalid + span {
     height: 9vw;
   }
   .toggle > label.option {
+    border: 0.2vw solid #6b46c1;
+  }
+  .toggle > label.option {
     padding-left: 1vw;
     padding-right: 1vw;
     height: 4.9vw;
     display: flex;
     align-items: center;
-    margin-bottom: 2vw;
+    // margin-bottom: 2vw;
     border: 0.2vw solid #6b46c1;
+    margin-bottom: 2vw;
+  }
+
+  .toggle > label.invalid {
+    border: 0.2vw solid red;
   }
   .toggle .overlap {
     margin-right: -0.2vw;

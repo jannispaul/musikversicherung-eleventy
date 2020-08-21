@@ -210,7 +210,7 @@ var forms = function forms() {
       // Increment instrument count
       incrementInstrumentCount(); // Single instrument html to add more instruments
 
-      var singleInstrument = "<div class=\"single-instrument flex flex-wrap md:flex-no-wrap items-end mb-x1p5 md:mb-x0p5\">\n  <label class=\"flex md:flex-grow flex-col items-start flex-none md:flex-auto w-full md:w-1/2 md:mr-x0p5\">\n    Instrument / Zubeh\xF6r ".concat(instrumentCount, "\n    <input\n      name=\"instrument").concat(instrumentCount, "\"\n      type=\"text\"\n      class=\"w-full \"\n      autofocus />\n  </label>\n  <label\n    class=\"flex flex-col flex-grow-0 flex-1 order-1 mr-x0p5 w-2/6 md:w-auto\n    md:w-1/6\">\n    Wert in \u20AC\n    <input\n      type=\"number\"\n      name=").concat("value" + instrumentCount, "\n      pattern=\"d*\"/>\n  </label>\n  <div class=\"toggle flex order-2 md:order-2\">\n    <input\n      type=\"radio\"\n      name=").concat("valueType" + instrumentCount, "\n      value=\"Neuwert\"\n      id=").concat("neuwert" + instrumentCount, " />\n    <label\n      class=\"option overlap flex-1 small\"\n      for=").concat("neuwert" + instrumentCount, ">\n      <p>Neuwert</p>\n    </label>\n    <!-- <label for=\"Zeitwert\"> -->\n    <input\n      type=\"radio\"\n      name=").concat("valueType" + instrumentCount, "\n      value=\"Zeitwert\"\n      id=").concat("zeitwert" + instrumentCount, " />\n    <label\n      class=\"option flex-1 small\"\n      for=").concat("zeitwert" + instrumentCount, ">\n      <p>Zeitwert</p>\n    </label>\n  </div>\n</div>"); // Add to DOM after class singleInstrument
+      var singleInstrument = "<div class=\"single-instrument flex flex-wrap md:flex-no-wrap items-end mb-x1p5 md:mb-x0p5\">\n  <label class=\"flex md:flex-grow flex-col items-start flex-none md:flex-auto w-full md:w-1/2 md:mr-x0p5\">\n    Instrument / Zubeh\xF6r ".concat(instrumentCount, "\n    <input\n      name=\"instrument").concat(instrumentCount, "\"\n      type=\"text\"\n      class=\"w-full \"\n      autofocus \n      ").concat(instrumentCount === 1 ? "required" : "", "/>\n  </label>\n  <label\n    class=\"flex flex-col flex-grow-0 flex-1 order-1 mr-x0p5 w-2/6 md:w-auto\n    md:w-1/6\">\n    Wert in \u20AC\n    <input\n      type=\"number\"\n      name=").concat("value" + instrumentCount, "\n      pattern=\"d*\"\n      ").concat(instrumentCount === 1 ? "required" : "", "/>\n  </label>\n  <div class=\"toggle flex order-2 md:order-2\">\n    <input\n      type=\"radio\"\n      name=").concat("valueType" + instrumentCount, "\n      value=\"Neuwert\"\n      id=").concat("neuwert" + instrumentCount, " required />\n    <label\n      class=\"option overlap flex-1 small\"\n      for=").concat("neuwert" + instrumentCount, ">\n      <p>Neuwert</p>\n    </label>\n    <!-- <label for=\"Zeitwert\"> -->\n    <input\n      type=\"radio\"\n      name=").concat("valueType" + instrumentCount, "\n      value=\"Zeitwert\"\n      id=").concat("zeitwert" + instrumentCount, "  />\n    <label\n      class=\"option flex-1 small\"\n      for=").concat("zeitwert" + instrumentCount, ">\n      <p>Zeitwert</p>\n    </label>\n  </div>\n</div>"); // Add to DOM after class singleInstrument
 
       if (storageID === "anfrage-form") {
         document.querySelector(".instrument-list").insertAdjacentHTML("beforeend", singleInstrument);
@@ -245,7 +245,9 @@ var forms = function forms() {
 
     var nextPrev = function nextPrev(n) {
       // This function will figure out which tab to display
-      var tabs = document.getElementsByClassName("tab"); // Exit the function if any field in the current tab is invalid:
+      var tabs = document.getElementsByClassName("tab");
+      console.log("before validation");
+      console.log(validateForm()); // Exit the function if any field in the current tab is invalid:
 
       if (n == 1 && !validateForm()) return false; // Hide the current tab if its not the last:
 
@@ -273,29 +275,31 @@ var forms = function forms() {
     };
 
     var validateForm = function validateForm() {
-      // This function deals with validation of the form fields
+      // Helper function to test if an element or parent is hidden
+      function isHidden(el) {
+        return el.offsetParent === null;
+      } // This function deals with validation of the form fields
+
+
       var tabs,
           requiredInputsInTab,
           i,
           valid = true;
-      tabs = document.getElementsByClassName("tab");
-      {
-        {
-          document.querySelectorAll("input[required]");
-        }
-      } // Set required inputs in tab
+      tabs = document.getElementsByClassName("tab"); // Set required inputs in tab
 
-      requiredInputsInTab = tabs[currentTab].querySelectorAll("input[required], textarea[required]"); // A loop that checks every input field in the current tab:
+      requiredInputsInTab = tabs[currentTab].querySelectorAll("input[required], textarea[required], select[required] "); // A loop that checks every input field in the current tab:
 
       for (i = 0; i < requiredInputsInTab.length; i++) {
         // If a field is empty...
-        if (requiredInputsInTab[i].value == "") {
-          // if field doesnt have invalid class
+        if (requiredInputsInTab[i].value == "" && !isHidden(requiredInputsInTab[i])) {
+          console.log(requiredInputsInTab[i]); // if field doesnt have invalid class
+
           if (!requiredInputsInTab[i].classList.contains("invalid")) {
             // add an "invalid" class to the field:
             requiredInputsInTab[i].classList.add("invalid");
-          } // and set the current valid status to false
+          }
 
+          console.log(requiredInputsInTab[i]); // and set the current valid status to false
 
           valid = false;
         }
@@ -310,6 +314,37 @@ var forms = function forms() {
 
 
           valid = false;
+        }
+
+        console.log("valid1: ", valid);
+
+        if ( // if field is radio button
+        requiredInputsInTab[i].type == "radio" && !isHidden(requiredInputsInTab[i])) {
+          // Get all elements (so siblings + the input)
+          var allElements = Array.from(requiredInputsInTab[i].parentNode.children); // Get the inputs in the toggle
+
+          var inputs = allElements.filter(function (el) {
+            return el.localName === "input";
+          }); // Get the labels in the toggle
+
+          var labels = allElements.filter(function (el) {
+            return el.localName === "label";
+          }); // If neither input is checked
+
+          if (!inputs[0].checked && !inputs[1].checked) {
+            // ADd invalid class to both labels
+            labels.forEach(function (label) {
+              return label.classList.add("invalid");
+            }); // and set the current valid status to false
+
+            valid = false;
+            console.log(valid);
+          } else {
+            // Otherwise remove invalid class from both labels
+            labels.forEach(function (label) {
+              return label.classList.remove("invalid");
+            });
+          }
         }
 
         if ( // if field is not empty and has invalid class
@@ -378,10 +413,9 @@ var forms = function forms() {
      */
 
 
-    console.log(); // This script handles form pages called tabs, adding instruments to the list and saves the form's state to localstorage and loads it
+    // This script handles form pages called tabs, adding instruments to the list and saves the form's state to localstorage and loads it
     // Set variables
     // Current tab is set to be the first tab (0)
-
     var currentTab = 0; // Display the current tab
 
     showTab(currentTab); // Instrument counter starts with 0 instrument
@@ -839,10 +873,10 @@ var reviews = function forms() {
 
 /***/ }),
 
-/***/ "./resources/sass/fonts.scss":
-/*!***********************************!*\
-  !*** ./resources/sass/fonts.scss ***!
-  \***********************************/
+/***/ "./resources/sass/main.scss":
+/*!**********************************!*\
+  !*** ./resources/sass/main.scss ***!
+  \**********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -851,14 +885,14 @@ var reviews = function forms() {
 /***/ }),
 
 /***/ 0:
-/*!****************************************************************!*\
-  !*** multi ./resources/js/main.js ./resources/sass/fonts.scss ***!
-  \****************************************************************/
+/*!***************************************************************!*\
+  !*** multi ./resources/js/main.js ./resources/sass/main.scss ***!
+  \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! /Users/jay/projects/musikversicherung-eleventy/resources/js/main.js */"./resources/js/main.js");
-module.exports = __webpack_require__(/*! /Users/jay/projects/musikversicherung-eleventy/resources/sass/fonts.scss */"./resources/sass/fonts.scss");
+module.exports = __webpack_require__(/*! /Users/jay/projects/musikversicherung-eleventy/resources/sass/main.scss */"./resources/sass/main.scss");
 
 
 /***/ })

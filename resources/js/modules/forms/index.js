@@ -3,7 +3,6 @@ const forms = (function forms() {
     document.querySelector("#schaden-form") ||
     document.querySelector("#anfrage-form")
   ) {
-    console.log();
     // This script handles form pages called tabs, adding instruments to the list and saves the form's state to localstorage and loads it
 
     // Set variables
@@ -62,7 +61,8 @@ const forms = (function forms() {
       name="instrument${instrumentCount}"
       type="text"
       class="w-full "
-      autofocus />
+      autofocus 
+      ${instrumentCount === 1 ? "required" : ""}/>
   </label>
   <label
     class="flex flex-col flex-grow-0 flex-1 order-1 mr-x0p5 w-2/6 md:w-auto
@@ -71,14 +71,15 @@ const forms = (function forms() {
     <input
       type="number"
       name=${"value" + instrumentCount}
-      pattern="\d*"/>
+      pattern="\d*"
+      ${instrumentCount === 1 ? "required" : ""}/>
   </label>
   <div class="toggle flex order-2 md:order-2">
     <input
       type="radio"
       name=${"valueType" + instrumentCount}
       value="Neuwert"
-      id=${"neuwert" + instrumentCount} />
+      id=${"neuwert" + instrumentCount} required />
     <label
       class="option overlap flex-1 small"
       for=${"neuwert" + instrumentCount}>
@@ -89,7 +90,7 @@ const forms = (function forms() {
       type="radio"
       name=${"valueType" + instrumentCount}
       value="Zeitwert"
-      id=${"zeitwert" + instrumentCount} />
+      id=${"zeitwert" + instrumentCount}  />
     <label
       class="option flex-1 small"
       for=${"zeitwert" + instrumentCount}>
@@ -133,6 +134,8 @@ const forms = (function forms() {
     function nextPrev(n) {
       // This function will figure out which tab to display
       var tabs = document.getElementsByClassName("tab");
+      console.log("before validation");
+      console.log(validateForm());
       // Exit the function if any field in the current tab is invalid:
       if (n == 1 && !validateForm()) return false;
       // Hide the current tab if its not the last:
@@ -157,31 +160,35 @@ const forms = (function forms() {
     }
 
     function validateForm() {
+      // Helper function to test if an element or parent is hidden
+      function isHidden(el) {
+        return el.offsetParent === null;
+      }
       // This function deals with validation of the form fields
       var tabs,
         requiredInputsInTab,
         i,
         valid = true;
       tabs = document.getElementsByClassName("tab");
-      {
-        {
-          document.querySelectorAll("input[required]");
-        }
-      }
+
       // Set required inputs in tab
       requiredInputsInTab = tabs[currentTab].querySelectorAll(
-        "input[required], textarea[required]"
+        "input[required], textarea[required], select[required] "
       );
-
       // A loop that checks every input field in the current tab:
       for (i = 0; i < requiredInputsInTab.length; i++) {
         // If a field is empty...
-        if (requiredInputsInTab[i].value == "") {
+        if (
+          requiredInputsInTab[i].value == "" &&
+          !isHidden(requiredInputsInTab[i])
+        ) {
+          console.log(requiredInputsInTab[i]);
           // if field doesnt have invalid class
           if (!requiredInputsInTab[i].classList.contains("invalid")) {
             // add an "invalid" class to the field:
             requiredInputsInTab[i].classList.add("invalid");
           }
+          console.log(requiredInputsInTab[i]);
           // and set the current valid status to false
           valid = false;
         }
@@ -195,8 +202,37 @@ const forms = (function forms() {
             // add an "invalid" class to the field:
             requiredInputsInTab[i].classList.add("invalid");
           }
+
           // and set the current valid status to false
           valid = false;
+        }
+        console.log("valid1: ", valid);
+
+        if (
+          // if field is radio button
+          requiredInputsInTab[i].type == "radio" &&
+          !isHidden(requiredInputsInTab[i])
+        ) {
+          // Get all elements (so siblings + the input)
+          const allElements = Array.from(
+            requiredInputsInTab[i].parentNode.children
+          );
+
+          // Get the inputs in the toggle
+          const inputs = allElements.filter((el) => el.localName === "input");
+          // Get the labels in the toggle
+          const labels = allElements.filter((el) => el.localName === "label");
+          // If neither input is checked
+          if (!inputs[0].checked && !inputs[1].checked) {
+            // ADd invalid class to both labels
+            labels.forEach((label) => label.classList.add("invalid"));
+            // and set the current valid status to false
+            valid = false;
+            console.log(valid);
+          } else {
+            // Otherwise remove invalid class from both labels
+            labels.forEach((label) => label.classList.remove("invalid"));
+          }
         }
 
         if (
@@ -216,6 +252,7 @@ const forms = (function forms() {
           requiredInputsInTab[i].classList.remove("invalid");
         }
       }
+
       return valid; // return the valid status
     }
 

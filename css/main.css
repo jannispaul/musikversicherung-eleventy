@@ -639,6 +639,30 @@ video {
   }
 }
 
+@font-face {
+  font-family: "Space Grotesk";
+
+  font-weight: 400;
+
+  src: url(/fonts/SpaceGrotesk-Regular.woff) format("woff");
+
+  src: url(/fonts/SpaceGrotesk-Regular.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+
+  font-weight: 500;
+
+  src: url(/fonts/SpaceGrotesk-Medium.woff) format("woff");
+
+  src: url(/fonts/SpaceGrotesk-Medium.woff2) format("woff2");
+}
+
+a {
+  transition: all 200ms;
+}
+
 .mobile-icon {
   position: relative;
   cursor: pointer;
@@ -761,12 +785,12 @@ input {
   padding: 1.5vw;
   margin-bottom: 4vw;
   background: white;
-  border: 0.2vw solid #6b46c1;
+  border: 1.5px solid #6b46c1;
 }
 
 textarea {
   padding: 1.5vw;
-  border: 0.2vw solid #6b46c1;
+  border: 1.5px solid #6b46c1;
 }
 
 select {
@@ -782,7 +806,7 @@ select {
   min-height: fit-content;
   padding: 1vw 1.5vw;
   margin-bottom: 4vw;
-  border: 0.2vw solid #6b46c1;
+  border: 1.5px solid #6b46c1;
   border-radius: 0;
   height: 9vw;
 }
@@ -803,7 +827,7 @@ select {
   display: flex;
   align-items: center;
   flex: 1 0 45%;
-  border: 1px solid #6b46c1;
+  border: 1.5px solid #6b46c1;
   opacity: 0.5;
   cursor: pointer;
   position: relative;
@@ -821,7 +845,6 @@ select {
 }
 
 .toggle input:checked + .option {
-  border: 0.3vw solid #6b46c1;
   opacity: 1;
 }
 
@@ -836,8 +859,9 @@ select {
 
 .invalid,
 textarea.invalid,
-input.invalid + label::before {
-  border-color: red;
+input.invalid + label::before,
+label.invalid {
+  border-color: red !important;
 }
 
 input[type=checkbox].invalid + span {
@@ -883,13 +907,21 @@ input[type=checkbox].invalid + span {
   }
 
   .toggle > label.option {
+    border: 0.2vw solid #6b46c1;
+  }
+
+  .toggle > label.option {
     padding-left: 1vw;
     padding-right: 1vw;
     height: 4.9vw;
     display: flex;
     align-items: center;
-    margin-bottom: 2vw;
     border: 0.2vw solid #6b46c1;
+    margin-bottom: 2vw;
+  }
+
+  .toggle > label.invalid {
+    border: 0.2vw solid red;
   }
 
   .toggle .overlap {

@@ -8,10 +8,6 @@ const paths = {
     source: "./resources/sass/main.scss",
     dest: "css/",
   },
-  sass: {
-    source: "./resources/sass/fonts.scss",
-    dest: "css/",
-  },
   javascript: {
     source: "./resources/js/main.js",
     singles: "./resources/js/singles/*",
@@ -55,6 +51,7 @@ if (mix.inProduction()) {
     .purgeCss({
       folders: ["site"],
       extensions: ["html", "njk"],
+      defaultExtractor: (content) => content.match(/[\w-:/]+(?<!:)/g) || [],
       whitelist: [
         "body",
         "html",
@@ -79,6 +76,7 @@ if (mix.inProduction()) {
         "visually-hidden",
         "menu-visible",
         "invalid",
+        "label.invalid",
         "md:flex-no-wrap",
         "flex-no-wrap",
       ],
@@ -86,6 +84,5 @@ if (mix.inProduction()) {
 
     // Minifies CSS & JS files
     .minify(paths.sass.dest + "main.css")
-    .minify(paths.sass.dest + "fonts.css")
     .minify(paths.javascript.dest + "main.js");
 }
