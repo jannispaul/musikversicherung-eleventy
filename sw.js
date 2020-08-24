@@ -23,6 +23,7 @@ function updateStaticCache() {
       "/images/violins_kzmb3h/violins_kzmb3h_c_scale,w_1263.jpg",
       "/Beschwerdeverfahren.pdf",
       "/Empfehlungen-zu-Auslandsreisen.pdf",
+      "/Tips-on-travelling-abroad.pdf",
     ]);
     // These items must be cached for the Service Worker to complete installation
     return staticCache.addAll(["/js/main.min.js", "/css/main.min.css"]); // "/offline",
