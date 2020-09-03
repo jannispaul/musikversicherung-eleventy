@@ -2,6 +2,10 @@
   from = "https://musikversicherung.netlify.app/*"
   to = "https://musikversicherung.com/:splat"
   status = 301
+[[redirects]]
+  from = "https://musikversicherung.com/wp-content/uploads/2015/05/Tipps-zu-Auslandsreisen.pdf"
+  to = "https://musikversicherung.com/Empfehlungen-zu-Auslandsreisen.pdf"
+  status = 301
 
 [[headers]]
   for = "/*"
