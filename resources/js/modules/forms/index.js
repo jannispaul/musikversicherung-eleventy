@@ -532,7 +532,7 @@ const forms = (function forms() {
           // If response is ok
           if (response.ok) {
             console.log("fetch response ok");
-            // redirect to schaden-gemeldet page and remove
+            // redirect to schaden-gemeldet page
             window.location.href = redirectUrl;
             // Clear saved formdata from localstorage
             localStorage.removeItem(storageID);
