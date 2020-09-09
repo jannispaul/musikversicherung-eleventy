@@ -35,6 +35,7 @@ mix
 
   // Compile SCSS & TailwindCSS
   .sass(paths.sass.source, paths.sass.dest)
+  // .sourceMaps()
   .options({
     processCssUrls: false,
     postCss: [

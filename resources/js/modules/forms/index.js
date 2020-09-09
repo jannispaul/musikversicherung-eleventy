@@ -523,16 +523,15 @@ const forms = (function forms() {
         ? (redirectUrl = "/danke/")
         : (redirectUrl = "/schaden-gemeldet/");
 
-      console.log(storageID);
+      // console.log(requestOptions, storageID, requestUrl, redirectUrl);
+      // console.log("test");
 
       // Post to formbackend
       fetch(requestUrl, requestOptions)
-        // fetch("https://1454459a-1de0-4477-9d83-6534dee946eb.mock.pstmn.io/v1", requestOptions)
         .then((response) => {
-          console.log("after fetch respnsoe");
           // If response is ok
           if (response.ok) {
-            console.log("fetach response ok");
+            console.log("fetch response ok");
             // redirect to schaden-gemeldet page and remove
             window.location.href = redirectUrl;
             // Clear saved formdata from localstorage
@@ -541,7 +540,6 @@ const forms = (function forms() {
         })
         // If there is an error log it to console and reidrect to fehler page
         .catch((error) => {
-          console.log(error);
           console.error("Error: ", error);
           window.location.href = "/fehler/";
         });

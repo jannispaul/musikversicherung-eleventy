@@ -18,7 +18,7 @@ title: Reviews
 			{{ reviews | ratingAverage}} Sterne von {{ reviews | length }} Berwertungen
 		</div>
 		<div
-			class="grid grid-cols-1 md:grid-cols-2 col-gap-x1 row-gap-x0p5">
+			class="grid grid-cols-1 md:grid-cols-2 gap-x-x1 gap-y-x0p5">
 			{% set recentReviews = reviews | toArray | sort(true, true, 'date')%}
 			{% for review in recentReviews %}
 				{% include "components/review-item.njk" %}
