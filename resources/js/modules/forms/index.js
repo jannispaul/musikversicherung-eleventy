@@ -134,8 +134,6 @@ const forms = (function forms() {
     function nextPrev(n) {
       // This function will figure out which tab to display
       var tabs = document.getElementsByClassName("tab");
-      console.log("before validation");
-      console.log(validateForm());
       // Exit the function if any field in the current tab is invalid:
       if (n == 1 && !validateForm()) return false;
       // Hide the current tab if its not the last:
@@ -182,13 +180,13 @@ const forms = (function forms() {
           requiredInputsInTab[i].value == "" &&
           !isHidden(requiredInputsInTab[i])
         ) {
-          console.log(requiredInputsInTab[i]);
+          // console.log(requiredInputsInTab[i]);
           // if field doesnt have invalid class
           if (!requiredInputsInTab[i].classList.contains("invalid")) {
             // add an "invalid" class to the field:
             requiredInputsInTab[i].classList.add("invalid");
           }
-          console.log(requiredInputsInTab[i]);
+          // console.log(requiredInputsInTab[i]);
           // and set the current valid status to false
           valid = false;
         }
@@ -206,7 +204,6 @@ const forms = (function forms() {
           // and set the current valid status to false
           valid = false;
         }
-        console.log("valid1: ", valid);
 
         if (
           // if field is radio button
@@ -228,7 +225,7 @@ const forms = (function forms() {
             labels.forEach((label) => label.classList.add("invalid"));
             // and set the current valid status to false
             valid = false;
-            console.log(valid);
+            // console.log(valid);
           } else {
             // Otherwise remove invalid class from both labels
             labels.forEach((label) => label.classList.remove("invalid"));
@@ -497,6 +494,7 @@ const forms = (function forms() {
       // Prevent default form submit
       event.preventDefault();
 
+      console.log(event);
       // Ignore forms that are actively being submitted
       if (event.target.classList.contains("submitting")) return;
 
@@ -524,12 +522,17 @@ const forms = (function forms() {
       storageID === "anfrage-form"
         ? (redirectUrl = "/danke/")
         : (redirectUrl = "/schaden-gemeldet/");
+
+      console.log(storageID);
+
       // Post to formbackend
       fetch(requestUrl, requestOptions)
         // fetch("https://1454459a-1de0-4477-9d83-6534dee946eb.mock.pstmn.io/v1", requestOptions)
         .then((response) => {
+          console.log("after fetch respnsoe");
           // If response is ok
           if (response.ok) {
+            console.log("fetach response ok");
             // redirect to schaden-gemeldet page and remove
             window.location.href = redirectUrl;
             // Clear saved formdata from localstorage
@@ -538,6 +541,7 @@ const forms = (function forms() {
         })
         // If there is an error log it to console and reidrect to fehler page
         .catch((error) => {
+          console.log(error);
           console.error("Error: ", error);
           window.location.href = "/fehler/";
         });

@@ -77,6 +77,21 @@
         </script>
     </head>
     <body {% if body_class %} id="wrapper" {% endif %} class="bg-light max-w-100vw">
+        <div
+        id="unsupported-browser"
+        class="z-10 bg-secondary text-x2 md:text-x0p75 lg:text-x0p25 text-white text-center w-full px-x0p25 py-x1 md:p-x0p25"
+        hidden>
+            Dein Browser wird leider nicht unterstützt. Bitte
+            <a
+            href="https://browser-update.org/update.html"
+            title="Mehr zu Browser-Updates erfahren"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline"
+            >informiere Dich</a>
+            und aktualisiere ihn.
+        </div>
+
 
         {# include special-notice #}
         {% include "components/special-notice.njk" %}

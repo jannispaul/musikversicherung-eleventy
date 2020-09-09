@@ -9997,14 +9997,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @modules/forms */ "./resources/js/modules/forms/index.js");
 /* harmony import */ var _modules_reviews__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @modules/reviews */ "./resources/js/modules/reviews/index.js");
 /* harmony import */ var _modules_sentry__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @modules/sentry */ "./resources/js/modules/sentry/index.js");
+/* harmony import */ var _modules_browser_supported__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @modules/browser-supported */ "./resources/js/modules/browser-supported/index.js");
 // Import local modules
- // import "@modules/lazyload";
 
 
 
 
 
- // import "@modules/anfrage";
+
+
+
+/***/ }),
+
+/***/ "./resources/js/modules/browser-supported/index.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/modules/browser-supported/index.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var browserSupported = function () {
+  "use strict";
+
+  if (!("function" == typeof Blob && "undefined" != typeof Intl && "undefined" != typeof MutationObserver && "undefined" != typeof URLSearchParams && "undefined" != typeof WebSocket && "undefined" != typeof IntersectionObserver && "entries" in FormData.prototype && "append" in Element.prototype)) {
+    var e = document.getElementById("unsupported-browser");
+    e && e.removeAttribute("hidden");
+  }
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (browserSupported);
 
 /***/ }),
 
@@ -10143,9 +10166,7 @@ var forms = function forms() {
 
     var nextPrev = function nextPrev(n) {
       // This function will figure out which tab to display
-      var tabs = document.getElementsByClassName("tab");
-      console.log("before validation");
-      console.log(validateForm()); // Exit the function if any field in the current tab is invalid:
+      var tabs = document.getElementsByClassName("tab"); // Exit the function if any field in the current tab is invalid:
 
       if (n == 1 && !validateForm()) return false; // Hide the current tab if its not the last:
 
@@ -10190,14 +10211,14 @@ var forms = function forms() {
       for (i = 0; i < requiredInputsInTab.length; i++) {
         // If a field is empty...
         if (requiredInputsInTab[i].value == "" && !isHidden(requiredInputsInTab[i])) {
-          console.log(requiredInputsInTab[i]); // if field doesnt have invalid class
-
+          // console.log(requiredInputsInTab[i]);
+          // if field doesnt have invalid class
           if (!requiredInputsInTab[i].classList.contains("invalid")) {
             // add an "invalid" class to the field:
             requiredInputsInTab[i].classList.add("invalid");
-          }
+          } // console.log(requiredInputsInTab[i]);
+          // and set the current valid status to false
 
-          console.log(requiredInputsInTab[i]); // and set the current valid status to false
 
           valid = false;
         }
@@ -10213,8 +10234,6 @@ var forms = function forms() {
 
           valid = false;
         }
-
-        console.log("valid1: ", valid);
 
         if ( // if field is radio button
         requiredInputsInTab[i].type == "radio" && !isHidden(requiredInputsInTab[i])) {
@@ -10235,8 +10254,7 @@ var forms = function forms() {
               return label.classList.add("invalid");
             }); // and set the current valid status to false
 
-            valid = false;
-            console.log(valid);
+            valid = false; // console.log(valid);
           } else {
             // Otherwise remove invalid class from both labels
             labels.forEach(function (label) {
@@ -10511,7 +10529,8 @@ var forms = function forms() {
 
     var submitHandler = function submitHandler(event) {
       // Prevent default form submit
-      event.preventDefault(); // Ignore forms that are actively being submitted
+      event.preventDefault();
+      console.log(event); // Ignore forms that are actively being submitted
 
       if (event.target.classList.contains("submitting")) return; // Show submitting message
 
@@ -10529,19 +10548,23 @@ var forms = function forms() {
       var requestUrl = "";
       var redirectUrl = "";
       storageID === "anfrage-form" ? requestUrl = "https://www.formbackend.com/f/1cf344532f65848f" : requestUrl = "https://www.formbackend.com/f/706ac99a74b44def";
-      storageID === "anfrage-form" ? redirectUrl = "/danke/" : redirectUrl = "/schaden-gemeldet/"; // Post to formbackend
+      storageID === "anfrage-form" ? redirectUrl = "/danke/" : redirectUrl = "/schaden-gemeldet/";
+      console.log(storageID); // Post to formbackend
 
       fetch(requestUrl, requestOptions) // fetch("https://1454459a-1de0-4477-9d83-6534dee946eb.mock.pstmn.io/v1", requestOptions)
       .then(function (response) {
-        // If response is ok
+        console.log("after fetch respnsoe"); // If response is ok
+
         if (response.ok) {
-          // redirect to schaden-gemeldet page and remove
+          console.log("fetach response ok"); // redirect to schaden-gemeldet page and remove
+
           window.location.href = redirectUrl; // Clear saved formdata from localstorage
 
           localStorage.removeItem(storageID);
         }
       }) // If there is an error log it to console and reidrect to fehler page
       ["catch"](function (error) {
+        console.log(error);
         console.error("Error: ", error);
         window.location.href = "/fehler/";
       });

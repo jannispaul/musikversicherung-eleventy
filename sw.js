@@ -1,7 +1,7 @@
 // SW code from https://adactio.com/
 "use strict";
 
-const version = "20200821";
+const version = "20200909";
 const staticCacheName = version + "static";
 const pagesCacheName = "pages";
 const imagesCacheName = "images";
@@ -21,6 +21,7 @@ function updateStaticCache() {
       "/images/mixer_a6lonu/mixer_a6lonu_c_scale,w_2160.jpg",
       "/images/sax_lcabmf/sax_lcabmf_c_scale,w_2160.jpg",
       "/images/violins_kzmb3h/violins_kzmb3h_c_scale,w_1263.jpg",
+      "/videos/vorstellung.mp4",
       "/Beschwerdeverfahren.pdf",
       "/Empfehlungen-zu-Auslandsreisen.pdf",
       "/Tips-on-travelling-abroad.pdf",
