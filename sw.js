@@ -1,7 +1,7 @@
 // SW code from https://adactio.com/
 "use strict";
 
-const version = "20200909";
+const version = "20200920";
 const staticCacheName = version + "static";
 const pagesCacheName = "pages";
 const imagesCacheName = "images";
