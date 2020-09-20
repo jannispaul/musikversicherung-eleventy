@@ -149,7 +149,9 @@ const forms = (function forms() {
         //   document.getElementById("form").submit();
         document
           .querySelector("form")
-          .dispatchEvent(new Event("submit", { bubbles: true }));
+          .dispatchEvent(
+            new Event("submit", { bubbles: true, cancelable: true })
+          );
         return false;
       }
       // Otherwise, display the correct tab:
@@ -313,7 +315,7 @@ const forms = (function forms() {
           hideElement(customOrganizationLabel, customOrganizationInput);
       }
 
-      // If proberaum vorhanden show if
+      // If proberaum vorhanden show it
       if (event.target.matches("input[name='proberaum']")) {
         if (event.target.value === "ja") showElement(probeRaumOrtLabel);
         // If proberaum is not used hide further proberaum inputs
@@ -484,32 +486,32 @@ const forms = (function forms() {
      * @param  {Event} event The event object
      */
 
-    var reviewSubmitHandler = function(event) {
-      console.log(event);
-      // Add form .submitting state class for styling
-      // event.target.classList.add("submitting");
-    };
+    // var reviewSubmitHandler = function(event) {
+    //   console.log(event);
+    //   // Add form .submitting state class for styling
+    //   // event.target.classList.add("submitting");
+    // };
 
-    var submitHandler = function(event) {
+    var submitHandler = function(e) {
       // Prevent default form submit
-      event.preventDefault();
+      e.preventDefault();
 
-      console.log(event);
+      console.log(e);
       // Ignore forms that are actively being submitted
-      if (event.target.classList.contains("submitting")) return;
+      if (e.target.classList.contains("submitting")) return;
 
       // Show submitting message
-      var status = event.target.querySelector("[data-submit]");
+      var status = e.target.querySelector("[data-submit]");
       status.innerHTML = "Sendet...";
       status.disabled = true;
 
       // Add form .submitting state class for styling
-      event.target.classList.add("submitting");
+      e.target.classList.add("submitting");
 
       // Confige fetch request options
       var requestOptions = {
         method: "POST",
-        body: new FormData(event.target),
+        body: new FormData(e.target),
         redirect: "follow",
       };
       let requestUrl = "";
@@ -524,7 +526,6 @@ const forms = (function forms() {
         : (redirectUrl = "/schaden-gemeldet/");
 
       // console.log(requestOptions, storageID, requestUrl, redirectUrl);
-      // console.log("test");
 
       // Post to formbackend
       fetch(requestUrl, requestOptions)

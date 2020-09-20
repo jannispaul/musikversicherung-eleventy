@@ -2,7 +2,7 @@
 
 # Musikversicherung.com
 
-This site is built with [Skeleventy](https://skeleventy.netlify.com/) [Eleventy](https://www.11ty.dev/docs/) starter with:
+This site is built with [Skeleventy](https://skeleventy.netlify.com/), an [Eleventy](https://www.11ty.dev/docs/) starter with:
 
 - [TailwindCSS](https://tailwindcss.com) and SCSS
 - [Laravel Mix](https://laravel-mix.com/docs/5.0/basic-example) (Webpack) to watch, concatenate and compile styles and scripts
@@ -11,7 +11,6 @@ This site is built with [Skeleventy](https://skeleventy.netlify.com/) [Eleventy]
 - ES6 support with Babel
 - SEO friendly pages (including Open Graph and Twitter meta)
 - Image lazyloading
-- A simple blog with categories and featured images
 
 ## Additional features
 
