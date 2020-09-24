@@ -80,6 +80,7 @@ if (mix.inProduction()) {
         "label.invalid",
         "md:flex-no-wrap",
         "flex-no-wrap",
+        "expanded",
       ],
     })
 
