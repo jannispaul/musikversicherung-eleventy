@@ -10330,6 +10330,45 @@ var forms = function forms() {
      */
 
 
+    /**
+     * Handle submit events
+     * @param  {Event} event The event object
+     */
+    // var reviewSubmitHandler = function(event) {
+    //   console.log(event);
+    //   // Add form .submitting state class for styling
+    //   // event.target.classList.add("submitting");
+    // };
+    var createInstrumentsArray = function createInstrumentsArray() {
+      // let list = document.querySelector(".instrument-list");
+      var singleInstruments = document.querySelectorAll(".single-instrument"); // let inputs = list.querySelectorAll("input");
+      // console.log(inputs);
+      // let instrumentsList = [];
+
+      singleInstruments.forEach(function (item) {
+        var inputs = Array.from(item.querySelectorAll("input"));
+        var instrumentObject = {
+          name: "",
+          valueType: "",
+          value: ""
+        };
+        inputs.forEach(function (input, index) {
+          if (input.type === "radio" && input.checked === true) {
+            instrumentObject.valueType = input.value;
+          } else if (input.type !== "radio" && input.name.includes("instrument")) {
+            instrumentObject.name = input.value;
+          } else if (input.type !== "radio" && input.name.includes("value")) {
+            instrumentObject.value = input.value;
+          } // Every 4th element start overwriting the instrument object
+          // if (index % 4 === 3) {
+          // }
+
+        });
+        console.log(instrumentObject);
+        instruments.push(instrumentObject);
+      });
+    };
+
     // This script handles form pages called tabs, adding instruments to the list and saves the form's state to localstorage and loads it
     // Set variables
     // Current tab is set to be the first tab (0)
@@ -10337,7 +10376,8 @@ var forms = function forms() {
 
     showTab(currentTab); // Instrument counter starts with 0 instrument
 
-    var instrumentCount = 0; // Increment instrument count
+    var instrumentCount = 0;
+    var instruments = []; // Increment instrument count
 
     var incrementInstrumentCount = function incrementInstrumentCount() {
       return instrumentCount++;
@@ -10517,21 +10557,13 @@ var forms = function forms() {
 
       localStorage.setItem(storageID, JSON.stringify(saved));
     };
-    /**
-     * Handle submit events
-     * @param  {Event} event The event object
-     */
-    // var reviewSubmitHandler = function(event) {
-    //   console.log(event);
-    //   // Add form .submitting state class for styling
-    //   // event.target.classList.add("submitting");
-    // };
-
 
     var submitHandler = function submitHandler(e) {
       // Prevent default form submit
       e.preventDefault();
-      console.log(e); // Ignore forms that are actively being submitted
+      console.log(e); // Turn instrument fields into an array
+
+      if (storageID === "anfrage-form") createInstrumentsArray(); // Ignore forms that are actively being submitted
 
       if (e.target.classList.contains("submitting")) return; // Show submitting message
 
@@ -10539,24 +10571,41 @@ var forms = function forms() {
       status.innerHTML = "Sendet...";
       status.disabled = true; // Add form .submitting state class for styling
 
-      e.target.classList.add("submitting"); // Confige fetch request options
+      e.target.classList.add("submitting"); // Turn FormData to object
 
-      var requestOptions = {
+      var formDataObject = {};
+      new FormData(e.target).forEach(function (value, key) {
+        formDataObject[key] = value;
+      }); // Add instruments to it
+
+      formDataObject.instruments = instruments;
+      var requestOptions; // Confige either fetch with json or with FormData
+
+      storageID === "anfrage-form" ? requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formDataObject),
+        redirect: "follow"
+      } : requestOptions = {
         method: "POST",
         body: new FormData(e.target),
         redirect: "follow"
       };
       var requestUrl = "";
-      var redirectUrl = "";
-      storageID === "anfrage-form" ? requestUrl = "https://www.formbackend.com/f/1cf344532f65848f" : requestUrl = "https://www.formbackend.com/f/706ac99a74b44def";
-      storageID === "anfrage-form" ? redirectUrl = "/danke/" : redirectUrl = "/schaden-gemeldet/"; // console.log(requestOptions, storageID, requestUrl, redirectUrl);
-      // Post to formbackend
+      var redirectUrl = ""; // Set request url
+
+      storageID === "anfrage-form" ? requestUrl = "https://hook.integromat.com/x7swibee0rqqfyquedknnxg2my0wfd1d" : requestUrl = "https://hook.integromat.com/18q6cjkcxpcl121zortxbnn506xv3hr4"; // Set redirect url
+
+      storageID === "anfrage-form" ? redirectUrl = "/danke/" : redirectUrl = "/schaden-gemeldet/"; // Post to formbackend
 
       fetch(requestUrl, requestOptions).then(function (response) {
         // If response is ok
         if (response.ok) {
-          console.log("fetch response ok"); // redirect to schaden-gemeldet page
-
+          // console.log("fetch response ok");
+          // console.log(requestOptions.body);
+          // redirect to schaden-gemeldet page
           window.location.href = redirectUrl; // Clear saved formdata from localstorage
 
           localStorage.removeItem(storageID);

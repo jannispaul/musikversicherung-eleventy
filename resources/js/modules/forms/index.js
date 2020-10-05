@@ -15,6 +15,8 @@ const forms = (function forms() {
 
     // Instrument counter starts with 0 instrument
     let instrumentCount = 0;
+    let instruments = [];
+
     // Increment instrument count
     let incrementInstrumentCount = () => instrumentCount++;
 
@@ -52,7 +54,6 @@ const forms = (function forms() {
     function addInstrument() {
       // Increment instrument count
       incrementInstrumentCount();
-
       // Single instrument html to add more instruments
       let singleInstrument = `<div class="single-instrument flex flex-wrap md:flex-no-wrap items-end mb-x1p5 md:mb-x0p5">
   <label class="flex md:flex-grow flex-col items-start flex-none md:flex-auto w-full md:w-1/2 md:mr-x0p5">
@@ -492,11 +493,46 @@ const forms = (function forms() {
     //   // event.target.classList.add("submitting");
     // };
 
+    function createInstrumentsArray() {
+      // let list = document.querySelector(".instrument-list");
+      let singleInstruments = document.querySelectorAll(".single-instrument");
+      // let inputs = list.querySelectorAll("input");
+      // console.log(inputs);
+      // let instrumentsList = [];
+
+      singleInstruments.forEach((item) => {
+        let inputs = Array.from(item.querySelectorAll("input"));
+        let instrumentObject = { name: "", valueType: "", value: "" };
+
+        inputs.forEach((input, index) => {
+          if (input.type === "radio" && input.checked === true) {
+            instrumentObject.valueType = input.value;
+          } else if (
+            input.type !== "radio" &&
+            input.name.includes("instrument")
+          ) {
+            instrumentObject.name = input.value;
+          } else if (input.type !== "radio" && input.name.includes("value")) {
+            instrumentObject.value = input.value;
+          }
+          // Every 4th element start overwriting the instrument object
+          // if (index % 4 === 3) {
+          // }
+        });
+        console.log(instrumentObject);
+        instruments.push(instrumentObject);
+      });
+    }
+
     var submitHandler = function(e) {
       // Prevent default form submit
       e.preventDefault();
 
       console.log(e);
+
+      // Turn instrument fields into an array
+      if (storageID === "anfrage-form") createInstrumentsArray();
+
       // Ignore forms that are actively being submitted
       if (e.target.classList.contains("submitting")) return;
 
@@ -508,31 +544,52 @@ const forms = (function forms() {
       // Add form .submitting state class for styling
       e.target.classList.add("submitting");
 
-      // Confige fetch request options
-      var requestOptions = {
-        method: "POST",
-        body: new FormData(e.target),
-        redirect: "follow",
-      };
+      // Turn FormData to object
+      let formDataObject = {};
+      new FormData(e.target).forEach((value, key) => {
+        formDataObject[key] = value;
+      });
+      // Add instruments to it
+      formDataObject.instruments = instruments;
+
+      let requestOptions;
+
+      // Confige either fetch with json or with FormData
+      storageID === "anfrage-form"
+        ? (requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formDataObject),
+            redirect: "follow",
+          })
+        : (requestOptions = {
+            method: "POST",
+            body: new FormData(e.target),
+            redirect: "follow",
+          });
+
       let requestUrl = "";
       let redirectUrl = "";
 
+      // Set request url
       storageID === "anfrage-form"
-        ? (requestUrl = "https://www.formbackend.com/f/1cf344532f65848f")
-        : (requestUrl = "https://www.formbackend.com/f/706ac99a74b44def");
+        ? (requestUrl =
+            "https://hook.integromat.com/x7swibee0rqqfyquedknnxg2my0wfd1d")
+        : (requestUrl =
+            "https://hook.integromat.com/18q6cjkcxpcl121zortxbnn506xv3hr4");
 
+      // Set redirect url
       storageID === "anfrage-form"
         ? (redirectUrl = "/danke/")
         : (redirectUrl = "/schaden-gemeldet/");
-
-      // console.log(requestOptions, storageID, requestUrl, redirectUrl);
 
       // Post to formbackend
       fetch(requestUrl, requestOptions)
         .then((response) => {
           // If response is ok
           if (response.ok) {
-            console.log("fetch response ok");
+            // console.log("fetch response ok");
+            // console.log(requestOptions.body);
             // redirect to schaden-gemeldet page
             window.location.href = redirectUrl;
             // Clear saved formdata from localstorage

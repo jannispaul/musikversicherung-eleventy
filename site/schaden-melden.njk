@@ -17,7 +17,7 @@ title: Kontakt
             <div class="flex flex-col md:grid md:grid-cols-2 gap-x0p5">
                 <label class="inline-flex flex-col">
                     Anrede *
-                    <select data-anrede="data-anrede" autofocus="autofocus">
+                    <select name="anrede" data-anrede="data-anrede" autofocus="autofocus">
                         <option disabled selected value> -- bitte auswählen -- </option>
                         <option value="Frau">Frau</option>
                         <option value="Herr">Herr</option>
@@ -123,7 +123,7 @@ title: Kontakt
             </FileUpload> #}
             <label for="fileUpload" class="block">Wenn schon eine Rechnung vorliegt oder Du weitere Unterlagen (Fotos, Kostenvoranschlag, …) beifügen möchtest, kannst Du sie hier hochladen.</label>
 
-            <input id="fileUpload" type="file" name="files" accept="image/*" multiple="multiple" class="hidden">
+            <input id="fileUpload" type="file" name="files" accept="image/*" class="hidden">
             <label class="primary-button cursor-pointer px-x1 inline-block w-full text-center mb-x2  md:mb-x1" for="fileUpload">Datei auswählen</label>
 
             <label class="flex items-center mb-x2 md:mb-x1 cursor-pointer">
