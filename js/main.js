@@ -10162,13 +10162,23 @@ var forms = function forms() {
           /*  fixStepIndicator(n);  */
         }
       }
-    };
+    }; // function toggleErrorMessage() {
+    //   errorMessage.classList.toggle("hidden");
+    // }
+
 
     var nextPrev = function nextPrev(n) {
       // This function will figure out which tab to display
       var tabs = document.getElementsByClassName("tab"); // Exit the function if any field in the current tab is invalid:
 
-      if (n == 1 && !validateForm()) return false; // Hide the current tab if its not the last:
+      if (n == 1 && !validateForm()) {
+        // If errorMessage is hidden, show it
+        if (errorMessage.classList.contains("hidden")) errorMessage.classList.toggle("hidden");
+        return false;
+      } // If errorMessage is shown, hide it
+
+
+      if (!errorMessage.classList.contains("hidden")) errorMessage.classList.toggle("hidden"); // Hide the current tab if its not the last:
 
       if (n !== tabs.length) {
         tabs[currentTab].style.display = "none";
@@ -10384,6 +10394,7 @@ var forms = function forms() {
     }; // DOM-Elements as variables
 
 
+    var errorMessage = document.querySelector(".error-message");
     var totalValueLabel = document.querySelector("[data-totalValue]");
     var totalValueInput = document.querySelector('input[name="gesamtWert"]');
     var organizationLabel = document.querySelector("label[data-organization]");

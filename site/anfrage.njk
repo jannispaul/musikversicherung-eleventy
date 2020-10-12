@@ -272,9 +272,12 @@ title: Anfrage
             </label>
         </div>
         {# Prev/Next/Send Buttons #}
-        <div class="flex md:justify-center lg:w-4/6 m-auto mb-x2">
-            <button type="button" id="prevBtn" class="primary-button order-2 w-full mr-x0p5">Zurück</button>
-            <button type="button" id="nextBtn" data-submit="data-submit" class="primary-button order-2 w-full">Weiter</button>
+        <div class="lg:w-4/6 m-auto mb-x2">
+            <div class="flex md:justify-center full-width mb-x0p5">
+                <button type="button" id="prevBtn" class="primary-button order-2 w-full mr-x0p5">Zurück</button>
+                <button type="button" id="nextBtn" data-submit="data-submit" class="primary-button order-2 w-full">Weiter</button>
+            </div>
+            <div class="error-message hidden"><p class="text-warning ">Bitte überprüfe Deine Eingabe und korrigiere alle rot markierten Felder.</p></div>
         </div>
     </div>
 </form>

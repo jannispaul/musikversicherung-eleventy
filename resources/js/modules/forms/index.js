@@ -21,6 +21,7 @@ const forms = (function forms() {
     let incrementInstrumentCount = () => instrumentCount++;
 
     // DOM-Elements as variables
+    let errorMessage = document.querySelector(".error-message");
     let totalValueLabel = document.querySelector("[data-totalValue]");
     let totalValueInput = document.querySelector('input[name="gesamtWert"]');
     let organizationLabel = document.querySelector("label[data-organization]");
@@ -131,12 +132,23 @@ const forms = (function forms() {
         }
       }
     }
-
+    // function toggleErrorMessage() {
+    //   errorMessage.classList.toggle("hidden");
+    // }
     function nextPrev(n) {
       // This function will figure out which tab to display
       var tabs = document.getElementsByClassName("tab");
       // Exit the function if any field in the current tab is invalid:
-      if (n == 1 && !validateForm()) return false;
+      if (n == 1 && !validateForm()) {
+        // If errorMessage is hidden, show it
+        if (errorMessage.classList.contains("hidden"))
+          errorMessage.classList.toggle("hidden");
+        return false;
+      }
+      // If errorMessage is shown, hide it
+      if (!errorMessage.classList.contains("hidden"))
+        errorMessage.classList.toggle("hidden");
+        
       // Hide the current tab if its not the last:
       if (n !== tabs.length) {
         tabs[currentTab].style.display = "none";
@@ -148,11 +160,12 @@ const forms = (function forms() {
       if (currentTab >= tabs.length) {
         // ... the form gets submitted:
         //   document.getElementById("form").submit();
-        document
-          .querySelector("form")
-          .dispatchEvent(
-            new Event("submit", { bubbles: true, cancelable: true })
-          );
+        document.querySelector("form").dispatchEvent(
+          new Event("submit", {
+            bubbles: true,
+            cancelable: true,
+          })
+        );
         return false;
       }
       // Otherwise, display the correct tab:
