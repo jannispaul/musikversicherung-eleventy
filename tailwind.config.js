@@ -322,6 +322,7 @@ module.exports = {
       ...negative(theme("spacing")),
     }),
     maxHeight: {
+      "40vw": "40vw",
       full: "100%",
       screen: "100vh",
     },
@@ -337,6 +338,7 @@ module.exports = {
       "5xl": "64rem",
       "6xl": "72rem",
       full: "100%",
+      "50vw": "50vw",
     },
     minHeight: {
       "0": "0",
