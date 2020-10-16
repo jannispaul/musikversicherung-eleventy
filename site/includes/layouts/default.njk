@@ -16,7 +16,15 @@
         excerpt
       }}{% endif %}"/>
         <meta name="robots" content="index,follow"/>
-
+        <script>
+            /**
+            * Element.matches() polyfill (simple version)
+            * https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
+            */
+            if (!Element.prototype.matches) {
+                Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+            }
+        </script>
         {# if your site's entire CSS comes in under 14kb, you may want to inline in
     the head #}
         {# include main.css if in development mode #}
