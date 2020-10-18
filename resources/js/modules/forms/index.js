@@ -146,9 +146,9 @@ const forms = (function forms() {
         return false;
       }
       // If errorMessage is shown, hide it
-      if (!errorMessage.classList.contains("hidden"))
+      if (errorMessage && !errorMessage.classList.contains("hidden"))
         errorMessage.classList.toggle("hidden");
-        
+
       // Hide the current tab if its not the last:
       if (n !== tabs.length) {
         tabs[currentTab].style.display = "none";
