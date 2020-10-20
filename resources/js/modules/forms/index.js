@@ -532,7 +532,7 @@ const forms = (function forms() {
           // if (index % 4 === 3) {
           // }
         });
-        console.log(instrumentObject);
+        // console.log(instrumentObject);
         instruments.push(instrumentObject);
       });
     }
@@ -541,7 +541,7 @@ const forms = (function forms() {
       // Prevent default form submit
       e.preventDefault();
 
-      console.log(e);
+      // console.log(e);
 
       // Turn instrument fields into an array
       if (storageID === "anfrage-form") createInstrumentsArray();
