@@ -1,9 +1,9 @@
 {% from "components/youtube.njk" import youtube %}
 
 <section id="ueber-mich" class=" px-x1p5 pb-x3 md:py-x2 w-100 relative items-center">
-    <h1 class="text-primary text-x4 md:text-center leading-tight mb-x2 border-solid">
+    <h2 class="text-primary text-x4 md:text-center leading-tight mb-x2 border-solid">
       Häufig gestellte Fragen
-    </h1>
+    </h2>
     <div class="grid md:grid-cols-2 gap-x1">
 	{% for faq in faqs %}
 	   {% if loop.index == 1 or loop.index == 5 or loop.index == 10 or loop.index == 12 %}
