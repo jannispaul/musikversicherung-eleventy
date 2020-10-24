@@ -10373,8 +10373,8 @@ var forms = function forms() {
           // if (index % 4 === 3) {
           // }
 
-        });
-        console.log(instrumentObject);
+        }); // console.log(instrumentObject);
+
         instruments.push(instrumentObject);
       });
     };
@@ -10571,8 +10571,8 @@ var forms = function forms() {
 
     var submitHandler = function submitHandler(e) {
       // Prevent default form submit
-      e.preventDefault();
-      console.log(e); // Turn instrument fields into an array
+      e.preventDefault(); // console.log(e);
+      // Turn instrument fields into an array
 
       if (storageID === "anfrage-form") createInstrumentsArray(); // Ignore forms that are actively being submitted
 
