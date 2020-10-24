@@ -3,11 +3,11 @@
 		<span>SINFONIMA/I'M SOUND Instrumentenversicherung</span>
 	</div>
 	<div class="md:flex items-center my-x0p5 md:mt-0 md:mb-x0p25 ">
-		<span class="flex text-primary mt-x0p5 md:mt-0 md:text-x0p25">
+		<p class="flex text-primary mt-x0p5 md:mt-0 md:text-x0p25">
 			{% include "components/star-rating-simple.njk" %}
 			<span class="md:inline">&nbsp;</span>
 			<p><span class="md:inline">von</span> {{ review.name }} am {{ review.date | dateDisplay }}</p>
-		</span>
+		</p>
 	</div>
 	<p class="mb-x0p5 md:mb-x0p25">
 		{{ review.review | safe}}
