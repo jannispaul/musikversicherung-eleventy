@@ -58,7 +58,7 @@ const forms = (function forms() {
       // Single instrument html to add more instruments
       let singleInstrument = `<div class="single-instrument flex flex-wrap md:flex-no-wrap items-end mb-x1p5 md:mb-x0p5">
   <label class="flex md:flex-grow flex-col items-start flex-none md:flex-auto w-full md:w-1/2 md:mr-x0p5">
-    Instrument / Zubehör ${instrumentCount}
+    Instrument ${instrumentCount > 1 ? "/ Zubehör" : ""} ${instrumentCount}
     <input
       name="instrument${instrumentCount}"
       type="text"
