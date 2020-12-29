@@ -221,6 +221,7 @@ const forms = (function forms() {
           valid = false;
         }
 
+        // Radio button validation
         if (
           // if field is radio button
           requiredInputsInTab[i].type == "radio" &&
@@ -247,11 +248,28 @@ const forms = (function forms() {
             labels.forEach((label) => label.classList.remove("invalid"));
           }
         }
+        // Email validation
+        if (
+          // if field is of type email and does not include an @
+          requiredInputsInTab[i].type == "email" &&
+          !requiredInputsInTab[i].value.includes("@")
+        ) {
+          // if field doesnt have invalid class
+          if (!requiredInputsInTab[i].classList.contains("invalid")) {
+            // add an "invalid" class to the field:
+            requiredInputsInTab[i].classList.add("invalid");
+          }
 
+          // and set the current valid status to false
+          valid = false;
+        }
+
+        // All other fields validation
         if (
           // if field is not empty and has invalid class
           !requiredInputsInTab[i].value == "" &&
           requiredInputsInTab[i].type != "checkbox" &&
+          requiredInputsInTab[i].type != "email" &&
           requiredInputsInTab[i].classList.contains("invalid")
         ) {
           // remove the invalid class
